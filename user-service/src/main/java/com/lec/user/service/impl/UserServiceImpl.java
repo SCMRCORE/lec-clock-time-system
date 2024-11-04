@@ -10,19 +10,19 @@ import com.clockcommon.entity.Result;
 import com.clockcommon.enums.AppHttpCodeEnum;
 import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
-import com.clockcommon.utils.JWTUtils;
 import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
 import com.lec.user.entity.dto.UserDto;
-import com.lec.user.entity.pojo.DailyHistory;
 import com.lec.user.entity.pojo.LoginUser;
 import com.lec.user.entity.pojo.User;
 import com.lec.user.entity.vo.LoginUserVo;
 import com.lec.user.entity.vo.UserInfoVo;
+import com.lec.user.config.JwtProperties;
 import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
+import com.lec.user.utils.JwtTool;
 import com.lec.user.utils.RedisUtil;
 import com.lec.user.utils.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +40,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -92,6 +90,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    JwtTool jwtTool;
+    @Resource
+    JwtProperties jwtProperties;
+
     @Override
     public Result login(LoginUserDto loginUserDto) {
 
@@ -107,23 +110,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         log.info("用户登录信息:{}",loginUserDto);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUserDto.getUsername(),loginUserDto.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-
+        //校验用户密码
         if(Objects.isNull(authenticate)){
             log.info("用户名或密码错误");
             return Result.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
         }
+        //获取用户实体并且将信息存入redis
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
-
         User user = loginUser.getUser();
         redisTemplate.opsForValue().set(SystemConstant.REDIS_LOGIN_USER + user.getId(), loginUser, 60 * 24*3, TimeUnit.MINUTES);
         log.info("user:{}",SystemConstant.REDIS_LOGIN_USER + user.getId());
-        String token = JWTUtils.createJWT(user.getId());
+        //生成token
+        Long userId = user.getId();
+        String token = jwtTool.createToken(userId, jwtProperties.getTokenTTL());
         log.info("创建一个新的token:{}",token);
+        //封装返回给vo
         UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
         LoginUserVo loginUserVo = new LoginUserVo(token, userInfoVo);
         log.info("登录成功，返回登录信息:{}",loginUserDto);
         return Result.okResult(loginUserVo);
     }
+
+
+
+
 
     @Override
     public Result register(RegisterUserDto registerUserDto) {

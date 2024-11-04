@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.clockcommon.entity.PageVo;
 import com.clockcommon.entity.Result;
 import com.clockcommon.enums.AppHttpCodeEnum;
+import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
+import com.clockcommon.utils.UserContext;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.ClockIpMapper;
@@ -79,9 +81,11 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Override
     public Result clock() throws UnknownHostException {
-//        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
-//        //TODO 获取ID1
+        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
+        //TODO 获取ID1
 //        Long id=SecurityUtils.getUserId();
+        Long id = UserContext.getUser();
+        log.info("获取的id为:{}", id);
 //        Clock clock=clockMapper.getById(id);
 //        int status = clock.getStatus();
 //
@@ -174,7 +178,7 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Override
     public Result addIpv4() throws UnknownHostException {
-//        //TODO 获取ID2
+//        TODO 获取ID2
 //        Long id=SecurityUtils.getUserId();
 //
 //        String ipv4= (String) redisTemplate.opsForValue().get(SystemConstant.REDIS_CLOCK_IPV4+id);
