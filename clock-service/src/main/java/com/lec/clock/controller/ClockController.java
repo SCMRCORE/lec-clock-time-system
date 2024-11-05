@@ -8,7 +8,6 @@ import com.lec.clock.service.ClockService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.UnknownHostException;
@@ -18,9 +17,19 @@ import java.net.UnknownHostException;
 @RequestMapping("/api/clock")
 @Api(tags = "打卡相关接口")
 public class ClockController {
-
     @Autowired
     private ClockService clockService;
+
+
+    /**
+     * 测试
+     * @return
+     */
+    @GetMapping("/test1")
+    public Result test(){
+        log.info("测试连接");
+        return Result.okResult();
+    }
 
     /**
      * 获取所有打卡信息
@@ -40,6 +49,7 @@ public class ClockController {
     @PostMapping("/clock")
     @SystemLog(businessName = "上下卡")
     public Result clock() throws UnknownHostException {
+        log.info("开始打卡");
         return clockService.clock();
     }
 
@@ -62,7 +72,6 @@ public class ClockController {
      * @return
      */
     @PutMapping("/update/{id}")
-    @PreAuthorize("@ps.hasPermission('clock:update:duration')")
     public Result updateDuration(@PathVariable("id") Long id, Integer duration){
         return clockService.updateDuration(id, duration);
     }

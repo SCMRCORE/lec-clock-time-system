@@ -39,6 +39,17 @@ public class UserController {
 
 
     /**
+     * 测试
+     * @return
+     */
+    @GetMapping("/test1")
+    public Result test(){
+        log.info("测试连接");
+        return Result.okResult();
+    }
+
+
+    /**
      * 登录
      * @param loginUserDto
      * @return
@@ -46,6 +57,7 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("登录")
     public Result login(@RequestBody LoginUserDto loginUserDto){
+        log.info("用户登录，用户名：{}",loginUserDto.getUsername());
         return userService.login(loginUserDto);
     }
 

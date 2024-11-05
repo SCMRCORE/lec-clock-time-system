@@ -4,6 +4,7 @@ import com.lecgateway.config.AuthProperties;
 import com.lecgateway.exceptions.UnauthorizedException;
 import com.lecgateway.utils.JwtTool;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -19,9 +20,11 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class LecGlobalFilter implements GlobalFilter, Ordered {
 
     private final AuthProperties authProperties;//记录不需要拦截的路径
+
     private final JwtTool jwtTool;
     private final AntPathMatcher antPathMatcher = new AntPathMatcher();//判断路径是否一直的工具
 
@@ -32,6 +35,7 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
         //2.判断是否需要做登录拦截
         if(isExclude(request.getPath().toString())){
             //放行
+            log.info("无需校验：放行");
             return chain.filter(exchange);
         }
         //3.获取token
@@ -43,11 +47,15 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
         }
         //4.校验并解析token
         Long userId = null;
+        userId=jwtTool.parseToken(token);
+        log.info("解析出userID为:{}",userId);
         try{
             userId=jwtTool.parseToken(token);
+            log.info("解析出userID为:{}",userId);
         }catch (UnauthorizedException e){
             //因为报错了嘛，所以返回一个response
             //拦截的状态码设置为401，手写的UnauthorizedException里有的
+            log.info("token校验失败,网关已拦截返回401");
             ServerHttpResponse response = exchange.getResponse();
             response.setStatusCode(HttpStatus.UNAUTHORIZED);//HttpStatus是框架自带
             return response.setComplete();
@@ -59,6 +67,7 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
                 //这里也是和其他后端开发者约好了关键词
                 .build();//获得新的exchange
         //6.放行
+        log.info("放行");
         return chain.filter(swe);
     }
 

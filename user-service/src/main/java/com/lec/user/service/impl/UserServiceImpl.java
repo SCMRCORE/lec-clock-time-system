@@ -2,7 +2,6 @@ package com.lec.user.service.impl;
 
 
 import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -14,7 +13,6 @@ import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
 import com.lec.user.entity.dto.UserDto;
-import com.lec.user.entity.pojo.LoginUser;
 import com.lec.user.entity.pojo.User;
 import com.lec.user.entity.vo.LoginUserVo;
 import com.lec.user.entity.vo.UserInfoVo;
@@ -24,7 +22,6 @@ import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.JwtTool;
 import com.lec.user.utils.RedisUtil;
-import com.lec.user.utils.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,9 +29,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,9 +47,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
-    @Autowired
-    AuthenticationManager authenticationManager;
 
     @Autowired
     RedisUtil redisUtil;
@@ -95,44 +86,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Resource
     JwtProperties jwtProperties;
 
+
     @Override
     public Result login(LoginUserDto loginUserDto) {
-
-        /*
-        UsernamePasswordAuthenticationToken
-        它是一种Authentication实现，继承AbstractAuthenticationToken抽象类，旨在简单地表示用户名和密码。
-        principal和credentials属性应设置为通过其toString方法提供相应属性的Object，最简单的就是String类型。
-         * AuthenticatedPrincipal：一旦Authentication请求已通过AuthenticationManager.authenticate(Authentication)方法成功验证，
-         * 则表示经过身份验证的Principal（实体）。实现者通常提供他们自己的Principal表示，其中通常包含描述Principal实体的信息，
-         * 例如名字、地址、电子邮件、电话以及ID等，此接口允许实现者公开其自定义的特定属性以通用方式表示Principal。
-         * Principal：该接口表示主体的抽象概念，可用于表示任何实体，是java.security包下的接口，并非由Spring Security提供。
-         */
-        log.info("用户登录信息:{}",loginUserDto);
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUserDto.getUsername(),loginUserDto.getPassword());
-        Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-        //校验用户密码
-        if(Objects.isNull(authenticate)){
+        log.info("用户登录信息:{}", loginUserDto);
+        String username = loginUserDto.getUsername();
+        String password = loginUserDto.getPassword();
+        User user = userMapper.getUserByUsername(username);
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             log.info("用户名或密码错误");
             return Result.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
         }
-        //获取用户实体并且将信息存入redis
-        LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
-        User user = loginUser.getUser();
-        redisTemplate.opsForValue().set(SystemConstant.REDIS_LOGIN_USER + user.getId(), loginUser, 60 * 24*3, TimeUnit.MINUTES);
-        log.info("user:{}",SystemConstant.REDIS_LOGIN_USER + user.getId());
-        //生成token
-        Long userId = user.getId();
-        String token = jwtTool.createToken(userId, jwtProperties.getTokenTTL());
-        log.info("创建一个新的token:{}",token);
-        //封装返回给vo
-        UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
-        LoginUserVo loginUserVo = new LoginUserVo(token, userInfoVo);
-        log.info("登录成功，返回登录信息:{}",loginUserDto);
-        return Result.okResult(loginUserVo);
+            //获取用户实体并且将信息存入redis
+            redisTemplate.opsForValue().set(SystemConstant.REDIS_LOGIN_USER + user.getId(), user, 60 * 24 * 3, TimeUnit.MINUTES);
+            log.info("user:{}", SystemConstant.REDIS_LOGIN_USER + user.getId());
+            //生成token
+            Long userId = user.getId();
+            log.info("获取的userId为：{}", userId);
+            String token = jwtTool.createToken(userId, jwtProperties.getTokenTTL());
+            log.info("创建一个新的token:{}", token);
+            //封装返回给vo
+            UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
+            LoginUserVo loginUserVo = new LoginUserVo(token, userInfoVo);
+            return Result.okResult(loginUserVo);
     }
-
-
-
 
 
     @Override
@@ -209,12 +186,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result logout() {
-        Long id = SecurityUtils.getUserId();
-        Boolean flag = redisTemplate.delete(SystemConstant.REDIS_LOGIN_USER + id);
-        if(BooleanUtil.isTrue(flag)) {
-            return Result.okResult();
-        }
-        return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+//        Long id = SecurityUtils.getUserId();
+//        Boolean flag = redisTemplate.delete(SystemConstant.REDIS_LOGIN_USER + id);
+//        if(BooleanUtil.isTrue(flag)) {
+//            return Result.okResult();
+//        }
+//        return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        return Result.okResult();
     }
 
     @Override
@@ -226,10 +204,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result updateUserInfo(UpdateUserDto updateUserDto) {
-        updateUserDto.setId(SecurityUtils.getUserId());
-        User user = BeanCopyUtils.copyBean(updateUserDto, User.class);
-        boolean flag = updateById(user);
-        if(!flag) return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+//        updateUserDto.setId(SecurityUtils.getUserId());
+//        User user = BeanCopyUtils.copyBean(updateUserDto, User.class);
+//        boolean flag = updateById(user);
+//        if(!flag) return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
         return Result.okResult();
     }
 
@@ -260,10 +238,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result isDead() {
-        Long id= SecurityUtils.getUserId();
-        LoginUser loginUser = (LoginUser) redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
-        boolean isDead= ObjectUtil.isNull(loginUser);
-        return Result.okResult(!isDead);
+//        Long id= SecurityUtils.getUserId();
+//        LoginUser loginUser = (LoginUser) redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
+//        boolean isDead= ObjectUtil.isNull(loginUser);
+//        return Result.okResult(!isDead);
+        return Result.okResult();
     }
 }
+
 
