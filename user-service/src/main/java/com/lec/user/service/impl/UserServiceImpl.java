@@ -2,6 +2,7 @@ package com.lec.user.service.impl;
 
 
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,10 +10,13 @@ import com.clockcommon.entity.Result;
 import com.clockcommon.enums.AppHttpCodeEnum;
 import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
+import com.clockcommon.utils.UserContext;
+import com.example.lecapi.clients.ClockClient;
 import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
 import com.lec.user.entity.dto.UserDto;
+import com.lec.user.entity.pojo.DailyHistory;
 import com.lec.user.entity.pojo.User;
 import com.lec.user.entity.vo.LoginUserVo;
 import com.lec.user.entity.vo.UserInfoVo;
@@ -20,8 +24,11 @@ import com.lec.user.config.JwtProperties;
 import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
+import com.lec.user.utils.AliOSSUtils;
 import com.lec.user.utils.JwtTool;
 import com.lec.user.utils.RedisUtil;
+import com.lec.user.utils.SnowflakeIdWorker;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,6 +41,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +56,11 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Resource
+    ClockClient clockClient;
+
+    SnowflakeIdWorker snowflakeIdWorkers=new SnowflakeIdWorker(0);
 
     @Autowired
     RedisUtil redisUtil;
@@ -64,19 +78,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private JavaMailSenderImpl mailSender;
 
-//    @Autowired
-//    private ClockService clockService;
-//
-//    @Autowired
-//    private OssUploadService ossUploadService;
+    @Resource
+    private AliOSSUtils aliOSSUtils;
 
-//    SnowflakeIdWorker snowflakeIdWorkers=new SnowflakeIdWorker(0);
 
     @Autowired
     DailyHistoryMapper dailyHistoryMapper;
-
-//    @Autowired
-//    CardServiceImpl cardService;
 
     @Resource
     UserMapper userMapper;
@@ -116,14 +123,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Result register(RegisterUserDto registerUserDto) {
         Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
 
-        //匹配验证码（通过email作为key）
-        int code= (int) redisTemplate.opsForValue().get(registerUserDto.getEmail());
-        if(code!=registerUserDto.getCode()){
+        try {
+            //匹配验证码（通过email作为key）
+            int code = (int) redisTemplate.opsForValue().get(registerUserDto.getEmail());
+            if (code != registerUserDto.getCode()) {
+                return Result.errorResult(AppHttpCodeEnum.CODE_FALSE);
+            }
+            //匹配验证码通过，将redis内的验证码删除
+            redisTemplate.delete(registerUserDto.getEmail());
+        }catch (Exception e) {
             return Result.errorResult(AppHttpCodeEnum.CODE_FALSE);
         }
-        //匹配验证码通过，将redis内的验证码删除
-        redisTemplate.delete(registerUserDto.getEmail());
-
 
         String userName = registerUserDto.getUsername();
         if(StrUtil.isBlank(userName)) {
@@ -141,28 +151,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //将注册信息注入到对应的user实体类里
         User user = BeanCopyUtils.copyBean(registerUserDto, User.class);
 
-        //TODO 需要rpc
-//        //为用户新建一个打卡类
-//        Clock clock = new Clock(LocalDateTime.now(), SystemConstant.CLOCKED_STATUS, 0, SystemConstant.FIRST_GRADE_CLOCK_TARGET);
-//        if(user.getGrade() == 2) {
-//            clock.setTargetDuration(SystemConstant.SECOND_GRADE_CLOCK_TARGET);
-//        }
-//
-//        user.setAvatar(SystemConstant.default_URL);
-//        user.setSignature(SystemConstant.signature);
-//        user.setId(snowflakeIdWorkers.nextId());
-//        clock.setId(user.getId());
-//
-//        //为用户新建一个每日打卡类
-//        DailyHistory dailyHistory=new DailyHistory(user.getId(),week,0,0,0,0,0,0,0);
-//        //存入数据库
-//
-//        Card card=new Card();
-//        card.setId(user.getId());
-//        cardService.updateById(card);
-//        dailyHistoryMapper.insert(dailyHistory);
-//        userService.save(user);
-//        clockService.save(clock);
+        user.setAvatar(SystemConstant.default_URL);
+        user.setSignature(SystemConstant.signature);
+        user.setId(snowflakeIdWorkers.nextId());
+
+        //为用户新建一个每日打卡类
+        DailyHistory dailyHistory=new DailyHistory(user.getId(),week,0,0,0,0,0,0,0);
+        //存入数据库
+
+        dailyHistoryMapper.insert(dailyHistory);
+        userMapper.insert(user);
+        clockClient.createClock(user.getId(), user.getGrade());
+        //        Card card=new Card();
+        //        card.setId(user.getId());
+        //        cardService.updateById(card);
         return Result.okResult();
     }
 
@@ -186,13 +188,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result logout() {
-//        Long id = SecurityUtils.getUserId();
-//        Boolean flag = redisTemplate.delete(SystemConstant.REDIS_LOGIN_USER + id);
-//        if(BooleanUtil.isTrue(flag)) {
-//            return Result.okResult();
-//        }
-//        return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-        return Result.okResult();
+        Long id = UserContext.getUser();
+        Boolean flag = redisTemplate.delete(SystemConstant.REDIS_LOGIN_USER + id);
+        if(BooleanUtil.isTrue(flag)) {
+            return Result.okResult();
+        }
+        return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
     }
 
     @Override
@@ -204,28 +205,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result updateUserInfo(UpdateUserDto updateUserDto) {
-//        updateUserDto.setId(SecurityUtils.getUserId());
-//        User user = BeanCopyUtils.copyBean(updateUserDto, User.class);
-//        boolean flag = updateById(user);
-//        if(!flag) return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        updateUserDto.setId(UserContext.getUser());
+        User user = BeanCopyUtils.copyBean(updateUserDto, User.class);
+        boolean flag = updateById(user);
+        if(!flag) return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
         return Result.okResult();
     }
 
     //上传头像
     @Override
     public Result uploadAva(MultipartFile file) {
-       //TODO OSS待解决
-//        try {
-//            Long id=SecurityUtils.getUserId();
-//            User user=userService.getById(id);
-//            Result result=ossUploadService.uploadImg(file);
-//            user.setAvatar((String) result.getData());
-//            userService.updateById(user);
-//            return  result;
-//        } catch (IOException e) {
-//            return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-//        }
-        return Result.okResult();
+        try {
+            Long id=UserContext.getUser();
+            User user=userMapper.getById(id);
+            String url =aliOSSUtils.upload(file);
+            Result result = Result.okResult(url);
+            user.setAvatar((String) result.getData());
+            userMapper.updateById(user);
+            return result;
+        } catch (IOException e) {
+            return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
+        }
+//        return Result.okResult();
     }
 
     @Override
@@ -238,11 +239,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result isDead() {
-//        Long id= SecurityUtils.getUserId();
-//        LoginUser loginUser = (LoginUser) redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
-//        boolean isDead= ObjectUtil.isNull(loginUser);
-//        return Result.okResult(!isDead);
-        return Result.okResult();
+        Long id= UserContext.getUser();
+        User user = (User) redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
+        boolean isDead= ObjectUtil.isNull(user);
+        return Result.okResult(!isDead);
     }
 }
 

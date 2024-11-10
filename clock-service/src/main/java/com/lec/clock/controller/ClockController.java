@@ -105,4 +105,15 @@ public class ClockController {
 //        return dailyHistoryService.getDay();
 //    }
 
+    /**
+     * 创建用户的clock对象
+     * @param userId
+     * @return
+     */
+    @GetMapping("/create")
+    public void createClock(Long userId, Integer grade) {
+        log.info("创建用户的clock对象");
+        clockService.createClockByUserId(userId, grade);
+//        return Result.okResult("创建成功");
+    }
 }
