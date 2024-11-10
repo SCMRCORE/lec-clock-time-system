@@ -4,6 +4,7 @@ package com.lec.clock.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.vo.ClockInfoVo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -28,4 +29,7 @@ public interface ClockMapper extends BaseMapper<Clock> {
 
     @Select("select * from clock where id = #{id}")
     Clock getById(Long id);
+
+    @Insert("insert into clock (id, begin_time, status, total_duration, target_duration, create_time, update_time, temporary) values (#{id}, #{beginTime}, #{status}, #{totalDuration}, #{targetDuration}, #{createTime}, #{updateTime}, 0)")
+    void addNewClock(Clock clock);
 }

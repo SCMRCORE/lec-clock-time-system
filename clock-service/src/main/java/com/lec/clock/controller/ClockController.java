@@ -3,6 +3,7 @@ package com.lec.clock.controller;
 import com.clockcommon.entity.Page;
 import com.clockcommon.entity.Result;
 import com.clockcommon.enums.SystemLog;
+import com.clockcommon.utils.UserContext;
 import com.lec.clock.entity.pojo.Position;
 import com.lec.clock.service.ClockService;
 import io.swagger.annotations.Api;
@@ -49,8 +50,9 @@ public class ClockController {
     @PostMapping("/clock")
     @SystemLog(businessName = "上下卡")
     public Result clock() throws UnknownHostException {
-        log.info("开始打卡");
-        return clockService.clock();
+        Long userId = UserContext.getUser();
+        log.info("执行上下卡操作，id为：{}", userId);
+        return clockService.clock(userId);
     }
 
 
@@ -114,6 +116,5 @@ public class ClockController {
     public void createClock(Long userId, Integer grade) {
         log.info("创建用户的clock对象");
         clockService.createClockByUserId(userId, grade);
-//        return Result.okResult("创建成功");
     }
 }

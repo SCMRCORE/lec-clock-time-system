@@ -6,4 +6,6 @@ import com.lec.user.entity.pojo.DailyHistory;
 
 public interface DailyHistoryService{
     Result getDay();
+
+    void setDaiyTime(int addTodayTime, String day);
 }

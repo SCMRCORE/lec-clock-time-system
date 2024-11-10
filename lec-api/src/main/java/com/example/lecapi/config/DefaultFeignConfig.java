@@ -16,8 +16,9 @@ public class DefaultFeignConfig {
             public void apply(RequestTemplate requestTemplate) {
                 //网关发送请求把userId放进ThreadLocal了,而这个拦截器在OpenFeign发送前拦截，所以可以获取
                 Long userId = UserContext.getUser();
+                log.info("feign拦截器获取到userId:{}",userId);
                 if( userId != null) {
-                    requestTemplate.header("user-info", userId.toString());
+                    requestTemplate.header("userInfo", userId.toString());
                 }
             }
         };

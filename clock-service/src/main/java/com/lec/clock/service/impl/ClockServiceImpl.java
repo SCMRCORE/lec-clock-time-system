@@ -8,6 +8,7 @@ import com.clockcommon.enums.AppHttpCodeEnum;
 import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
 import com.clockcommon.utils.UserContext;
+import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.ClockIpMapper;
@@ -17,18 +18,22 @@ import com.lec.clock.mapper.Ipv4LogMapper;
 
 import com.lec.clock.service.ClockService;
 import com.lec.clock.service.Ipv4LogService;
+import com.lec.clock.utils.GetWeekUtil;
 import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +46,9 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service("clockService")
 public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements ClockService {
+
+    @Resource
+    UserClient userClient;
 
     @Autowired
     ClockMapper clockMapper;
@@ -55,12 +63,6 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Autowired
     ClockIpMapper clockIpMapper;
-
-//    @Autowired
-//    DailyHistoryMapper dailyHistoryMapper;
-//
-//    @Autowired
-//    DailyHistoryService dailyHistoryService;
 
     @Override
     public Result listAllClock(Integer grade, Integer pageNum, Integer pageSize) {
@@ -84,12 +86,10 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
     }
 
     @Override
-    public Result clock() throws UnknownHostException {
-        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
-        Long id = UserContext.getUser();
+    public Result clock(Long id) throws UnknownHostException {
+//        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
         Clock clock=clockMapper.getById(id);
         int status = clock.getStatus();
-
 
         //从redis数据库里获取对应的ipv4信息
         String ipv4= (String) redisTemplate.opsForValue().get(SystemConstant.REDIS_CLOCK_IPV4+id);
@@ -124,38 +124,38 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
             }
         }
 
+        //开始打卡
         if(status == SystemConstant.CLOCKED_STATUS) {
-            if(!isClockIp){
-                return Result.okResult("打卡失败！！！，请在团队内打卡");
-            }
+//            if(!isClockIp){
+//                return Result.okResult("打卡失败！！！，请在团队内打卡");
+//            }
+            log.info("开始打卡");
             clock.setStatus(SystemConstant.CLOCKING_STATUS);
             clock.setBeginTime(LocalDateTime.now());
             updateById(clock);
             StartClockVo startClockVo = BeanCopyUtils.copyBean(clock, StartClockVo.class);
             return Result.okResult(startClockVo);
         }
+        //结束打卡
+        log.info("结束打卡");
         clock.setStatus(SystemConstant.CLOCKED_STATUS);
         long duration = ChronoUnit.MINUTES.between(clock.getBeginTime(), LocalDateTime.now());
 
-        //TODO 计算每日打卡
-//        DailyHistory dailyHistory=dailyHistoryMapper.selectById(id);
-//        dailyHistory.setWeek(week);
-//        int time=clock.getTotalDuration();
-//        Date date=new Date();
-//        String day= GetWeekUtil.GetWeekUtil(date).toString();
-//        if(duration >= 60 * 5){
-//            updateById(clock);
-//            dailyHistory.setTime(0,day,dailyHistory);
-//            dailyHistoryService.updateById(dailyHistory);
-//            return Result.errorResult(AppHttpCodeEnum.CLOCK_TIMEOUT);
-//        }
-//        clock.setTotalDuration((int) duration+ clock.getTotalDuration());
-//        dailyHistory.setTime(clock.getTotalDuration()-time,day,dailyHistory);
-//        dailyHistoryService.updateById(dailyHistory);
-//        updateById(clock);
-//        StopClockVo stopClockVo = BeanCopyUtils.copyBean(clock, StopClockVo.class);
-//        return Result.okResult(stopClockVo);
-        return Result.okResult();
+        int time=clock.getTotalDuration();
+        Date date=new Date();
+        String day= GetWeekUtil.GetWeekUtil(date).toString();
+        if(duration >= 60 * 5){
+            updateById(clock);
+            userClient.dailyclock(0, day);
+            return Result.errorResult(AppHttpCodeEnum.CLOCK_TIMEOUT);
+        }
+        else {
+            clock.setTotalDuration((int) duration + clock.getTotalDuration());//加上每日打卡时长
+            userClient.dailyclock(clock.getTotalDuration() - time, day);
+            updateById(clock);
+            StopClockVo stopClockVo = BeanCopyUtils.copyBean(clock, StopClockVo.class);
+            return Result.okResult(stopClockVo);
+        }
     }
 
     @Override
@@ -232,9 +232,9 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         log.info("创建用户clock对象，用户id:{},年级:{}",userId,grade);
         Clock clock = new Clock(LocalDateTime.now(), SystemConstant.CLOCKED_STATUS, 0, SystemConstant.FIRST_GRADE_CLOCK_TARGET);
         if(grade==2){
-            clock.setTotalDuration(SystemConstant.SECOND_GRADE_CLOCK_TARGET);
+            clock.setTargetDuration(SystemConstant.SECOND_GRADE_CLOCK_TARGET);
         }
         clock.setId(userId);
-        clockMapper.insert(clock);
+        clockMapper.addNewClock(clock);
     }
 }

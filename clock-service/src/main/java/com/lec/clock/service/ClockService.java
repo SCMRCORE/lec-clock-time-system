@@ -17,7 +17,7 @@ public interface ClockService extends IService<Clock> {
 
     Result listAllClock(Integer grade, Integer pageNum, Integer pageSize);
 
-    Result clock() throws UnknownHostException;
+    Result clock(Long id) throws UnknownHostException;
 
     Result getClockById(Long id);
 

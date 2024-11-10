@@ -3,6 +3,7 @@ package com.lec.user.controller;
 import com.clockcommon.entity.Result;
 import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.enums.SystemLog;
+import com.clockcommon.utils.UserContext;
 import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
@@ -170,12 +171,16 @@ public class UserController {
     //下面全是rpc
 
     /**
-     * 获取用户id
+     * 计算今日(星期)打卡时长
+     * @param addTodayTime
+     * @param day
      * @return
      */
-    @GetMapping("/getUserId")
-    public Result getUserId() {
-
-        return dailyHistoryService.getDay();
+    @GetMapping("/calculateClock")
+    public void dailyclock(int addTodayTime, String day) {
+        log.info("计算本日本次打卡时长,本次新增时长：{},星期数：{}",addTodayTime,day);
+        log.info("用户id为{}", UserContext.getUser());
+        dailyHistoryService.setDaiyTime(addTodayTime,day);
     }
+
 }
