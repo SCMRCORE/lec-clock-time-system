@@ -1,1 +1,10 @@
+com\lecgateway\config\AuthProperties.class
+com\lecgateway\enums\SystemConstant.class
 com\lecgateway\LecGatewayApplication.class
+com\lecgateway\utils\JwtTool.class
+com\lecgateway\config\SecurityConfig.class
+com\lecgateway\filter\LecGlobalFilter.class
+com\lecgateway\exceptions\CommonException.class
+com\lecgateway\filter\ipv4Filter.class
+com\lecgateway\exceptions\UnauthorizedException.class
+com\lecgateway\config\JwtProperties.class

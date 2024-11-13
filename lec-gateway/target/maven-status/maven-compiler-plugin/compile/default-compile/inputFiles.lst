@@ -1,1 +1,10 @@
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\exceptions\UnauthorizedException.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\enums\SystemConstant.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\config\AuthProperties.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\exceptions\CommonException.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\config\JwtProperties.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\filter\ipv4Filter.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\config\SecurityConfig.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\filter\LecGlobalFilter.java
+C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\utils\JwtTool.java
 C:\Users\35511\IdeaProjects\lec-time-clock-system\lec-gateway\src\main\java\com\lecgateway\LecGatewayApplication.java

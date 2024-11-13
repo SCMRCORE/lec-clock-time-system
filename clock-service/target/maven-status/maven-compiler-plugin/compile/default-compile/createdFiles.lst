@@ -13,6 +13,7 @@ com\lec\clock\entity\vo\UserInfoVo.class
 com\lec\clock\mapper\ClockIpMapper.class
 com\lec\clock\service\ClockHistoryService.class
 com\lec\clock\entity\vo\ClockHistoryListVo.class
+com\lec\clock\utils\UserContext.class
 com\lec\clock\entity\vo\StopClockVo.class
 com\lec\clock\service\ClockService.class
 com\lec\clock\entity\dto\ClockDto.class

@@ -126,9 +126,10 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
         //开始打卡
         if(status == SystemConstant.CLOCKED_STATUS) {
-//            if(!isClockIp){
-//                return Result.okResult("打卡失败！！！，请在团队内打卡");
-//            }
+            if(!isClockIp){
+                log.info("不在打卡ip内");
+                return Result.okResult("打卡失败！！！，请在团队内打卡");
+            }
             log.info("开始打卡");
             clock.setStatus(SystemConstant.CLOCKING_STATUS);
             clock.setBeginTime(LocalDateTime.now());
@@ -182,6 +183,7 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         Long id=UserContext.getUser();
 
         String ipv4= (String) redisTemplate.opsForValue().get(SystemConstant.REDIS_CLOCK_IPV4+id);
+        log.info("获取的ip为：{}， id为：{}",ipv4,id);
         redisTemplate.delete(SystemConstant.REDIS_CLOCK_IPV4+id);
         // 将IP地址和子网掩码解析为InetAddress对象
         InetAddress ip = InetAddress.getByName(ipv4);
