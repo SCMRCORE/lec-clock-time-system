@@ -10,6 +10,7 @@ import com.lec.user.entity.dto.UpdateUserDto;
 import com.lec.user.entity.dto.UserDto;
 import com.lec.user.service.DailyHistoryService;
 import com.lec.user.service.UserService;
+import com.lec.user.utils.MinioUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -125,12 +126,11 @@ public class UserController {
      * @return
      */
     @PutMapping("/upload")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "image", value = "MultipartFile"),
-    })
     public Result uploadAva(MultipartFile image){
-        return userService.uploadAva(image);
+        String url = userService.uploadImage(image);
+        return Result.okResult(url);
     }
+
 
     @GetMapping("/test")
     public Result uploads(){
@@ -158,7 +158,7 @@ public class UserController {
         return userService.getUserByGrade(userDto);
     }
 
-    /**
+    /** TODO 待完成day接口+dailyhistory
      * 查看用户每日打卡时长
      * @return
      */

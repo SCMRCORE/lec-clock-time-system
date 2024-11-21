@@ -21,16 +21,15 @@ public class ClockController {
     @Autowired
     private ClockService clockService;
 
-
-    /**
-     * 测试
-     * @return
-     */
-    @GetMapping("/test1")
-    public Result test(){
-        log.info("测试连接");
-        return Result.okResult();
-    }
+//    /**
+//     * 测试
+//     * @return
+//     */
+//    @GetMapping("/test1")
+//    public Result test(){
+//        log.info("测试连接");
+//        return Result.okResult();
+//    }
 
     /**
      * 获取所有打卡信息
@@ -56,15 +55,15 @@ public class ClockController {
     }
 
 
-    /**
-     * 根据id获取打卡信息
-     * @param id
-     * @return
-     */
-    @GetMapping("/nowClock/{id}")
-    public Result getClockById(@PathVariable Long id) {
-        return clockService.getClockById(id);
-    }
+//    /**
+//     * 根据id获取打卡信息
+//     * @param id
+//     * @return
+//     */
+//    @GetMapping("/nowClock/{id}")
+//    public Result getClockById(@PathVariable Long id) {
+//        return clockService.getClockById(id);
+//    }
 
 
     /**
@@ -89,24 +88,28 @@ public class ClockController {
         return clockService.addIpv4();
     }
 
-    /**
-     * 获取可以打卡的ip
-     * @param position
-     * @return
-     */
-    @PostMapping("/position")
-    public Result getPosition(@RequestBody Position position){
-        log.info("成功接受请求");
-        log.info("a:{}",position.getA());
-        log.info("b:{}",position.getB());
-        return Result.okResult();
-    }
+//    /**
+//     * 获取可以打卡的ip
+//     * @param position
+//     * @return
+//     */
+//    @PostMapping("/position")
+//    public Result getPosition(@RequestBody Position position){
+//        log.info("成功接受请求");
+//        log.info("a:{}",position.getA());
+//        log.info("b:{}",position.getB());
+//        return Result.okResult();
+//    }
 
 //    @GetMapping("/day")
 //    public Result getDay() {
 //        return dailyHistoryService.getDay();
 //    }
 
+
+
+
+//这部分是rpc专区
     /**
      * 创建用户的clock对象
      * @param userId

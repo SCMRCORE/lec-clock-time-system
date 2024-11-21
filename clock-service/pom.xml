@@ -142,6 +142,11 @@
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.13</version>
+        </dependency>
     </dependencies>
 
     <build>

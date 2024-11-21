@@ -32,10 +32,10 @@ public interface UserService extends IService<User> {
 
     Result updateUserInfo(UpdateUserDto updateUserDto);
 
-    Result uploadAva(MultipartFile file);
-
     Result getUserByGrade(UserDto userDto);
 
     Result isDead();
+
+    String uploadImage(MultipartFile image);
 }
 

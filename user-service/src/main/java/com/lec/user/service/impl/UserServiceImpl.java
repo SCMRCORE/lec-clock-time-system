@@ -24,10 +24,7 @@ import com.lec.user.config.JwtProperties;
 import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
-import com.lec.user.utils.AliOSSUtils;
-import com.lec.user.utils.JwtTool;
-import com.lec.user.utils.RedisUtil;
-import com.lec.user.utils.SnowflakeIdWorker;
+import com.lec.user.utils.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,9 +75,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private JavaMailSenderImpl mailSender;
 
-    @Resource
-    private AliOSSUtils aliOSSUtils;
+//    @Resource
+//    private AliOSSUtils aliOSSUtils;
 
+    @Resource
+    MinioUtils minioUtils;
 
     @Autowired
     DailyHistoryMapper dailyHistoryMapper;
@@ -191,6 +190,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long id = UserContext.getUser();
         Boolean flag = redisTemplate.delete(SystemConstant.REDIS_LOGIN_USER + id);
         if(BooleanUtil.isTrue(flag)) {
+            log.info("成功从redis移除用户：{}", id);
             return Result.okResult();
         }
         return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
@@ -199,34 +199,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result getUserInfoById(Long id) {
         User user = userMapper.getById(id);
+        log.info("用户id为：{}，查询到的用户信息为：{}", id, user);
         UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
         return Result.okResult(userInfoVo);
     }
 
     @Override
     public Result updateUserInfo(UpdateUserDto updateUserDto) {
+        log.info("需要改成的用户信息为：{}", updateUserDto);
         updateUserDto.setId(UserContext.getUser());
         User user = BeanCopyUtils.copyBean(updateUserDto, User.class);
         boolean flag = updateById(user);
         if(!flag) return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
         return Result.okResult();
-    }
-
-    //上传头像
-    @Override
-    public Result uploadAva(MultipartFile file) {
-        try {
-            Long id=UserContext.getUser();
-            User user=userMapper.getById(id);
-            String url =aliOSSUtils.upload(file);
-            Result result = Result.okResult(url);
-            user.setAvatar((String) result.getData());
-            userMapper.updateById(user);
-            return result;
-        } catch (IOException e) {
-            return Result.errorResult(AppHttpCodeEnum.SYSTEM_ERROR);
-        }
-//        return Result.okResult();
     }
 
     @Override
@@ -240,9 +225,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result isDead() {
         Long id= UserContext.getUser();
-        User user = (User) redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
+        Object user =  redisTemplate.opsForValue().get(SystemConstant.REDIS_LOGIN_USER + id);
+        log.info("查询到的user为：{}", user);
         boolean isDead= ObjectUtil.isNull(user);
         return Result.okResult(!isDead);
+    }
+
+    @Override
+    public String uploadImage(MultipartFile image) {
+        Long id = UserContext.getUser();
+
+        minioUtils.upload(image, image.getOriginalFilename());
+        String url = minioUtils.getFileUrl(image.getOriginalFilename());
+        log.info("用户上传头像url,{}", url);
+
+        userMapper.updateImage(id, url);
+        return url;
     }
 }
 

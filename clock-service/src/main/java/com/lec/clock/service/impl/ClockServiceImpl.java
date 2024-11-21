@@ -64,6 +64,7 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
     @Autowired
     ClockIpMapper clockIpMapper;
 
+
     @Override
     public Result listAllClock(Integer grade, Integer pageNum, Integer pageSize) {
         if(pageNum==null){
@@ -73,10 +74,13 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
             pageSize=10;
         }
         ClockMapper mapper = getBaseMapper();
+        //从数据库获取打卡记录
         List<ClockInfoVo> clockInfoVos = mapper.selectAllClock(grade, (pageNum - 1) * pageSize, pageSize);
         List<ClockListInfoVo> clockListInfoVo = clockInfoVos.stream()
                 .map(i -> {
+                    //处于打卡中
                     if (i.getStatus() == 1) {
+                        //现在时间-开始时间+已经打卡总时长
                         i.setTotalDuration((int) ChronoUnit.MINUTES.between(i.getBeginTime(), LocalDateTime.now()) + i.getTotalDuration());
                     }
                     return BeanCopyUtils.copyBean(i, ClockListInfoVo.class);
@@ -198,21 +202,12 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         for (int i = 0; i < ipBytes.length; i++) {
             networkBytes[i] = (byte) (ipBytes[i] & maskBytes[i]);
         }
+        //插入
         if(ipv4LogMapper.select(ipv4)==null){
             ipv4LogMapper.insert(ipv4);
         }
         String ipAndMask=Base64.getEncoder().encodeToString(networkBytes);
         log.info("执行更新打卡ip功能，转义后的ip:{}",ipAndMask);
-        String isInClub=ipAndMask.substring(0,4);
-//        if(isInClub.equals("q1hg")){
-//            return Result.okResult("请求失败，请在团队里操作");
-//        }
-//
-//        isInClub= ipAndMask.substring(0,2);
-//        if(!isInClub.equals("q1")&&!isInClub.equals("31")){
-//            log.info("该ip不是团队WIFI:{}",ipv4);
-//            return Result.okResult("请求失败，请在团队里操作");
-//        }
         String clockIp=clockIpMapper.getClockIp(ipAndMask);
         if(!(clockIp ==null)){
             log.info("已经存在的打卡ip，ip:{},转义后的ip:{}",ipv4,ipAndMask);
@@ -224,6 +219,8 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
     }
 
 
+
+    //以下为rpc部分
     /**
      * 根据用户id创建clock
      * @param userId

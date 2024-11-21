@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.user.entity.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 
@@ -25,5 +26,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from user where username = #{username}")
     User getUserByUsername(String username);
+
+    @Update("update user set `lec-clock-in`.user.avatar = #{url} where id = #{id}")
+    void updateImage(Long id, String url);
 }
 
