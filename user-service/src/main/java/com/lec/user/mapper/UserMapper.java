@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * (User)表数据库访问层
@@ -29,5 +31,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Update("update user set `lec-clock-in`.user.avatar = #{url} where id = #{id}")
     void updateImage(Long id, String url);
+
+    List<User> selectIds(List<Long> ids);
 }
 

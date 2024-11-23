@@ -8,6 +8,7 @@ import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
 import com.lec.user.entity.dto.UserDto;
+import com.lec.user.entity.pojo.User;
 import com.lec.user.service.DailyHistoryService;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.MinioUtils;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @RestController
@@ -158,7 +160,8 @@ public class UserController {
         return userService.getUserByGrade(userDto);
     }
 
-    /** TODO 待完成day接口+dailyhistory
+
+    /** TODO 这个是从clock移植到user的接口
      * 查看用户每日打卡时长
      * @return
      */
@@ -181,6 +184,17 @@ public class UserController {
         log.info("计算本日本次打卡时长,本次新增时长：{},星期数：{}",addTodayTime,day);
         log.info("用户id为{}", UserContext.getUser());
         dailyHistoryService.setDaiyTime(addTodayTime,day);
+    }
+
+    /**
+     * 查询未打满的用户
+     * @param ids
+     * @return
+     */
+    @GetMapping("/getUsers")//(废弃中)
+    public List<User> getUsers(List<Long> ids) {
+        log.info("查询未打满的用户：{}",ids);
+        return userService.getUsers(ids);
     }
 
 }

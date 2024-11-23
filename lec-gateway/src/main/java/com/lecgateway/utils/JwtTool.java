@@ -8,7 +8,10 @@ import cn.hutool.jwt.signers.JWTSignerUtil;
 import com.lecgateway.exceptions.UnauthorizedException;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.KeyGenerator;
+import java.security.Key;
 import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.Date;
 
@@ -16,7 +19,7 @@ import java.util.Date;
 public class JwtTool {
     private final JWTSigner jwtSigner;
 
-    public JwtTool(KeyPair keyPair) {
+    public JwtTool(KeyPair keyPair) throws NoSuchAlgorithmException {
         this.jwtSigner = JWTSignerUtil.createSigner("rs256", keyPair);
     }
 

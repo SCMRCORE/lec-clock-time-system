@@ -1,26 +1,21 @@
 package com.lec.clock.service.impl;
 
 
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.clockcommon.entity.PageVo;
-import com.clockcommon.entity.Result;
-import com.clockcommon.utils.BeanCopyUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lec.clock.entity.pojo.ClockHistory;
-import com.lec.clock.entity.vo.ClockHistoryListVo;
-import com.lec.clock.entity.vo.ClockHistoryVo;
 import com.lec.clock.mapper.ClockHistoryMapper;
 import com.lec.clock.service.ClockHistoryService;
+import com.lec.clock.utils.PageResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.lec.clock.entity.vo.ClockInfoVo;
 
 
-import javax.annotation.Resource;
 import java.util.List;
 
+@Slf4j
 @Service("clockHistoryService")
 public class ClockHistoryServiceImpl extends ServiceImpl<ClockHistoryMapper, ClockHistory> implements ClockHistoryService {
 
@@ -28,21 +23,13 @@ public class ClockHistoryServiceImpl extends ServiceImpl<ClockHistoryMapper, Clo
     ClockHistoryMapper mapper;
 
     @Override
-    public Result list(Integer week, Integer grade, Integer pageNum, Integer pageSize) {
-        List<ClockHistoryListVo> clockHistoryListVos = mapper.selectClockHistoryList(week, grade, (pageNum - 1) * pageSize, pageSize);
-        return Result.okResult(new PageVo(clockHistoryListVos,clockHistoryListVos.size()));
+    public PageResult list(Integer pageNum, Integer pageSize) {
+        log.info("搜索打卡未满的记录");
+        PageHelper.startPage(pageNum, pageSize);
+        Page<ClockHistory> page = mapper.getAllClock();
+        log.info("查询到的数量有：{}", page.getTotal());
+        return new PageResult(page.getTotal(), page.getResult());
     }
 
-    @Override
-    public Result getClockHistoryById(Long id, Integer pageNum, Integer pageSize) {
-        Page<ClockHistory> page = new Page(pageNum, pageSize);
-        LambdaQueryWrapper<ClockHistory> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(ClockHistory::getId, id).orderByDesc(ClockHistory::getWeek);
-
-        page = page(page, lqw);
-        List<ClockHistoryVo> clockHistoryVos = BeanCopyUtils.copyBeanList(page.getRecords(), ClockHistoryVo.class);
-
-        return Result.okResult(new PageVo(clockHistoryVos, page.getTotal()));
-    }
 }
 

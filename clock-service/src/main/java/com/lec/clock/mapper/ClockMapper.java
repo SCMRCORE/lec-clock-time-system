@@ -32,4 +32,10 @@ public interface ClockMapper extends BaseMapper<Clock> {
 
     @Insert("insert into clock (id, begin_time, status, total_duration, target_duration, create_time, update_time, temporary) values (#{id}, #{beginTime}, #{status}, #{totalDuration}, #{targetDuration}, #{createTime}, #{updateTime}, 0)")
     void addNewClock(Clock clock);
+
+    @Select("select * from `lec-clock-in`.clock")
+    List<Clock> getAllRecords();
+
+
+    void cleanAllTime(List<Clock> records);
 }

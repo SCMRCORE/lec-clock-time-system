@@ -6,6 +6,7 @@ import com.clockcommon.entity.Result;
 import com.lec.clock.entity.pojo.Clock;
 
 import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * (Clock)表服务接口
@@ -26,5 +27,6 @@ public interface ClockService extends IService<Clock> {
     Result addIpv4() throws UnknownHostException;
 
     void createClockByUserId(Long userId, Integer grade);
+
 }
 

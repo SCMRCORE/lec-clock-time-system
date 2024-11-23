@@ -25,7 +25,6 @@ import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.*;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,10 +37,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -241,6 +237,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         userMapper.updateImage(id, url);
         return url;
+    }
+
+    @Override
+    public List<User> getUsers(List<Long> ids) {
+        log.info("获取未打满用户中ing...");
+        List<User> users = userMapper.selectIds(ids);
+        return users;
     }
 }
 

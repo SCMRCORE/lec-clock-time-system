@@ -21,26 +21,11 @@ import java.util.Date;
 public class ClockHistory {
     
     private Long id;
-
-    //周数
-    private Integer week;
+    //用户名
+    private String username;
+    //昵称
+    private String nickname;
     //时长
     private Integer duration;
-    //0未达标,1达标
-    private Integer isStandard;
-    //创建时间
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
-    //修改时间
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
-
-
-    public ClockHistory(Long id, Integer week, Integer duration, Integer isStandard) {
-        this.id = id;
-        this.week = week;
-        this.duration = duration;
-        this.isStandard = isStandard;
-    }
 }
 

@@ -11,6 +11,8 @@ import com.lec.user.entity.dto.UserDto;
 import com.lec.user.entity.pojo.User;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 
 /**
  * (User)表服务接口
@@ -37,5 +39,7 @@ public interface UserService extends IService<User> {
     Result isDead();
 
     String uploadImage(MultipartFile image);
+
+    List<User> getUsers(List<Long> ids);
 }
 

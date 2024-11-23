@@ -22,9 +22,8 @@ public class DailyHistoryServiceImpl implements DailyHistoryService {
 
     @Override
     public Result getDay() {
-//        Long id= SecurityUtils.getUserId();
-//       return Result.okResult(dailyHistoryMapper.getUserById(id));
-        return Result.okResult();
+        Long id= UserContext.getUser();
+        return Result.okResult(dailyHistoryMapper.getUserById(id));
     }
 
     @Override

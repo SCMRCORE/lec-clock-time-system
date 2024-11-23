@@ -4,6 +4,7 @@ package com.lec.clock.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.clockcommon.entity.Result;
 import com.lec.clock.entity.pojo.ClockHistory;
+import com.lec.clock.utils.PageResult;
 
 /**
  * (ClockHistory)表服务接口
@@ -13,8 +14,8 @@ import com.lec.clock.entity.pojo.ClockHistory;
  */
 public interface ClockHistoryService extends IService<ClockHistory> {
 
-    Result list(Integer week, Integer grade, Integer pageNum, Integer pageSize);
+    PageResult list(Integer pageNum, Integer pageSize);
 
-    Result getClockHistoryById(Long id, Integer pageNum, Integer pageSize);
+//    Result getClockHistoryById(Long id, Integer pageNum, Integer pageSize);
 }
 
