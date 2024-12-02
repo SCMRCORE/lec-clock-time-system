@@ -1,0 +1,11 @@
+Model Information:
+* title:	Crystal VFX UI with animation game ready
+* source:	https://sketchfab.com/3d-models/crystal-vfx-ui-with-animation-game-ready-f5c9e3eeda3f4a94b6482db43cf043d9
+* author:	Rob Li (https://sketchfab.com/LiBinZyu)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Crystal VFX UI with animation game ready" (https://sketchfab.com/3d-models/crystal-vfx-ui-with-animation-game-ready-f5c9e3eeda3f4a94b6482db43cf043d9) by Rob Li (https://sketchfab.com/LiBinZyu) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -16,11 +16,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>clock-service</module>
-        <module>user-service</module>
-        <module>lec-common</module>
-        <module>lec-api</module>
-        <module>lec-gateway</module>
+        <module>backend/clock-service</module>
+        <module>backend/user-service</module>
+        <module>backend/lec-common</module>
+        <module>backend/lec-api</module>
+        <module>backend/lec-gateway</module>
     </modules>
 
     <properties>

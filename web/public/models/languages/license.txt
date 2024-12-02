@@ -1,0 +1,11 @@
+Model Information:
+* title:	Logotipos 3D - Aprenda Programar
+* source:	https://sketchfab.com/3d-models/logotipos-3d-aprenda-programar-562ee24508584bb889e1ff12e656abe5
+* author:	titopetri (https://sketchfab.com/titopetri)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Logotipos 3D - Aprenda Programar" (https://sketchfab.com/3d-models/logotipos-3d-aprenda-programar-562ee24508584bb889e1ff12e656abe5) by titopetri (https://sketchfab.com/titopetri) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

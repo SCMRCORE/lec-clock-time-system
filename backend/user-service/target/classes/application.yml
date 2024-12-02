@@ -1,0 +1,63 @@
+server:
+    port: 8082
+spring:
+    application:
+        name: user-service
+    servlet:
+      multipart:
+          max-file-size: 10MB
+          max-request-size: 10MB
+    redis:
+        host: 154.44.25.122
+        port: 6379
+        password: zaqzse1234
+    datasource:
+        url: jdbc:mysql://localhost:3306/lec-clock-in?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: zaqzse1234
+    mail:
+        host: smtp.163.com
+        username: 17828707561@163.com
+        password: WRPXGLLVORDVNOIS
+        port: 465
+        default-encoding: UTF-8
+        protocol: smtp
+        test-connection: true
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                        required: true
+                    ssl:
+                        enable: true
+                    socketFactory:
+                        port: 465
+                        class: javax.net.ssl.SSLSocketFactory
+    cloud:
+        nacos:
+            server-addr: 154.44.25.122:8848
+
+    minio:
+        access-key: yjtZa2lQxWss58FlBaxH
+        secret-key: 25zWtRr2zrrUa1ewGfuD5zIQDD99WwKK1vzWEONB
+        url: http://154.44.25.122:9000  #访问地址
+        bucket-name: lec-clock-in
+
+
+mybatis-plus:
+    type-aliases-package: com.lec.user.entity
+
+
+lec:
+    jwt:
+        location: classpath:lec.jks # 自己打包的jks
+        alias: lec # 秘钥别名
+        password: makelecgreatagain! # 秘钥文件密码
+        tokenTTL: 30m # 登录有效期
+
+feign:
+    okhttp:
+        enabled: true # 开启OKHttp功能

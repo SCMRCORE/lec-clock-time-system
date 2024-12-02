@@ -1,0 +1,49 @@
+server:
+    port: 8081
+spring:
+    application:
+        name: clock-service
+    redis:
+        host: 154.44.25.122
+        port: 6379
+        password: zaqzse1234
+    datasource:
+        url: jdbc:mysql://localhost:3306/lec-clock-in?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: zaqzse1234
+    mail:
+        host: smtp.163.com
+        username: 17828707561@163.com
+        password: WRPXGLLVORDVNOIS
+        port: 465
+        default-encoding: UTF-8
+        protocol: smtp
+        test-connection: true
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                        required: true
+                    ssl:
+                        enable: true
+                    socketFactory:
+                        port: 465
+                        class: javax.net.ssl.SSLSocketFactory
+    cloud:
+        nacos:
+            server-addr: 154.44.25.122:8848
+mybatis-plus:
+    type-aliases-package: com.lec.clock.entity
+
+oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    accessKey: LTAI5tLgspBU6GBhH5UjCgi7
+    secretKey: BkIKNHghXZj4MKWCpuVIDjj4hokLHE
+    bucket: kilo-webtest
+
+feign:
+    okhttp:
+        enabled: true # 开启OKHttp功能

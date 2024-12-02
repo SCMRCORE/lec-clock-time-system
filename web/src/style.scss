@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*::-webkit-scrollbar{
+  width:4px;
+  max-height: 10px;
+}
+*::-webkit-scrollbar-track{
+  background: rgb(239, 239, 239);
+  border-radius:2px;
+}
+*::-webkit-scrollbar-thumb{
+  background: #999;
+  border-radius:10px;
+}
+// *::-webkit-scrollbar-thumb:hover{
+//   background: #333;
+// }
+// *::-webkit-scrollbar-corner{
+// }
