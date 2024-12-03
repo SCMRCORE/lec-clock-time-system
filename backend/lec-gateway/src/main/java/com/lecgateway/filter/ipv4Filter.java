@@ -123,7 +123,6 @@ public class ipv4Filter implements GlobalFilter, Ordered {
         if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddress().toString().substring(1);
         }
-        //TODO 解决ip问题，无法获取当前请求发送的ip
         log.info("========= 请求的代理或者路由IP地址： " + ip);
         //兼容k8s集群获取ip
         if (StringUtils.isEmpty(ip) || UNKNOWN.equalsIgnoreCase(ip)) {

@@ -24,7 +24,7 @@ public class ClockHistoryController {
 
     @GetMapping("/list")
     public PageResult list(Integer pageNum, Integer pageSize){
-        log.info("获取打卡未满的同学");
+        log.info("执行接口/list:获取打卡未满的同学");
         return clockHistoryService.list(pageNum, pageSize);
     }
 

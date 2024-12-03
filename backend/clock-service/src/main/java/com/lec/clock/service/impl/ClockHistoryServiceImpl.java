@@ -24,10 +24,10 @@ public class ClockHistoryServiceImpl extends ServiceImpl<ClockHistoryMapper, Clo
 
     @Override
     public PageResult list(Integer pageNum, Integer pageSize) {
-        log.info("搜索打卡未满的记录");
+        log.info("service层:搜索打卡未满的记录");
         PageHelper.startPage(pageNum, pageSize);
         Page<ClockHistory> page = mapper.getAllClock();
-        log.info("查询到的数量有：{}", page.getTotal());
+        log.info("service层:查询到的数量有：{}", page.getTotal());
         return new PageResult(page.getTotal(), page.getResult());
     }
 

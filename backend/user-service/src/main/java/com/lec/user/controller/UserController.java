@@ -61,7 +61,7 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("登录")
     public Result login(@RequestBody LoginUserDto loginUserDto){
-        log.info("用户登录，用户名：{}",loginUserDto.getUsername());
+        log.info("执行接口/login用户登录:{}",loginUserDto.getUsername());
         return userService.login(loginUserDto);
     }
 
@@ -73,7 +73,7 @@ public class UserController {
      */
     @PostMapping("/register")
     public Result register(@RequestBody RegisterUserDto registerUserDto) {
-        log.info("用户注册，用户名：{}",registerUserDto.getUsername());
+        log.info("执行接口/register用户注册:{}",registerUserDto.getUsername());
         return userService.register(registerUserDto);
     }
 
@@ -88,7 +88,7 @@ public class UserController {
             @ApiImplicitParam(name = "username", value = "用户名"),
     })
     public Result sendCode( String email) {
-        log.info("发送验证码，用户邮箱：{}",email);
+        log.info("执行接口/register/sendCode发送验证码:{}",email);
         return userService.sendCode(email);
     }
 
@@ -98,7 +98,7 @@ public class UserController {
      */
     @PostMapping("/logout")
     public Result logout(){
-        log.info("登出用户:{}", UserContext.getUser());
+        log.info("执行接口/logout登出用户:{}", UserContext.getUser());
         return userService.logout();
     }
 
@@ -111,7 +111,7 @@ public class UserController {
     @GetMapping("/info/{id}")
     public Result getUserInfoById(@PathVariable Long id){
         id=UserContext.getUser();
-        log.info("获取个人信息：{}", id);
+        log.info("执行接口/info/{id}获取个人信息:{}", id);
         return userService.getUserInfoById( id);
     }
 
@@ -123,7 +123,7 @@ public class UserController {
      */
     @PutMapping("/info/update")
     public Result updateUserInfo(@RequestBody UpdateUserDto updateUserDto){
-        log.info("更新用户信息:{}", updateUserDto);
+        log.info("执行接口/info/update更新用户信息:{}", updateUserDto);
         return userService.updateUserInfo(updateUserDto);
     }
 
@@ -135,17 +135,17 @@ public class UserController {
      */
     @PutMapping("/upload")
     public Result uploadAva(MultipartFile image){
-        log.info("上传头像，图片Id：{}", image);
+        log.info("执行接口/upload上传头像Id：{}", image);
         String url = userService.uploadImage(image);
         return Result.okResult(url);
     }
 
 
-    @GetMapping("/test")
-    public Result uploads(){
-        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
-        return Result.okResult(week);
-    }
+//    @GetMapping("/test")
+//    public Result uploads(){
+//        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
+//        return Result.okResult(week);
+//    }
 
     /**
      * 查询用户登录状态是否过期
@@ -153,7 +153,7 @@ public class UserController {
      */
     @GetMapping("/isDead")
     public Result isDead(){
-        log.info("查询用户是否过期");
+        log.info("执行接口/isDead:查询用户是否过期");
         return userService.isDead();
     }
 
@@ -165,17 +165,18 @@ public class UserController {
      */
     @PostMapping("/getUsersByGrade")
     public Result getUsersByGrade(@RequestBody UserDto userDto){
-        log.info("获取用户列表");
+        log.info("执行接口/getUsersByGrade:获取用户列表");
         return userService.getUserByGrade(userDto);
     }
 
 
-    /** TODO 这个是从clock移植到user的接口
+    /**  这个是从clock移植到user的接口
      * 查看用户每日打卡时长
      * @return
      */
     @GetMapping("/day")
     public Result getDay() {
+        log.info("执行接口/day:查看用户每日打卡时长");
         return dailyHistoryService.getDay();
     }
 
@@ -192,8 +193,7 @@ public class UserController {
      */
     @GetMapping("/calculateClock")
     public void dailyclock(int addTodayTime, String day) {
-        log.info("计算本日本次打卡时长,本次新增时长：{},星期数：{}",addTodayTime,day);
-        log.info("用户id为{}", UserContext.getUser());
+        log.info("执行RPC接口/calculateClock计算本日本次打卡时长:本次新增时长：{},星期数：{},用户id为{}",addTodayTime,day, UserContext.getUser());
         dailyHistoryService.setDaiyTime(addTodayTime,day);
     }
 
@@ -204,7 +204,7 @@ public class UserController {
      */
     @GetMapping("/getUsers")//(废弃中)
     public List<User> getUsers(List<Long> ids) {
-        log.info("查询未打满的用户：{}",ids);
+        log.info("执行RPC接口/getUsers查询未打满的用户:{}",ids);
         return userService.getUsers(ids);
     }
 

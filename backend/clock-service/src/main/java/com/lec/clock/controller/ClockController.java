@@ -38,7 +38,7 @@ public class ClockController {
      */
     @PostMapping ("/list")
     public Result listAllClock(@RequestBody Page page) {
-        log.info("执行clock/list,用户ID为：{}", UserContext.getUser());
+        log.info("执行接口/list,用户ID为：{}", UserContext.getUser());
         return clockService.listAllClock(page.getGrade(), page.getPageNum(), page.getPageSize());
     }
 
@@ -51,7 +51,7 @@ public class ClockController {
     @SystemLog(businessName = "上下卡")
     public Result clock() throws UnknownHostException {
         Long userId = UserContext.getUser();
-        log.info("执行上下卡操作，id为：{}", userId);
+        log.info("执行接口/clock，id为：{}", userId);
         return clockService.clock(userId);
     }
 
@@ -64,7 +64,7 @@ public class ClockController {
     @GetMapping("/nowClock/{id}")
     public Result getClockById(@PathVariable("id") Long id) {
         id=UserContext.getUser();
-        log.info("执行根据id获取打卡信息操作，id为：{}", id);
+        log.info("执行接口/nowClock/{id}，id为：{}", id);
         return clockService.getClockById(id);
     }
 
@@ -77,7 +77,7 @@ public class ClockController {
      */
     @PutMapping("/update/{id}")
     public Result updateDuration(@PathVariable("id") Long id, Integer duration){
-        log.info("执行更新打卡时长操作");
+        log.info("执行接口/update/{id}，id为：{}");
         return clockService.updateDuration(id, duration);
     }
 
@@ -89,7 +89,7 @@ public class ClockController {
      */
     @PostMapping("/addIpv4")
     public Result addIpv4() throws UnknownHostException {
-        log.info("执行添加ipv4操作");
+        log.info("执行接口/addIpv4");
         return clockService.addIpv4();
     }
 
@@ -118,7 +118,7 @@ public class ClockController {
      */
     @GetMapping("/create")
     public void createClock(Long userId, Integer grade) {
-        log.info("创建用户的clock对象");
+        log.info("执行RPC接口/create:创建用户的clock对象");
         clockService.createClockByUserId(userId, grade);
     }
 }

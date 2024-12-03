@@ -127,8 +127,6 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
                 break;
             }
         }
-        //TODO 测试 isClockIp始终为true
-        isClockIp=true;
 
         //开始打卡
         if(status == SystemConstant.CLOCKED_STATUS) {
