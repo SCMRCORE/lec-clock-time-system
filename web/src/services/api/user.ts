@@ -93,10 +93,16 @@ export const uploadFileServices = async (file:any,token:string)=>{
 export const checkoutList = async({
     grade:grade,
     pageSize:pageSize,
-    pageNum:pageNum
-}:Record<string,number>) =>{
+    pageNum:pageNum,
+    token
+}:Record<string,any>) =>{
     const data = {grade,pageSize,pageNum}
-    return await request.post('/clock/list',data,{})
+    const config = {
+        headers: {
+            token: token
+        }
+    }
+    return await request.post('/clock/list',data,config)
 }
 
 //查看打卡信息

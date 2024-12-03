@@ -9,6 +9,7 @@
           <option value="HTTP_CLIENT_IP" />
           <option value="WL-Proxy-Client-IP" />
           <option value="Proxy-Client-IP" />
+          <option value="token" />
         </set>
       </option>
     </inspection_tool>

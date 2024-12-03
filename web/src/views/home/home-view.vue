@@ -85,7 +85,9 @@ const getCardList = async () => {
   const response = await checkoutList({
     grade: selfUser.grade as number,
     pageSize: 40,
-    pageNum: 1
+    pageNum: 1,
+    //TODO token测试
+    token: token
   })
   const responseData = response.response
   // console.log('responseData',responseData);

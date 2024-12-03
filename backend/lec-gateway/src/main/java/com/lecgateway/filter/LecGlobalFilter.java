@@ -32,6 +32,7 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //1.获取request
         ServerHttpRequest request = exchange.getRequest();
+        log.info("LecGlobal:请求头里获取请求体为:{}",request.getHeaders());
         //2.判断是否需要做登录拦截
         if(isExclude(request.getPath().toString())){
             //放行
@@ -42,14 +43,16 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
         String token = null;
         //TODO 一次请求会有多个请求头,这个需要和前端约定好，前端请求的时候，把token放到请求头中，key为token
         List<String> headers=request.getHeaders().get("token");
+//        log.info("LecGlobal:请求头里获取header为:{}",headers);
         if(headers !=null && !headers.isEmpty()){
             token = headers.get(0);
         }
+//        log.info("LecGlobal:请求头里获取token为:{}",token);
         //4.校验并解析token
         Long userId = null;
 //        userId=jwtTool.parseToken(token);
 //        log.info("第一次解析出userID为:{}",userId);
-        log.info("LecGlobal:token为:{}",token);
+//        log.info("LecGlobal:token为:{}",token);
         try{
             userId=jwtTool.parseToken(token);
             log.info("LecGlobal:token解析出userID为:{}",userId);

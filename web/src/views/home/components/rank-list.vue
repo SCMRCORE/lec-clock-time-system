@@ -41,6 +41,8 @@ import { RankListRow } from '../type'
 import { checkoutList } from '@/services'
 import { User } from '../type/index'
 
+const token = localStorage.getItem('token') || ''
+
 const props = defineProps(['selfUser', 'userList'])
 const { selfUser } = props
 const { userList } = toRefs(props)
@@ -80,7 +82,8 @@ const handleGradeChange = async (grade: number) => {
   const res = await checkoutList({
     grade: grade,
     pageSize: 40,
-    pageNum: 1
+    pageNum: 1,
+    token: token
   })
 
   if (res.response?.code === 200) {
