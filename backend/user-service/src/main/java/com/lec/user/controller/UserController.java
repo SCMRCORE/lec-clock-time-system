@@ -110,6 +110,7 @@ public class UserController {
      */
     @GetMapping("/info/{id}")
     public Result getUserInfoById(@PathVariable Long id){
+        id=UserContext.getUser();
         log.info("获取个人信息：{}", id);
         return userService.getUserInfoById( id);
     }

@@ -56,15 +56,17 @@ public class ClockController {
     }
 
 
-//    /**
-//     * 根据id获取打卡信息
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping("/nowClock/{id}")
-//    public Result getClockById(@PathVariable Long id) {
-//        return clockService.getClockById(id);
-//    }
+    /**
+     * 根据id获取打卡信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/nowClock/{id}")
+    public Result getClockById(@PathVariable("id") Long id) {
+        id=UserContext.getUser();
+        log.info("执行根据id获取打卡信息操作，id为：{}", id);
+        return clockService.getClockById(id);
+    }
 
 
     /**
@@ -75,6 +77,7 @@ public class ClockController {
      */
     @PutMapping("/update/{id}")
     public Result updateDuration(@PathVariable("id") Long id, Integer duration){
+        log.info("执行更新打卡时长操作");
         return clockService.updateDuration(id, duration);
     }
 
@@ -103,10 +106,6 @@ public class ClockController {
 //        return Result.okResult();
 //    }
 
-//    @GetMapping("/day")
-//    public Result getDay() {
-//        return dailyHistoryService.getDay();
-//    }
 
 
 

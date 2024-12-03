@@ -49,9 +49,10 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
         Long userId = null;
 //        userId=jwtTool.parseToken(token);
 //        log.info("第一次解析出userID为:{}",userId);
+        log.info("LecGlobal:token为:{}",token);
         try{
             userId=jwtTool.parseToken(token);
-            log.info("第一次解析出userID为:{}",userId);
+            log.info("LecGlobal:token解析出userID为:{}",userId);
             //5.传递用户信息
             String userInfo = userId.toString();//为了后面的传入userId
             ServerWebExchange swe = exchange.mutate()

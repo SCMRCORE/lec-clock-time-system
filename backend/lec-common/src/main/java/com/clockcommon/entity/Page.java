@@ -11,5 +11,4 @@ public class Page {
     private Integer grade;
     private Integer pageNum;
     private Integer pageSize;
-
 }

@@ -91,13 +91,13 @@ public class ipv4Filter implements GlobalFilter, Ordered {
     private static String getIP(ServerHttpRequest request){
         //获取header
         HttpHeaders headers = request.getHeaders();
-        log.info("========= 请求的headers： " + headers);
+//        log.info("========= 请求的headers： " + headers);
         // 根据 HttpHeaders 获取 请求 IP地址
         String ip = request.getHeaders().getFirst("X-Forwarded-For");
-        log.info("========= 请求的第一个IP地址： " + ip);
+//        log.info("========= 请求的第一个IP地址： " + ip);
         if (ip==null || UNKNOWN.equalsIgnoreCase(ip)) {
             ip = request.getHeaders().getFirst("x-forwarded-for");
-            log.info("========= 请求的第二个IP地址： " + ip);
+//            log.info("========= 请求的第二个IP地址： " + ip);
             if (ip != null && ip.length() != 0 && !UNKNOWN.equalsIgnoreCase(ip)) {
                 // 多次反向代理后会有多个ip值，第一个ip才是真实ip
                 if (ip.contains(IP_UTILS_FLAG)) {
@@ -136,7 +136,7 @@ public class ipv4Filter implements GlobalFilter, Ordered {
                 } catch (UnknownHostException e) {
                     log.error("getClientIp error: ", e);
                 }
-                log.info("========= 请求的本地IP地址： " + iNet.getHostAddress());
+//                log.info("========= 请求的本地IP地址： " + iNet.getHostAddress());
                 ip = iNet.getHostAddress();
             }
         }
