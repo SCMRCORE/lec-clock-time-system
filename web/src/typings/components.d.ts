@@ -35,6 +35,8 @@ declare module 'vue' {
     ASpace: typeof import('@arco-design/web-vue')['Space']
     ATable: typeof import('@arco-design/web-vue')['Table']
     ATableColumn: typeof import('@arco-design/web-vue')['TableColumn']
+    ATypographyParagraph: typeof import('@arco-design/web-vue')['TypographyParagraph']
+    ATypographyText: typeof import('@arco-design/web-vue')['TypographyText']
     BasicHeader: typeof import('./../views/common/layout/components/basic-header.vue')['default']
     BasicLeftSidebar: typeof import('./../views/common/layout/components/basic-left-sidebar.vue')['default']
     BasicRightSidebar: typeof import('./../views/common/layout/components/basic-right-sidebar.vue')['default']
