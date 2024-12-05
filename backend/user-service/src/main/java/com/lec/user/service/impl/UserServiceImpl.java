@@ -91,12 +91,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result login(LoginUserDto loginUserDto) {
+        //TODO 待解决登录超时
         log.info("用户登录信息:{}", loginUserDto);
         String username = loginUserDto.getUsername();
         String password = loginUserDto.getPassword();
-        User user = userMapper.getUserByUsername(username);
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            log.info("用户名或密码错误");
+        User user;
+        try {
+            user = userMapper.getUserByUsername(username);
+            if (!passwordEncoder.matches(password, user.getPassword())) {
+                log.info("用户名或密码错误");
+                return Result.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
+            }
+        }catch (Exception e){
             return Result.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
         }
             //获取用户实体并且将信息存入redis
@@ -118,6 +124,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Result register(RegisterUserDto registerUserDto) {
         Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
 
+        //匹配验证码
         try {
             //匹配验证码（通过email作为key）
             int code = (int) redisTemplate.opsForValue().get(registerUserDto.getEmail());
@@ -130,18 +137,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return Result.errorResult(AppHttpCodeEnum.CODE_FALSE);
         }
 
+        //判断手机号
+
+
+        //判断用户名
         String userName = registerUserDto.getUsername();
         if(StrUtil.isBlank(userName)) {
             return Result.errorResult(AppHttpCodeEnum.REQUIRE_USERNAME);
         }
-
-        //获取数据库中是否有相同用户名
         User one = lambdaQuery().eq(User::getUsername, userName).one();
         if(one != null) {
             return Result.errorResult(AppHttpCodeEnum.USERNAME_EXIST);
         }
         //加密用户密码
         registerUserDto.setPassword(passwordEncoder.encode(registerUserDto.getPassword()));
+
 
         //将注册信息注入到对应的user实体类里
         User user = BeanCopyUtils.copyBean(registerUserDto, User.class);
@@ -166,6 +176,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result sendCode(String email) {
         SimpleMailMessage smm = new SimpleMailMessage();		//创建邮件对象
+        //TODO 添加邮箱检测逻辑，还未和前端对接
+        if(userMapper.hasEmail(email)!=null){
+            log.info("注册邮箱已存在");
+            return Result.errorResult(AppHttpCodeEnum.EMAIL_EXIST);
+        }
         try {
             smm.setSubject("注册验证码");	//设置邮件主题
             int code= RandomUtil.randomInt(1000, 9999);
@@ -174,6 +189,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             smm.setFrom(from);	//设置邮件发送源址
             redisTemplate.opsForValue().set(email,code);
             mailSender.send(smm); //发送邮件
+            log.info("已发送邮件");
             return Result.okResult();
         }catch (Exception e){
             e.printStackTrace();

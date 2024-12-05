@@ -33,5 +33,8 @@ public interface UserMapper extends BaseMapper<User> {
     void updateImage(Long id, String url);
 
     List<User> selectIds(List<Long> ids);
+
+    @Select("select user.email from `lec-clock-in`.user where email = #{email}")
+    List<String> hasEmail(String email);
 }
 
