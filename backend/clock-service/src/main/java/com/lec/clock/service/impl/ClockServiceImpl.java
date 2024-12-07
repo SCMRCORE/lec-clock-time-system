@@ -11,6 +11,7 @@ import com.clockcommon.utils.UserContext;
 import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.vo.*;
+import com.lec.clock.mapper.ClockHistoryMapper;
 import com.lec.clock.mapper.ClockIpMapper;
 
 import com.lec.clock.mapper.ClockMapper;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,6 +65,9 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Autowired
     ClockIpMapper clockIpMapper;
+
+    @Resource
+    ClockHistoryMapper clockHistoryMapper;
 
 
     @Override
@@ -235,6 +240,31 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         }
         clock.setId(userId);
         clockMapper.addNewClock(clock);
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 23 ? * SUN")
+    public Result clockOff() {
+        //获取所有打卡记录id
+        log.info(clockMapper.toString());
+
+        List<Clock> records = clockMapper.getAllRecords();
+
+        //保存打卡历史
+        log.info("保存打卡历史");
+        for(Clock record : records) {
+            clockHistoryMapper.saveAll(record);
+        }
+
+        //test功能，给所有人下卡
+        log.info("给所有人下卡");
+        clockMapper.clockOff(records);
+
+
+        //清空时长
+        log.info("清空时长");
+        clockMapper.cleanAllTime(records);
+        return Result.okResult();
     }
 
 }

@@ -28,5 +28,6 @@ public interface ClockService extends IService<Clock> {
 
     void createClockByUserId(Long userId, Integer grade);
 
+    Result clockOff();
 }
 

@@ -4,7 +4,6 @@ import com.clockcommon.entity.Page;
 import com.clockcommon.entity.Result;
 import com.clockcommon.enums.SystemLog;
 import com.clockcommon.utils.UserContext;
-import com.lec.clock.entity.pojo.Position;
 import com.lec.clock.service.ClockService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -107,6 +106,16 @@ public class ClockController {
 //    }
 
 
+    /**
+     * 定时器
+     * @return
+     * @throws UnknownHostException
+     */
+    @PostMapping("/clockOff")
+    public Result clockOff(){
+        log.info("执行接口/clockOff");
+        return clockService.clockOff();
+    }
 
 
 

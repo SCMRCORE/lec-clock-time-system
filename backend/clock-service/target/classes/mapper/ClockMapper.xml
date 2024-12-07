@@ -11,4 +11,13 @@
         </foreach>
     </update>
 
+    <update id="clockOff">
+        update `lec-clock-in`.clock set `lec-clock-in`.clock.status = 0
+        where `lec-clock-in`.clock.id in
+        <foreach collection="records" item="record" separator="," open="(" close=")">
+            #{record.id}
+        </foreach>
+        and `lec-clock-in`.clock.status = 1
+    </update>
+
 </mapper>
