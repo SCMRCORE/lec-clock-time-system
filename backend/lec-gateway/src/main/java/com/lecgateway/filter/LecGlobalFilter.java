@@ -41,7 +41,6 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
         }
         //3.获取token
         String token = null;
-        //TODO 一次请求会有多个请求头,这个需要和前端约定好，前端请求的时候，把token放到请求头中，key为token
         List<String> headers=request.getHeaders().get("token");
 //        log.info("LecGlobal:请求头里获取header为:{}",headers);
         if(headers !=null && !headers.isEmpty()){
@@ -73,15 +72,6 @@ public class LecGlobalFilter implements GlobalFilter, Ordered {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);//HttpStatus是框架自带
             return response.setComplete();
         }
-//        //5.传递用户信息
-//        String userInfo = userId.toString();//为了后面的传入userId
-//        ServerWebExchange swe = exchange.mutate()
-//                .request(builder -> builder.header("userInfo", userInfo))
-//                //这里也是和其他后端开发者约好了关键词
-//                .build();//获得新的exchange
-//        //6.放行
-//        log.info("放行");
-//        return chain.filter(swe);
     }
 
     public boolean isExclude(String path){

@@ -38,4 +38,6 @@ public interface ClockMapper extends BaseMapper<Clock> {
 
 
     void cleanAllTime(List<Clock> records);
+
+    void clockOff(List<Clock> records);
 }

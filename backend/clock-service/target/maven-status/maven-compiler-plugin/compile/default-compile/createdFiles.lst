@@ -1,3 +1,4 @@
+com\lec\clock\utils\PageResult.class
 com\lec\clock\entity\pojo\Clock.class
 com\lec\clock\mapper\Ipv4LogMapper.class
 com\lec\clock\service\impl\ClockHistoryServiceImpl.class
@@ -12,7 +13,6 @@ com\lec\clock\entity\vo\UserClockInfoVo.class
 com\lec\clock\entity\vo\UserInfoVo.class
 com\lec\clock\mapper\ClockIpMapper.class
 com\lec\clock\service\ClockHistoryService.class
-com\lec\clock\entity\vo\ClockHistoryListVo.class
 com\lec\clock\utils\UserContext.class
 com\lec\clock\entity\vo\StopClockVo.class
 com\lec\clock\service\ClockService.class
@@ -25,4 +25,5 @@ com\lec\clock\mapper\ClockHistoryMapper.class
 com\lec\clock\controller\ClockController.class
 com\lec\clock\mapper\ClockMapper.class
 com\lec\clock\entity\pojo\Position.class
+com\lec\clock\handler\CleanData.class
 com\lec\clock\entity\vo\ClockListInfoVo.class
