@@ -24,6 +24,10 @@ const routes = [
   {
     path: '/calendar',
     component: () => import('@/views/calendar/calendar-view.vue')
+  },
+  {
+    path: '/lottery',
+    component: () => import('@/views/lottery/lottery-view.vue')
   }
 ]
 

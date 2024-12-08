@@ -5,11 +5,11 @@ export const userRegisterService = ({
   username,
   nickname,
   password,
-  email,
   grade,
+  email,
   code
 }: Record<string, any>) => {
-  return request.post('/user/register', {username,nickname,password,email,grade,code,});
+  return request.post('/user/register', {username,nickname,password,grade,email,code,});
 }
 
 //发送验证码功能

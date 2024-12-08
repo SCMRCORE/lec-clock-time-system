@@ -1,5 +1,6 @@
 <template>
   <a-layout class="basic-layout">
+    <!-- 乐程聚合平台 -->
     <template v-if="!props.hideHeader">
       <a-layout-header class="header">
         <basic-header></basic-header>
@@ -7,16 +8,19 @@
     </template>
 
     <div class="main">
+      <!-- 左侧栏目 -->
       <template v-if="!props.hideLeftSidebar">
         <a-layout-sider class="sider" collapsible breakpoint="xl">
           <basic-left-sidebar></basic-left-sidebar>
         </a-layout-sider>
       </template>
 
+      <!-- 中间主体 -->
       <a-layout-content class="content">
         <slot></slot>
       </a-layout-content>
 
+      <!-- 右侧栏 -->
       <template v-if="!props.hideRightSidebar">
         <a-layout-sider
           class="sider right-sider"
@@ -31,6 +35,7 @@
       </template>
     </div>
 
+    <!-- 底部（没写） -->
     <a-layout-footer class="footer"></a-layout-footer>
   </a-layout>
 </template>

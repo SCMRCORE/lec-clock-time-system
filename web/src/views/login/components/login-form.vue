@@ -112,8 +112,9 @@ const handleSubmit = async (info: Record<string, any>) => {
       }
     } else {
       loginStore.setToken(res.response?.data.token)
-      loginStore.setId(res.response?.data.userInfoVo.id)
+      loginStore.setId(String(res.response?.data.userInfoVo.id));
       Message.success('登录成功')
+      console.log(res.response?.data.userInfoVo.id)
       router.replace('/home')
     }
   } catch (error) {
