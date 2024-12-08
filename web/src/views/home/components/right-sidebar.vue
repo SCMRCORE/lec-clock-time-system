@@ -6,11 +6,18 @@
         <h5 class="platform-name">{{ platform.name }}</h5>
         <div class="platform-items">
           <template v-for="item in platform.list" :key="item.text">
-            <!-- TODO: 加一个判断逻辑，判断是icon还是img url -->
             <div class="item" @click="item.clickEvent">
-              <component
+              <!-- 判断是 icon 还是 img url -->
+              <img
+                v-if="isImageUrl(item.icon)"
+                :src="item.icon"
+                alt="icon"
                 class="item-icon"
+              />
+              <component
+                v-else
                 :is="item.icon || 'icon-question-circle'"
+                class="item-icon"
               ></component>
               <div class="item-text">{{ item.text }}</div>
             </div>
@@ -25,7 +32,17 @@
 import { platforms } from '../configs'
 import { Message } from '@arco-design/web-vue'
 
-// TODO: 跳转到用户配置页，可以编辑内容
+// TODO 判断是否为图像 URL
+const isImageUrl = (url: string): boolean => {
+  try {
+    const urlObj = new URL(url)
+    return urlObj.protocol === 'http:' || urlObj.protocol === 'https:'
+  } catch (error) {
+    return false
+  }
+}
+
+// 跳转到用户配置页
 const routeToUser = () => {
   Message.info('功能开发中...')
   // router.push('/user')
@@ -102,6 +119,19 @@ $icon-size: 24px;
         }
       }
     }
+  }
+
+  .item-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  /* 确保图像和图标对齐 */
+  .item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 </style>

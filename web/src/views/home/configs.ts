@@ -63,28 +63,28 @@ export const platforms = {
     name: '刷题平台',
     list: [
       {
-        icon: '',
+        icon: 'https://www.luogu.com.cn/favicon.ico',
         text: '洛谷',
         clickEvent: () => {
           window.open('https://www.luogu.com.cn/')
         }
       },
       {
-        icon: '',
+        icon: 'https://static.nowcoder.com/fe/common/share-logo.png',
         text: '牛客',
         clickEvent: () => {
           window.open('https://ac.nowcoder.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://cdn.acwing.com/static/web/img/favicon.ico',
         text: 'AcWing',
         clickEvent: () => {
           window.open('https://www.acwing.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://assets.leetcode.cn/aliyun-lc-upload/uploaded_files/2021/03/73c9f099-abbe-4d94-853f-f8abffd459cd/leetcode.png?x-oss-process=image%2Fformat%2Cwebp',
         text: '力扣',
         clickEvent: () => {
           window.open('https://leetcode.cn/')
@@ -96,28 +96,28 @@ export const platforms = {
     name: '课程平台',
     list: [
       {
-        icon: '',
+        icon: 'https://img3.downza.cn/download/202006/162251-5ef701db7e5c1.jpg',
         text: '学习通',
         clickEvent: () => {
           window.open('https://i.chaoxing.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://sj-fd.zol-img.com.cn/t_s160x160/g5/M00/06/00/ChMkJlo4zrKIKNRVAAALnxCPHEcAAjS5QNeFoUAAAu3489.jpg',
         text: 'MOOC',
         clickEvent: () => {
           window.open('https://www.icourse163.org/')
         }
       },
       {
-        icon: '',
+        icon: 'https://fe-static-yuketang.yuketang.cn/fe/static/vue_images/2.2.562/images/favicon.ico',
         text: '雨课堂',
         clickEvent: () => {
           window.open('https://www.yuketang.cn/web')
         }
       },
       {
-        icon: '',
+        icon: 'https://proxt-cdn.xuetangx.com/fe-proxtassets/xuetangX/0329/logo.ico',
         text: '学堂在线',
         clickEvent: () => {
           window.open('https://www.xuetangx.com/')
@@ -129,28 +129,30 @@ export const platforms = {
     name: '学院网站导航',
     list: [
       {
-        icon: '',
+        icon: 'https://deanservices.swpu.edu.cn/jwapp/sys/homeapp/home/images/favicon.ico',
         text: '门户网站',
         clickEvent: () => {
           window.open('https://www.swpu.edu.cn/')
         }
       },
       {
-        icon: '',
+        icon: 'https://deanservices.swpu.edu.cn/jwapp/sys/homeapp/home/images/favicon.ico',
         text: '选课评教',
         clickEvent: () => {
-          window.open('https://www.swpu.edu.cn/')
+          window.open(
+            'https://deanservices.swpu.edu.cn/jwapp/sys/homeapp/home/index.html'
+          )
         }
       },
       {
-        icon: '',
+        icon: 'https://deanservices.swpu.edu.cn/jwapp/sys/homeapp/home/images/favicon.ico',
         text: '二课',
         clickEvent: () => {
-          window.open('https://www.swpu.edu.cn/')
+          window.open('http://dekt.swpu.edu.cn/SystemForm/main.htm')
         }
       },
       {
-        icon: '',
+        icon: 'https://deanservices.swpu.edu.cn/jwapp/sys/homeapp/home/images/favicon.ico',
         text: '教务处',
         clickEvent: () => {
           window.open(
@@ -164,49 +166,49 @@ export const platforms = {
     name: '实用工具',
     list: [
       {
-        icon: '',
+        icon: 'https://img.alicdn.com/imgextra/i1/O1CN01AKUdEM1qP6BQVaYhT_!!6000000005487-2-tps-512-512.png',
         text: '通义千问',
         clickEvent: () => {
           window.open('https://tongyi.aliyun.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://nlp-eb.cdn.bcebos.com/logo/favicon.ico',
         text: '文心一言',
         clickEvent: () => {
           window.open('https://yiyan.baidu.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/web/logo-icon.png',
         text: '豆包',
         clickEvent: () => {
           window.open('https://www.doubao.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://ydlunacommon-cdn.nosdn.127.net/31cf4b56e6c0b3af668aa079de1a898c.png',
         text: '有道翻译',
         clickEvent: () => {
           window.open('https://fanyi.youdao.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://www.geogebra.org/apps/icons/graphing.ico',
         text: '函数绘制',
         clickEvent: () => {
           window.open('https://www.desmos.com/calculator?lang=zh-CN')
         }
       },
       {
-        icon: '',
+        icon: 'https://cdn.boardmix.cn/app/favicon.ico?v=1',
         text: '流程图',
         clickEvent: () => {
           window.open('https://boardmix.cn/app/home')
         }
       },
       {
-        icon: '',
+        icon: 'https://www.paperbye.com/favicon.ico',
         text: '论文查重',
         clickEvent: () => {
           window.open('https://www.paperbye.com/')
@@ -218,40 +220,40 @@ export const platforms = {
     name: '第三方产品导航',
     list: [
       {
-        icon: '',
+        icon: 'https://tse2-mm.cn.bing.net/th/id/OIP-C.wbM1iRIKYFu0IAmBm6wkQQAAAA?rs=1&pid=ImgDetMain',
         text: 'bilibili',
         clickEvent: () => {
           window.open('https://www.bilibili.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png',
         text: '知乎',
         clickEvent: () => {
           window.open('https://www.zhihu.com/')
         }
       },
       {
-        icon: '',
+        icon: 'https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/static/favicons/apple-touch-icon.png',
         text: '掘金',
         clickEvent: () => {
           window.open('https://juejin.cn/')
         }
       },
       {
-        icon: '',
+        icon: 'https://g.csdnimg.cn/static/logo/favicon32.ico',
         text: 'CSDN',
         clickEvent: () => {
           window.open('https://www.csdn.net/')
         }
       },
       {
-        icon: '',
+        icon: 'https://www.toolmao.com/wp-content/uploads/2021/03/cnblogs.png',
         text: '博客园',
         clickEvent: () => {
           window.open('https://www.cnblogs.com/')
         }
-      },
+      }
     ]
   }
 }
