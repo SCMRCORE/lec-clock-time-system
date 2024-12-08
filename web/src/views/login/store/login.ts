@@ -16,9 +16,9 @@ export const useLoginStore = defineStore('loginStore', () => {
     username: '',
     nickname: '',
     password: '',
-    email:'',
-    grade:1,
-    code:''
+    email: '',
+    grade: 1,
+    code: ''
   })
 
   // 切换自动清空
@@ -30,8 +30,8 @@ export const useLoginStore = defineStore('loginStore', () => {
         username: '',
         nickname: '',
         password: '',
-        email:'',
-        grade:1,
+        email: '',
+        grade: 1,
         code: ''
       }
     }
@@ -51,8 +51,9 @@ export const useLoginStore = defineStore('loginStore', () => {
     localStorage.setItem('token', token.value)
     //loginInfo
   }
-  const setId = (newId:string)=>{
-    localStorage.setItem('id', newId)
+  const setId = (newId: string | number) => {
+    const idAsString = String(newId) // 确保 id 是字符串
+    localStorage.setItem('id', idAsString)
   }
   return {
     activeForm,

@@ -33,7 +33,7 @@ const routeToUser = () => {
 </script>
 
 <style scoped lang="scss">
-$gap: 14px;
+$gap: 13px;
 $icon-size: 24px;
 .right-side {
   width: 100%;
@@ -42,10 +42,10 @@ $icon-size: 24px;
 
   .settings {
     position: absolute;
-    right: 4px;
+    right: 6px;
     top: 0;
-    width: $icon-size;
-    height: $icon-size;
+    width: $icon-size + 10px;
+    height: $icon-size + 10px;
     cursor: pointer;
     color: var(--color-neutral-6);
 
@@ -55,6 +55,7 @@ $icon-size: 24px;
     }
   }
   .platform {
+    margin: 4px 0 $gap 2px;
     &-name {
       font-size: 16px;
       margin-bottom: $gap;
@@ -67,10 +68,24 @@ $icon-size: 24px;
         text-align: center;
         max-width: 72px;
         min-width: 72px;
+        border-radius: 4px;
         margin-bottom: $gap;
         text-overflow: ellipsis;
         overflow: hidden;
         cursor: pointer;
+
+        transition-duration: 0.5s;
+        transition-delay: 0.2s;
+        transition-property: all;
+        &:hover {
+          position: relative;
+          z-index: 999;
+          width: $gap + 10px;
+          background: #e3eef0;
+          opacity: 0.8;
+          transform: scale(1.08);
+          transition: 0.2s ease-in-out all;
+        }
 
         &-icon {
           width: $icon-size;

@@ -20,11 +20,20 @@ export const sidebarItems = [
     }
   },
   {
+    key: '3',
+    icon: 'icon-common',
+    text: '抽卡',
+    clickEvent: () => {
+      // router.replace('/lottery')
+      Message.info('火热开发中，预计月底前上线~')
+    }
+  },
+  {
     key: '999999',
     icon: 'icon-question-circle',
     text: '更多功能',
     clickEvent: () => {
-      Message.info('开发中，欢迎贡献 good idea~')
+      Message.info('开发ing~')
     }
   }
 ]
@@ -59,67 +68,3 @@ export const avatarDropdownItems = [
     }
   }
 ]
-
-export const platforms = {
-  internDevelopment: {
-    name: '内部产品导航',
-    list: [
-      {
-        icon: 'icon-github',
-        text: '乐程开源',
-        clickEvent: () => {
-          window.open('https://github.com/lec-org')
-        }
-      }
-    ]
-  },
-  externalApplication: {
-    name: '第三方产品导航',
-    list: [
-      {
-        icon: '',
-        text: '学习通',
-        clickEvent: () => {
-          window.open('https://i.chaoxing.com/')
-        }
-      },
-      {
-        icon: '',
-        text: 'bilibili',
-        clickEvent: () => {
-          window.open('https://www.bilibili.com/')
-        }
-      },
-      {
-        icon: '',
-        text: '学校官网',
-        clickEvent: () => {
-          window.open('https://www.swpu.edu.cn/')
-        }
-      },
-      {
-        icon: '',
-        text: '教务处',
-        clickEvent: () => {
-          window.open(
-            'https://www.swpu.edu.cn/dean/searchList.jsp?wbtreeid=1193'
-          )
-        }
-      },
-      {
-        icon: '',
-        text: '力扣',
-        clickEvent: () => {
-          window.open('https://leetcode.cn/')
-        }
-      },
-      {
-        icon: '',
-        text: '洛谷',
-        clickEvent: () => {
-          window.open('https://www.luogu.com.cn/')
-        }
-      }
-    ]
-  }
-}

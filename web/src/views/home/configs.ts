@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import * as echarts from 'echarts'
 import { RankListRow } from './type'
 
+// 顶部数据key配置
 export const clockInfoDataList = [
   {
     title: '本周打卡',
@@ -28,6 +29,7 @@ const dateFormatter = (date: Date) => {
   return dayjs(date.getTime()).format('MM/DD')
 }
 
+// 顶部今明后信息配置
 export const weatherInfoList = [
   {
     date: dateFormatter(new Date()),
@@ -43,6 +45,7 @@ export const weatherInfoList = [
   }
 ]
 
+// 导航部分配置
 export const platforms = {
   internDevelopment: {
     name: '内部产品导航',
@@ -56,8 +59,41 @@ export const platforms = {
       }
     ]
   },
-  externalApplication: {
-    name: '第三方产品导航',
+  coadingWeblication: {
+    name: '刷题平台',
+    list: [
+      {
+        icon: '',
+        text: '洛谷',
+        clickEvent: () => {
+          window.open('https://www.luogu.com.cn/')
+        }
+      },
+      {
+        icon: '',
+        text: '牛客',
+        clickEvent: () => {
+          window.open('https://ac.nowcoder.com/')
+        }
+      },
+      {
+        icon: '',
+        text: 'AcWing',
+        clickEvent: () => {
+          window.open('https://www.acwing.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '力扣',
+        clickEvent: () => {
+          window.open('https://leetcode.cn/')
+        }
+      }
+    ]
+  },
+  courseWeblication: {
+    name: '课程平台',
     list: [
       {
         icon: '',
@@ -68,14 +104,47 @@ export const platforms = {
       },
       {
         icon: '',
-        text: 'bilibili',
+        text: 'MOOC',
         clickEvent: () => {
-          window.open('https://www.bilibili.com/')
+          window.open('https://www.icourse163.org/')
         }
       },
       {
         icon: '',
-        text: '学校官网',
+        text: '雨课堂',
+        clickEvent: () => {
+          window.open('https://www.yuketang.cn/web')
+        }
+      },
+      {
+        icon: '',
+        text: '学堂在线',
+        clickEvent: () => {
+          window.open('https://www.xuetangx.com/')
+        }
+      }
+    ]
+  },
+  schoolWeblication: {
+    name: '学院网站导航',
+    list: [
+      {
+        icon: '',
+        text: '门户网站',
+        clickEvent: () => {
+          window.open('https://www.swpu.edu.cn/')
+        }
+      },
+      {
+        icon: '',
+        text: '选课评教',
+        clickEvent: () => {
+          window.open('https://www.swpu.edu.cn/')
+        }
+      },
+      {
+        icon: '',
+        text: '二课',
         clickEvent: () => {
           window.open('https://www.swpu.edu.cn/')
         }
@@ -88,25 +157,106 @@ export const platforms = {
             'https://www.swpu.edu.cn/dean/searchList.jsp?wbtreeid=1193'
           )
         }
-      },
+      }
+    ]
+  },
+  toolsWeblication: {
+    name: '实用工具',
+    list: [
       {
         icon: '',
-        text: '力扣',
+        text: '通义千问',
         clickEvent: () => {
-          window.open('https://leetcode.cn/')
+          window.open('https://tongyi.aliyun.com/')
         }
       },
       {
         icon: '',
-        text: '洛谷',
+        text: '文心一言',
         clickEvent: () => {
-          window.open('https://www.luogu.com.cn/')
+          window.open('https://yiyan.baidu.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '豆包',
+        clickEvent: () => {
+          window.open('https://www.doubao.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '有道翻译',
+        clickEvent: () => {
+          window.open('https://fanyi.youdao.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '函数绘制',
+        clickEvent: () => {
+          window.open('https://www.desmos.com/calculator?lang=zh-CN')
+        }
+      },
+      {
+        icon: '',
+        text: '流程图',
+        clickEvent: () => {
+          window.open('https://boardmix.cn/app/home')
+        }
+      },
+      {
+        icon: '',
+        text: '论文查重',
+        clickEvent: () => {
+          window.open('https://www.paperbye.com/')
         }
       }
+    ]
+  },
+  externalApplication: {
+    name: '第三方产品导航',
+    list: [
+      {
+        icon: '',
+        text: 'bilibili',
+        clickEvent: () => {
+          window.open('https://www.bilibili.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '知乎',
+        clickEvent: () => {
+          window.open('https://www.zhihu.com/')
+        }
+      },
+      {
+        icon: '',
+        text: '掘金',
+        clickEvent: () => {
+          window.open('https://juejin.cn/')
+        }
+      },
+      {
+        icon: '',
+        text: 'CSDN',
+        clickEvent: () => {
+          window.open('https://www.csdn.net/')
+        }
+      },
+      {
+        icon: '',
+        text: '博客园',
+        clickEvent: () => {
+          window.open('https://www.cnblogs.com/')
+        }
+      },
     ]
   }
 }
 
+// 生成渐变色，传入四个参数x1, y1, x2, y2，是左上和右下的坐标；颜色配置，一个数组，每个元素是一个对象，包含 offset 和 color 两个字段，分别表示偏移量和颜色
 const gradientColorFac = (
   points: [number, number, number, number],
   colors?: Array<{ offset: number; color: string }>
@@ -133,6 +283,7 @@ const gradientColorFac = (
   return new echarts.graphic.LinearGradient(...points, colorConfigs)
 }
 
+// 折线图公用部分，用于折线图的配置，其中 series 字段是一个数组，每个元素是一个对象，包含 name、data 和其他字段，分别表示系列名称、数据和其他配置
 const commonPartOfClockLineChart = {
   type: 'line',
   smooth: true, //是否平滑曲线显示
@@ -176,7 +327,7 @@ const commonPartOfClockLineChart = {
   }
 }
 
-// echarts 折线图的配置，数据部分关注 series 字段即可，样式部分则是其余字段
+// 折线图的配置，数据部分关注 series 字段即可，样式部分则是其余字段
 export const clockLineChartOption = {
   title: {
     text: '每周打卡数据',
@@ -276,19 +427,21 @@ export const clockLineChartOption = {
   ].map((obj) => ({ ...obj, ...commonPartOfClockLineChart }))
 }
 
+// 排行榜配置
 export const rankListColumns = [
   {
     title: '排名',
     dataIndex: 'rank'
   },
   {
-    title:'用户名',
-    dataIndex:'nickname'
+    title: '用户名',
+    dataIndex: 'nickname'
   },
   {
     title: '用户信息',
     dataIndex: 'userInfo',
-    render: (row: RankListRow) => `<img src="${row.avatar}" alt="头像" style="width:50px; height:50px;border-radius:50%;"/>`
+    render: (row: RankListRow) =>
+      `<img src="${row.avatar}" alt="头像" style="width:50px; height:50px;border-radius:50%;"/>`
   },
   {
     title: '当前时长',
@@ -301,26 +454,32 @@ export const rankListColumns = [
   {
     title: '完成度',
     dataIndex: 'completionRate',
-    render: (row:RankListRow) => `${row.completionRate !==0?Math.round(row.completionRate*100)+'%':row.completionRate}`
+    render: (row: RankListRow) =>
+      `${
+        row.completionRate !== 0
+          ? Math.round(row.completionRate * 100) + '%'
+          : row.completionRate
+      }`
   },
   {
     title: '状态',
     dataIndex: 'status',
-    render:(row: RankListRow) => `${row.status === 1 ? "内卷ing":"休息中"}`
+    render: (row: RankListRow) => `${row.status === 1 ? '内卷ing' : '休息中'}`
   }
 ]
 
+// 年级配置
 export const rankListGrades = [
   {
     value: 1,
     text: '2024级'
   },
   {
-    value:2,
-    text:'2023级'
+    value: 2,
+    text: '2023级'
   },
   {
-    value:3,
-    text:'2022级'
+    value: 3,
+    text: '2022级'
   }
 ]

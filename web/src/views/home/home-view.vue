@@ -122,18 +122,23 @@ const getCardList = async () => {
         <div class="left">
           <a-layout>
             <a-layout-header class="header">
+              <!-- 头部信息栏目 -->
               <clock-info :selfUser="selfUser" :dataList="dataList" :userList="userList"/>
             </a-layout-header>
 
             <a-layout-content class="content">
+              <!-- 开始打卡 -->
               <clock-button :selfUser="selfUser"/>
+              <!-- 图表(折线图) -->
               <line-chart :weekClock="weekClock"/>
             </a-layout-content>
 
             <a-layout-footer>
+              <!-- 排行榜 -->
               <rank-list :userList="userList" :selfUser="selfUser" v-if="selfUser.grade!==0"></rank-list>
             </a-layout-footer>
 
+            <!-- 好像没搞？ -->
             <a-layout-footer> </a-layout-footer>
           </a-layout>
         </div>
@@ -141,6 +146,7 @@ const getCardList = async () => {
     </template>
 
     <template #right-sidebar>
+      <!-- 右侧导航 -->
       <right-sidebar></right-sidebar>
     </template>
   </basic-layout>
