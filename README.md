@@ -14,11 +14,11 @@
 
 3.将登录校验集成到GateWay的FilterChain，并且配合ThreadLocal实现用户id的多链路传递
 
-3.使用OpenFeign实现rpc请求传递
+4.使用OpenFeign实现rpc请求传递
 
-3.将阿里OSS改为MinIO用于对头像等图片进行存储
+5.将阿里OSS改为MinIO用于对头像等图片进行存储
 
-4.运用Redis中间件进行对 来访请求IP存取，用户信息进行存取，验证码存取
+6.运用Redis中间件进行对 来访请求IP存取，用户信息进行存取，验证码存取
 
 
 
