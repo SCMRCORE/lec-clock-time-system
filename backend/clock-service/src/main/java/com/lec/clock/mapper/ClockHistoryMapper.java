@@ -20,7 +20,7 @@ import java.util.List;
 @Mapper
 public interface ClockHistoryMapper extends BaseMapper<ClockHistory> {
 
-    void saveAll(Clock record);
+    void saveAll(Clock clock);
 
     @Select("select * from `lec-clock-in`.clock_history where duration < 1680")
     Page<ClockHistory> getAllClock();
