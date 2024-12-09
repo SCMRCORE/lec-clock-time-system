@@ -5,8 +5,8 @@
 
     <update id="saveAll">
         update `lec-clock-in`.clock_history
-        set `lec-clock-in`.clock_history.duration = #{record.totalDuration}
-        where `lec-clock-in`.clock_history.id = #{record.id}
+        set `lec-clock-in`.clock_history.duration = #{totalDuration}
+        where `lec-clock-in`.clock_history.id = #{id}
     </update>
 
 </mapper>
