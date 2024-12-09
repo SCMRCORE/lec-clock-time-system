@@ -25,5 +25,4 @@ com\lec\clock\mapper\ClockHistoryMapper.class
 com\lec\clock\controller\ClockController.class
 com\lec\clock\mapper\ClockMapper.class
 com\lec\clock\entity\pojo\Position.class
-com\lec\clock\handler\CleanData.class
 com\lec\clock\entity\vo\ClockListInfoVo.class
