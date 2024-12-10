@@ -176,7 +176,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result sendCode(String email) {
         SimpleMailMessage smm = new SimpleMailMessage();		//创建邮件对象
-        //TODO 添加邮箱检测逻辑，还未和前端对接
         if(userMapper.hasEmail(email)!=null){
             log.info("注册邮箱已存在");
             return Result.errorResult(AppHttpCodeEnum.EMAIL_EXIST);
@@ -218,6 +217,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result updateUserInfo(UpdateUserDto updateUserDto) {
+        //TODO 更改用户信息还得更改其他表
         log.info("需要改成的用户信息为：{}", updateUserDto);
         updateUserDto.setId(UserContext.getUser());
         User user = BeanCopyUtils.copyBean(updateUserDto, User.class);

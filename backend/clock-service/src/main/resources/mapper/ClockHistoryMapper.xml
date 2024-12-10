@@ -9,4 +9,10 @@
         where `lec-clock-in`.clock_history.id = #{id}
     </update>
 
+    <select id="getAllClock" resultType="com.lec.clock.entity.vo.ClockHistoryVo">
+        select * from `lec-clock-in`.clock_history c inner join `lec-clock-in`.user u on c.id = u.id
+        where (grade = 1 and duration between 0 and 1679)
+        or (grade = 2 and duration between 0 and 2279)
+    </select>
+
 </mapper>

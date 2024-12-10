@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.pojo.ClockHistory;
+import com.lec.clock.entity.vo.ClockHistoryVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,7 +23,6 @@ public interface ClockHistoryMapper extends BaseMapper<ClockHistory> {
 
     void saveAll(Clock clock);
 
-    @Select("select * from `lec-clock-in`.clock_history where duration < 1680")
-    Page<ClockHistory> getAllClock();
+    Page<ClockHistoryVo> getAllClock();
 }
 
