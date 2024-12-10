@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 public class ClockHistoryVo {
     private Long id;
 
-    private Integer week;
+    private String nickname;
 
     private Integer duration;
-
-    private Integer isStandard;
-
+    //头像
+    private String avatar;
+    //年级
+    private Integer grade;
 
 }

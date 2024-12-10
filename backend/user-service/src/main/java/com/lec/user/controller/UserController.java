@@ -181,6 +181,11 @@ public class UserController {
     }
 
 
+    @PostMapping("/weekOff")
+    public Result dailyOff(){
+        log.info("执行接口/weekOff:用户每周打卡清空");
+        return dailyHistoryService.weekOff();
+    }
 
 
     //下面全是rpc
@@ -207,5 +212,6 @@ public class UserController {
         log.info("执行RPC接口/getUsers查询未打满的用户:{}",ids);
         return userService.getUsers(ids);
     }
+
 
 }

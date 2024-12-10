@@ -5,9 +5,16 @@ import com.lec.user.entity.pojo.DailyHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface DailyHistoryMapper extends BaseMapper<DailyHistory> {
 
     @Select("select * from daily_history where id = #{id}")
     DailyHistory getUserById(Long id);
+
+    void clearWeekRecord(List<DailyHistory> dailyHistoryList);
+
+    @Select("select * from daily_history")
+    List<DailyHistory> getAll();
 }
