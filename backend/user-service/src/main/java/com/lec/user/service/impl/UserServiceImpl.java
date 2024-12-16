@@ -178,6 +178,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         SimpleMailMessage smm = new SimpleMailMessage();		//创建邮件对象
         if(userMapper.hasEmail(email)!=null){
             log.info("注册邮箱已存在");
+            //TODO 响应有问题
             return Result.errorResult(AppHttpCodeEnum.EMAIL_EXIST);
         }
         try {

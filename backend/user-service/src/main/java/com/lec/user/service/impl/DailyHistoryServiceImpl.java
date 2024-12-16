@@ -46,7 +46,9 @@ public class DailyHistoryServiceImpl implements DailyHistoryService {
         List<DailyHistory> dailyHistoryList = dailyHistoryMapper.getAll();
 
         log.info("清空每周时长");
-        dailyHistoryMapper.clearWeekRecord(dailyHistoryList);
+        for(DailyHistory dailyHistory : dailyHistoryList){
+            dailyHistoryMapper.clearWeekRecord(dailyHistory);
+        }
         return Result.okResult();
     }
 }
