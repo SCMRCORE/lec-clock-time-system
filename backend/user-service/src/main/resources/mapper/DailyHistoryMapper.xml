@@ -7,10 +7,7 @@
         update `lec-clock-in`.daily_history
         set `lec-clock-in`.daily_history.mon=0, `lec-clock-in`.daily_history.tue=0,
             `lec-clock-in`.daily_history.wed=0, `lec-clock-in`.daily_history.thu=0, `lec-clock-in`.daily_history.fri=0, `lec-clock-in`.daily_history.sat=0, `lec-clock-in`.daily_history.sun=0
-        where `lec-clock-in`.daily_history.id in
-        <foreach collection="dailyHistoryList" item="day" close=")" open="(" separator=",">
-            #{day.id}
-        </foreach>
+        where `lec-clock-in`.daily_history.id = #{id}
     </update>
 
 </mapper>
