@@ -1,0 +1,20 @@
+# 忽略所有 .class 文件
+*.class
+
+# 忽略所有 .jar 文件
+.jar
+
+# 忽略所有 .jar.original 文件
+.jar.original
+
+# 忽略所有 .gitignore 文件
+.gitignore
+
+# 忽略所有 .yml 文件
+.yml
+
+# 忽略所有 .yaml 文件
+.yaml
+
+# 忽略所有 .factories 文件
+.factories
