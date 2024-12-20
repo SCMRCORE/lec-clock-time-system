@@ -1,0 +1,5 @@
+com\example\lecapi\clients\UserClient.class
+com\example\lecapi\LecApiApplication.class
+com\example\lecapi\config\DefaultFeignConfig$1.class
+com\example\lecapi\config\DefaultFeignConfig.class
+com\example\lecapi\clients\ClockClient.class
