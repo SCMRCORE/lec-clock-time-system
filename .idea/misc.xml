@@ -7,10 +7,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/lec-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/chatAI-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/backend/ChatAI-service/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ai-service/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </set>
     </option>
