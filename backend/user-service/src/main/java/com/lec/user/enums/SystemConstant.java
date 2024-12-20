@@ -43,6 +43,8 @@ public class SystemConstant {
     public static String REDIS_RECORD_IPV4="record:ipv4:";
     public static String REDIS_WEEK = "clock:week";
 
+    public static String OSS_IP = "154.44.25.122:9000";
+
     public static String OSS_URL = "https://kilo-webtest.oss-cn-beijing.aliyuncs.com/";
 
     public static String default_URL="https://kilo-webtest.oss-cn-beijing.aliyuncs.com/06067cf4-2175-4a70-b719-26e12df69a42.jpg";
