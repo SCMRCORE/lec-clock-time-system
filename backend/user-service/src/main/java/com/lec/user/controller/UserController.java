@@ -79,6 +79,19 @@ public class UserController {
 
 
     /**
+     * 注册审核
+     * @param choose
+     * @return
+     */
+    @GetMapping("/register/audit")
+    public Result register(String choose) {
+        log.info("执行接口/register/audit注册审核:{}", choose);
+        return userService.registerAudit(choose);
+    }
+
+
+
+    /**
      * 发送验证码
      * @param email
      * @return

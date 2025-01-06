@@ -50,4 +50,6 @@ public class SystemConstant {
     public static String default_URL="https://kilo-webtest.oss-cn-beijing.aliyuncs.com/06067cf4-2175-4a70-b719-26e12df69a42.jpg";
 
     public static String signature="时间如梭，每一次的打卡都是自律的一步，坚守目标的承诺。记录生活，珍惜时光。";
+
+    public static String adminEmail = "3551147139@qq.com";
 }

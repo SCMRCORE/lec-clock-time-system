@@ -26,6 +26,7 @@ public interface UserService extends IService<User> {
 
     Result register(RegisterUserDto registerUserDto);
 
+
     Result sendCode(String email);
 
     Result logout();
@@ -41,5 +42,7 @@ public interface UserService extends IService<User> {
     String uploadImage(MultipartFile image);
 
     List<User> getUsers(List<Long> ids);
+
+    Result registerAudit(String choose);
 }
 

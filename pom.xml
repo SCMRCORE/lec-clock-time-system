@@ -84,11 +84,6 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.83</version>
             </dependency>
-<!--            &lt;!&ndash;消息发送&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-amqp</artifactId>-->
-<!--            </dependency>-->
             <!--        未知-->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
@@ -100,11 +95,6 @@
                 <artifactId>quartz-jobs</artifactId>
                 <version>2.3.0</version>
             </dependency>
-<!--            &lt;!&ndash;        未知&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-security</artifactId>-->
-<!--            </dependency>-->
 
             <dependency>
                 <groupId>io.minio</groupId>
@@ -117,6 +107,13 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>1.4.1</version>
+            </dependency>
+
+            <!--AMQP依赖，包含RabbitMQ-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>3.0.5</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

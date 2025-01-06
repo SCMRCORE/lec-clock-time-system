@@ -12,6 +12,7 @@ import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
 import com.clockcommon.utils.UserContext;
 import com.example.lecapi.clients.ClockClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
 import com.lec.user.entity.dto.UpdateUserDto;
@@ -26,6 +27,7 @@ import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,9 +72,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private JavaMailSenderImpl mailSender;
-
-//    @Resource
-//    private AliOSSUtils aliOSSUtils;
 
     @Resource
     MinioUtils minioUtils;
@@ -122,8 +121,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result register(RegisterUserDto registerUserDto) {
-        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
-
+        //TODO 注册的话，后端有感知，但是前端目前无感知
         //匹配验证码
         try {
             //匹配验证码（通过email作为key）
@@ -137,48 +135,120 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return Result.errorResult(AppHttpCodeEnum.CODE_FALSE);
         }
 
-        //判断手机号
-
-
-        //判断用户名
-        String userName = registerUserDto.getUsername();
-        if(StrUtil.isBlank(userName)) {
-            return Result.errorResult(AppHttpCodeEnum.REQUIRE_USERNAME);
+        //给admin发邮件
+        SimpleMailMessage smm = new SimpleMailMessage();
+        try {
+            smm.setSubject("用户注册审核");
+            smm.setText("用户名："+registerUserDto.getUsername()+'\n'+
+                        "用户昵称："+registerUserDto.getNickname()+'\n'+
+                        "用户年级："+registerUserDto.getGrade().toString()+'\n'+
+                        "用户邮箱："+registerUserDto.getEmail()+'\n'
+            );
+            smm.setTo(com.lec.user.enums.SystemConstant.adminEmail);
+            smm.setFrom(from);
+            //将用户信息存到Redis,有效期3天
+            ObjectMapper objectMapper = new ObjectMapper();
+            String registerUserDtoJson = objectMapper.writeValueAsString(registerUserDto);
+            redisTemplate.opsForValue().set("RegisterAudit", registerUserDtoJson, 60 * 24 * 3, TimeUnit.MINUTES);
+            mailSender.send(smm);
+            log.info("给admin发邮件成功");
+            return Result.okResult("审核邮件发送成功");
+        }catch (Exception e) {
+            log.info("给admin发邮件失败");
+            e.printStackTrace();
+            return Result.okResult("审核邮件发送失败");
         }
-        User one = lambdaQuery().eq(User::getUsername, userName).one();
-        if(one != null) {
-            return Result.errorResult(AppHttpCodeEnum.USERNAME_EXIST);
+    }
+
+    public RegisterUserDto getRegisterUserDto(String key) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String registerUserDtoJson = (String) redisTemplate.opsForValue().get(key);
+            RegisterUserDto registerUserDto = objectMapper.readValue(registerUserDtoJson, RegisterUserDto.class);
+            return registerUserDto;
+        }catch (Exception e) {
+            log.info("Redis获取注册信息失败");
+            e.printStackTrace();
+            return null;
         }
-        //加密用户密码
-        registerUserDto.setPassword(passwordEncoder.encode(registerUserDto.getPassword()));
+    }
+
+    @Override
+    public Result registerAudit(String choose) {
+        //从Redis获取注册信息
+        RegisterUserDto registerUserDto = getRegisterUserDto("RegisterAudit");
+
+            SimpleMailMessage smm = new SimpleMailMessage();
+            if(choose.equals("NO")) {
+                try {
+                    smm.setSubject("用户注册审核通知");
+                    smm.setText("很抱歉，您的注册申请未通过审核，请联系管理员或者尝试请重新注册");
+                    smm.setFrom(from);
+                    smm.setTo(registerUserDto.getEmail());
+                    mailSender.send(smm);
+                    log.info("拒绝用户注册的通告文件发送成功");
+                }catch (Exception e) {
+                    log.info("拒绝用户注册的通告文件发送失败,请代码检查错误");
+                    e.printStackTrace();
+                }
+                redisTemplate.delete("RegisterAudit");
+                return Result.okResult("审核未通过");
+            }
+
+            Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
+            //判断用户名
+            String userName = registerUserDto.getUsername();
+            if(StrUtil.isBlank(userName)) {
+                return Result.errorResult(AppHttpCodeEnum.REQUIRE_USERNAME);
+            }
+            User one = lambdaQuery().eq(User::getUsername, userName).one();
+            if(one != null) {
+                return Result.errorResult(AppHttpCodeEnum.USERNAME_EXIST);
+            }
+            //加密用户密码
+            registerUserDto.setPassword(passwordEncoder.encode(registerUserDto.getPassword()));
+
+            //将注册信息注入到对应的user实体类里
+            User user = BeanCopyUtils.copyBean(registerUserDto, User.class);
+
+            user.setAvatar(SystemConstant.default_URL);
+            user.setSignature(SystemConstant.signature);
+            user.setId(snowflakeIdWorkers.nextId());
+
+            //为用户新建一个每日打卡类
+            DailyHistory dailyHistory=new DailyHistory(user.getId(),week,0,0,0,0,0,0,0);
+            //存入数据库
+
+            dailyHistoryMapper.insert(dailyHistory);
+            userMapper.insert(user);
+            clockClient.createClock(user.getId(), user.getGrade());
+            //        Card card=new Card();
+            //        card.setId(user.getId());
+            //        cardService.updateById(card);
 
 
-        //将注册信息注入到对应的user实体类里
-        User user = BeanCopyUtils.copyBean(registerUserDto, User.class);
+            try {
+                smm.setSubject("用户注册审核通知");
+                smm.setText("恭喜，您的注册申请已经审核通过，请登录系统开始使用");
+                smm.setFrom(from);
+                smm.setTo(registerUserDto.getEmail());
+                mailSender.send(smm);
+                log.info("同意用户注册的通告文件发送成功");
+            }catch (Exception e) {
+                log.info("同意用户注册的通告文件发送失败,请代码检查错误");
+                e.printStackTrace();
+            }
 
-        user.setAvatar(SystemConstant.default_URL);
-        user.setSignature(SystemConstant.signature);
-        user.setId(snowflakeIdWorkers.nextId());
-
-        //为用户新建一个每日打卡类
-        DailyHistory dailyHistory=new DailyHistory(user.getId(),week,0,0,0,0,0,0,0);
-        //存入数据库
-
-        dailyHistoryMapper.insert(dailyHistory);
-        userMapper.insert(user);
-        clockClient.createClock(user.getId(), user.getGrade());
-        //        Card card=new Card();
-        //        card.setId(user.getId());
-        //        cardService.updateById(card);
-        return Result.okResult();
+            return Result.okResult("审核通过");
     }
 
     @Override
     public Result sendCode(String email) {
         SimpleMailMessage smm = new SimpleMailMessage();		//创建邮件对象
-        if(userMapper.hasEmail(email)!=null){
-            log.info("注册邮箱已存在");
-            //TODO 响应有问题
+        String IsEmail = userMapper.hasEmail(email);
+        if(IsEmail!=null){
+            log.info("注册邮箱已存在：{}", IsEmail);
+            //TODO 发送验证码，后端有感知，但是前端目前无感知
             return Result.errorResult(AppHttpCodeEnum.EMAIL_EXIST);
         }
         try {
