@@ -15,7 +15,10 @@ public enum AppHttpCodeEnum {
     EMAIL_EXIST(503, "邮箱已存在"),
     REQUIRE_USERNAME(504, "必需填写用户名"),
     LOGIN_ERROR(505,"用户名或密码错误"),
-    CODE_SEND_ERROR(506, "验证码发送失败");
+    CODE_SEND_ERROR(506, "验证码发送失败"),
+    USER_NOT_EXIT(507, "Redis不存在该注册用户"),
+    OPENFIRGN_ERROR(508, "Openfire请求失败"),
+    EMAIL_ERROR(509, "邮箱发送出错");
     int code;
     String msg;
 

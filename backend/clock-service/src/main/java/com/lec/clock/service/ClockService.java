@@ -26,7 +26,7 @@ public interface ClockService extends IService<Clock> {
 
     Result addIpv4() throws UnknownHostException;
 
-    void createClockByUserId(Long userId, Integer grade);
+    void createClockByUserId(Long userId, Integer grade, String username, String nickname);
 
     Result clockOff();
 }

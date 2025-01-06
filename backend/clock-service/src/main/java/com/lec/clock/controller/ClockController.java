@@ -126,8 +126,8 @@ public class ClockController {
      * @return
      */
     @GetMapping("/create")
-    public void createClock(Long userId, Integer grade) {
+    public void createClock(Long userId, Integer grade, String username, String nickname) {
         log.info("执行RPC接口/create:创建用户的clock对象");
-        clockService.createClockByUserId(userId, grade);
+        clockService.createClockByUserId(userId, grade, username, nickname);
     }
 }

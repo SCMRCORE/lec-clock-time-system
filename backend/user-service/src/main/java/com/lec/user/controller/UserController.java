@@ -81,12 +81,13 @@ public class UserController {
     /**
      * 注册审核
      * @param choose
+     * @param salt
      * @return
      */
     @GetMapping("/register/audit")
-    public Result register(String choose) {
-        log.info("执行接口/register/audit注册审核:{}", choose);
-        return userService.registerAudit(choose);
+    public Result register(String choose, String salt) {
+        log.info("执行接口/register/audit注册审核:{}", choose, salt);
+        return userService.registerAudit(choose, salt);
     }
 
 

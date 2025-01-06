@@ -26,6 +26,7 @@ import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.*;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,15 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -137,9 +143,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         //给admin发邮件
         SimpleMailMessage smm = new SimpleMailMessage();
+        Random random = new Random();
+        //生成随机盐-用户注册请求ID
+        String salt = String.valueOf(random.nextInt(99999));
         try {
             smm.setSubject("用户注册审核");
-            smm.setText("用户名："+registerUserDto.getUsername()+'\n'+
+            smm.setText("用户注册编号："+ salt +'\n'+
+                        "用户名："+registerUserDto.getUsername()+'\n'+
                         "用户昵称："+registerUserDto.getNickname()+'\n'+
                         "用户年级："+registerUserDto.getGrade().toString()+'\n'+
                         "用户邮箱："+registerUserDto.getEmail()+'\n'
@@ -149,23 +159,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             //将用户信息存到Redis,有效期3天
             ObjectMapper objectMapper = new ObjectMapper();
             String registerUserDtoJson = objectMapper.writeValueAsString(registerUserDto);
-            redisTemplate.opsForValue().set("RegisterAudit", registerUserDtoJson, 60 * 24 * 3, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set("RegisterAudit"+salt, registerUserDtoJson, 60 * 24 * 3, TimeUnit.MINUTES);
             mailSender.send(smm);
             log.info("给admin发邮件成功");
+            //TODO 可以通过前端来提示，审核发送成功若3天未收到审核邮件，则联系管理员或者重写发送
             return Result.okResult("审核邮件发送成功");
         }catch (Exception e) {
             log.info("给admin发邮件失败");
             e.printStackTrace();
-            return Result.okResult("审核邮件发送失败");
+            return Result.errorResult(AppHttpCodeEnum.EMAIL_ERROR);
         }
     }
 
+    //用于从redis获取用户信息
     public RegisterUserDto getRegisterUserDto(String key) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             String registerUserDtoJson = (String) redisTemplate.opsForValue().get(key);
-            RegisterUserDto registerUserDto = objectMapper.readValue(registerUserDtoJson, RegisterUserDto.class);
-            return registerUserDto;
+            if (registerUserDtoJson == null) {
+                log.info("未从Redis获取到用户信息");
+                return null;
+            }
+            return objectMapper.readValue(registerUserDtoJson, RegisterUserDto.class);
         }catch (Exception e) {
             log.info("Redis获取注册信息失败");
             e.printStackTrace();
@@ -174,9 +189,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Result registerAudit(String choose) {
+    @Transactional(rollbackFor = Exception.class)
+    public Result registerAudit(String choose, String salt) {
         //从Redis获取注册信息
-        RegisterUserDto registerUserDto = getRegisterUserDto("RegisterAudit");
+        RegisterUserDto registerUserDto = getRegisterUserDto("RegisterAudit"+salt);
+        if(registerUserDto==null){
+            return Result.errorResult(AppHttpCodeEnum.USER_NOT_EXIT);
+        }
 
             SimpleMailMessage smm = new SimpleMailMessage();
             if(choose.equals("NO")) {
@@ -190,8 +209,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 }catch (Exception e) {
                     log.info("拒绝用户注册的通告文件发送失败,请代码检查错误");
                     e.printStackTrace();
+                    return Result.errorResult(AppHttpCodeEnum.EMAIL_ERROR);
                 }
-                redisTemplate.delete("RegisterAudit");
+                redisTemplate.delete("RegisterAudit"+salt);
                 return Result.okResult("审核未通过");
             }
 
@@ -217,19 +237,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
             //为用户新建一个每日打卡类
             DailyHistory dailyHistory=new DailyHistory(user.getId(),week,0,0,0,0,0,0,0);
-            //存入数据库
 
+            //存入数据库
             dailyHistoryMapper.insert(dailyHistory);
             userMapper.insert(user);
-            clockClient.createClock(user.getId(), user.getGrade());
+            try {
+                clockClient.createClock(user.getId(), user.getGrade(), user.getUsername(), user.getNickname());
+            }catch (Exception e) {
+                log.info("OpenFeign请求失败，创建打卡失败");
+                e.printStackTrace();
+                //捕获后触发回滚
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return Result.errorResult(AppHttpCodeEnum.OPENFIRGN_ERROR);
+            }
             //        Card card=new Card();
             //        card.setId(user.getId());
             //        cardService.updateById(card);
 
-
             try {
                 smm.setSubject("用户注册审核通知");
-                smm.setText("恭喜，您的注册申请已经审核通过，请登录系统开始使用");
+                smm.setText("恭喜，您的注册申请已经审核通过，请登录系统开始使用"+'\n'+
+                            "官网地址：http://nobody.ates.top:4000/login"
+                );
                 smm.setFrom(from);
                 smm.setTo(registerUserDto.getEmail());
                 mailSender.send(smm);
@@ -237,8 +266,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }catch (Exception e) {
                 log.info("同意用户注册的通告文件发送失败,请代码检查错误");
                 e.printStackTrace();
+                //捕获后触发回滚
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return Result.errorResult(AppHttpCodeEnum.EMAIL_ERROR);
             }
-
+            redisTemplate.delete("RegisterAudit"+salt);
             return Result.okResult("审核通过");
     }
 
