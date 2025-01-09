@@ -38,7 +38,7 @@ public class SystemConstant {
 
     public static int HASH_INCREMENT = 0x61c88647;
 
-    public static String REDIS_CLOCK_IPV4="ipv4:";
+    public static String REDIS_CLOCK_IPV4="lec:ip:";
 
     public static String REDIS_RECORD_IPV4="record:ipv4:";
     public static String REDIS_WEEK = "clock:week";
@@ -48,4 +48,10 @@ public class SystemConstant {
     public static String default_URL="https://kilo-webtest.oss-cn-beijing.aliyuncs.com/06067cf4-2175-4a70-b719-26e12df69a42.jpg";
 
     public static String signature="时间如梭，每一次的打卡都是自律的一步，坚守目标的承诺。记录生活，珍惜时光。";
+
+    public static String RefreshToken = "refreshToken:";
+
+    public static String adminEmail = "3551147139@qq.com";
+
+    public static String OSS_IP = "154.44.25.122:9000";
 }

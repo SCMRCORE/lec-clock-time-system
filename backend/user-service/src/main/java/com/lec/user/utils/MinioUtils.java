@@ -1,8 +1,8 @@
 package com.lec.user.utils;
 
+import com.clockcommon.enums.SystemConstant;
 import com.lec.user.config.HttpStatus;
 import com.lec.user.config.MinioConfig;
-import com.lec.user.enums.SystemConstant;
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.http.Method;

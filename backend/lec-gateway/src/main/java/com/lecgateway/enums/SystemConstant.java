@@ -38,7 +38,7 @@ public class SystemConstant {
 
     public static int HASH_INCREMENT = 0x61c88647;
 
-    public static String REDIS_CLOCK_IPV4="ipv4:";
+    public static String REDIS_CLOCK_IPV4="lec:ip:";
 
     public static String REDIS_RECORD_IPV4="record:ipv4:";
     public static String REDIS_WEEK = "clock:week";

@@ -64,9 +64,8 @@ public class ipv4Filter implements GlobalFilter, Ordered {
         //获取用户ID
         try {
             String userInfo =  request.getHeaders().get("userInfo").get(0);
-            Long userId = Long.valueOf(userInfo);
-            log.info("ip过滤器获取到用户id:{}", userId);
-            redisTemplate.opsForValue().set(SystemConstant.REDIS_CLOCK_IPV4+userId, ipv4Address,2,TimeUnit.MINUTES);
+            log.info("ip过滤器获取到用户id:{}", userInfo);
+            redisTemplate.opsForValue().set(SystemConstant.REDIS_CLOCK_IPV4+userInfo, ipv4Address,4,TimeUnit.MINUTES);
             return chain.filter(exchange);
         }catch (Exception e){
 //            e.printStackTrace();
@@ -89,8 +88,6 @@ public class ipv4Filter implements GlobalFilter, Ordered {
     private final static String LOCALHOST_IP1 = "127.0.0.1";
 
     private static String getIP(ServerHttpRequest request){
-        //获取header
-        HttpHeaders headers = request.getHeaders();
 //        log.info("========= 请求的headers： " + headers);
         // 根据 HttpHeaders 获取 请求 IP地址
         String ip = request.getHeaders().getFirst("X-Forwarded-For");

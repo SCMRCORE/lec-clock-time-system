@@ -23,14 +23,12 @@ import com.lec.user.entity.vo.LoginUserVo;
 import com.lec.user.entity.vo.UserInfoVo;
 import com.lec.user.config.JwtProperties;
 import com.lec.user.mapper.DailyHistoryMapper;
+import com.lec.user.mapper.UserIpMapper;
 import com.lec.user.mapper.UserMapper;
 import com.lec.user.service.UserService;
 import com.lec.user.utils.*;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
@@ -42,8 +40,8 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.net.InetAddress;
+import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -63,17 +61,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     SnowflakeIdWorker snowflakeIdWorkers=new SnowflakeIdWorker(0);
 
-    @Autowired
-    RedisUtil redisUtil;
-
-    @Autowired
-    @Qualifier("RedisTemplate")
+    @Resource
     RedisTemplate redisTemplate;
 
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.from}")
     private String from;
 
     @Autowired
@@ -93,6 +87,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Resource
     JwtProperties jwtProperties;
 
+    @Resource
+    UserIpMapper userIpMapper;
+
+    public boolean checkIP(Long userId){
+        try {
+            String ipv4= (String) redisTemplate.opsForValue().get(SystemConstant.REDIS_CLOCK_IPV4+userId);
+            if (ipv4 == null) {
+                log.info("未获取IP，请检查代码");
+                //想想该怎么解决
+                return true;
+            } else {
+                redisTemplate.delete(SystemConstant.REDIS_CLOCK_IPV4+userId);
+                InetAddress ip = InetAddress.getByName(ipv4);
+                InetAddress mask = InetAddress.getByName("255.255.255.0");
+
+                byte[] ipBytes = ip.getAddress();
+                byte[] maskBytes = mask.getAddress();
+
+                byte[] networkBytes = new byte[ipBytes.length];
+                for(int i = 0; i<ipBytes.length; i++){
+                    networkBytes[i] = (byte)(ipBytes[i] & maskBytes[i]);
+                }
+
+                String ipAndMask = Base64.getEncoder().encodeToString(networkBytes);
+
+                log.info("子网信息：{}", ipAndMask);
+                //执行判断逻辑
+                List<String> ipList = userIpMapper.getClockIpList();
+                for(String i : ipList){
+                    if(ipAndMask.equals(i)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }catch (Exception e){
+            log.info("IP检查出错，请立刻检查代码");
+            e.printStackTrace();
+            return true;
+        }
+    }
 
     @Override
     public Result login(LoginUserDto loginUserDto) {
@@ -110,18 +145,43 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }catch (Exception e){
             return Result.errorResult(AppHttpCodeEnum.LOGIN_ERROR);
         }
-            //获取用户实体并且将信息存入redis
-            redisTemplate.opsForValue().set(SystemConstant.REDIS_LOGIN_USER + user.getId(), user, 60 * 24 * 3, TimeUnit.MINUTES);
-            log.info("user:{}", SystemConstant.REDIS_LOGIN_USER + user.getId());
-            //生成token
-            Long userId = user.getId();
-            log.info("获取的userId为：{}", userId);
-            String token = jwtTool.createToken(userId, jwtProperties.getTokenTTL());
-            log.info("创建一个新的token:{}", token);
-            //封装返回给vo
-            UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
-            LoginUserVo loginUserVo = new LoginUserVo(token, userInfoVo);
-            return Result.okResult(loginUserVo);
+
+        Long userId = user.getId();
+        String userEmail = user.getEmail();
+        log.info("获取的userId为：{}", userId);
+        //验证IP
+        if(!checkIP(userId)){
+            //邮件告警但是仍然登录
+            SimpleMailMessage smm  = new SimpleMailMessage();
+            try{
+                smm.setSubject("账号异地登陆");
+                smm.setText("警告:" +username+'\n'+
+                            "检测到你的账号正在非团队网络下登录"+'\n'+
+                            "若非本人操作，请立刻联系管理员"+'\n'+
+                            "官网地址:http://nobody.ates.top:4000/home"
+                );
+                smm.setFrom(from);
+                smm.setTo(userEmail);
+                mailSender.send(smm);
+                log.info("异地登陆邮件发送成功");
+            }catch (Exception e){
+                log.info("异地登陆邮件发送失败");
+                return Result.errorResult(AppHttpCodeEnum.EMAIL_ERROR);
+            }
+        }
+
+        //获取用户实体并且将信息存入redis
+        redisTemplate.opsForValue().set(SystemConstant.REDIS_LOGIN_USER + user.getId(), user, 60 * 24 * 3, TimeUnit.MINUTES);
+        log.info("user:{}", SystemConstant.REDIS_LOGIN_USER + user.getId());
+
+        //生成token
+        String token = jwtTool.createToken(userId, jwtProperties.getTokenTTL());
+        log.info("创建一个新的token:{}", token);
+
+        //封装返回给vo
+        UserInfoVo userInfoVo = BeanCopyUtils.copyBean(user, UserInfoVo.class);
+        LoginUserVo loginUserVo = new LoginUserVo(token, userInfoVo);
+        return Result.okResult(loginUserVo);
     }
 
 
@@ -154,7 +214,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                         "用户年级："+registerUserDto.getGrade().toString()+'\n'+
                         "用户邮箱："+registerUserDto.getEmail()+'\n'
             );
-            smm.setTo(com.lec.user.enums.SystemConstant.adminEmail);
+            smm.setTo(SystemConstant.adminEmail);
             smm.setFrom(from);
             //将用户信息存到Redis,有效期3天
             ObjectMapper objectMapper = new ObjectMapper();
@@ -201,7 +261,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if(choose.equals("NO")) {
                 try {
                     smm.setSubject("用户注册审核通知");
-                    smm.setText("很抱歉，您的注册申请未通过审核，请联系管理员或者尝试请重新注册");
+                    smm.setText("抱歉，"+ registerUserDto.getUsername()+'\n'+
+                                "您的注册申请未通过审核"+'\n'+
+                                "请联系管理员说明情况后再尝试请重新注册");
                     smm.setFrom(from);
                     smm.setTo(registerUserDto.getEmail());
                     mailSender.send(smm);
@@ -256,7 +318,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
             try {
                 smm.setSubject("用户注册审核通知");
-                smm.setText("恭喜，您的注册申请已经审核通过，请登录系统开始使用"+'\n'+
+                smm.setText("恭喜，"+userName +'\n'+
+                            "您的注册申请已经通过审核，欢迎加入乐程大家庭"+'\n'+
+                            "现在就可以登录系统开始使用啦"+'\n'+
                             "官网地址：http://nobody.ates.top:4000/login"
                 );
                 smm.setFrom(from);

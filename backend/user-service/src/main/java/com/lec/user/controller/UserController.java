@@ -1,8 +1,6 @@
 package com.lec.user.controller;
 
 import com.clockcommon.entity.Result;
-import com.clockcommon.enums.SystemConstant;
-import com.clockcommon.enums.SystemLog;
 import com.clockcommon.utils.UserContext;
 import com.lec.user.entity.dto.LoginUserDto;
 import com.lec.user.entity.dto.RegisterUserDto;
@@ -18,8 +16,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,9 +31,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    @Autowired
-    @Qualifier("RedisTemplate")
-    RedisTemplate redisTemplate;
     @Resource
     DailyHistoryService dailyHistoryService;
 
@@ -153,13 +146,6 @@ public class UserController {
         String url = userService.uploadImage(image);
         return Result.okResult(url);
     }
-
-
-//    @GetMapping("/test")
-//    public Result uploads(){
-//        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
-//        return Result.okResult(week);
-//    }
 
     /**
      * 查询用户登录状态是否过期
