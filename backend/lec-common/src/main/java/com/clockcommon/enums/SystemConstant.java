@@ -53,5 +53,5 @@ public class SystemConstant {
 
     public static String adminEmail = "3551147139@qq.com";
 
-    public static String OSS_IP = "154.44.25.122:9000";
+    public static String OSS_IP = "110.42.111.234:9000";
 }
