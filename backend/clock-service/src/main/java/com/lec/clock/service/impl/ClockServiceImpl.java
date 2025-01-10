@@ -10,6 +10,7 @@ import com.clockcommon.utils.BeanCopyUtils;
 import com.clockcommon.utils.UserContext;
 import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.pojo.Clock;
+import com.lec.clock.entity.pojo.ClockHistory;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.ClockHistoryMapper;
 import com.lec.clock.mapper.ClockIpMapper;
@@ -232,7 +233,7 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
      * @param grade
      */
     @Override
-    public void createClockByUserId(Long userId, Integer grade) {
+    public void createClockByUserId(Long userId, Integer grade, String username, String nickname) {
         log.info("创建用户clock对象，用户id:{},年级:{}",userId,grade);
         Clock clock = new Clock(LocalDateTime.now(), SystemConstant.CLOCKED_STATUS, 0, SystemConstant.FIRST_GRADE_CLOCK_TARGET);
         if(grade==2){
@@ -240,6 +241,10 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         }
         clock.setId(userId);
         clockMapper.addNewClock(clock);
+
+        log.info("创建用户clockHistory对象，用户id:{},用户名:{},用户昵称",userId,username,nickname);
+        ClockHistory clockHistory = new ClockHistory(userId, username, nickname, 0);
+        clockHistoryMapper.addNewClockHistory(clockHistory);
     }
 
     @Override

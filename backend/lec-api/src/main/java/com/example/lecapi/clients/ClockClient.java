@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("clock-service")
 public interface ClockClient {
     @GetMapping("/api/clock/create")
-    void createClock(@RequestParam("userId") Long userId,@RequestParam("grade") Integer grade);
+    void createClock(@RequestParam("userId") Long userId,@RequestParam("grade") Integer grade, @RequestParam("username") String username, @RequestParam("nickname") String nickname);
 }

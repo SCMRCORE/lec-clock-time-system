@@ -15,11 +15,15 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ai-service" target="11" />
+      <module name="chatAI-service" target="11" />
       <module name="gateway" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ai-service" options="-parameters" />
+      <module name="chatAI-service" options="-parameters" />
       <module name="clock-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="lec-api" options="-parameters" />

@@ -1,9 +1,9 @@
 package com.lec.user.service.impl;
 
 import com.clockcommon.entity.Result;
+import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.UserContext;
 import com.lec.user.entity.pojo.DailyHistory;
-import com.lec.user.enums.SystemConstant;
 import com.lec.user.mapper.DailyHistoryMapper;
 import com.lec.user.service.DailyHistoryService;
 import lombok.extern.slf4j.Slf4j;

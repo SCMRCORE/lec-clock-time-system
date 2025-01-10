@@ -1,5 +1,6 @@
 package com.lec.user.utils;
 
+import com.clockcommon.enums.SystemConstant;
 import com.lec.user.config.HttpStatus;
 import com.lec.user.config.MinioConfig;
 import io.minio.*;
@@ -289,13 +290,15 @@ public class MinioUtils {
      */
     public String getFileUrl(String objectFile) {
         try {
-
-            return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
-                    .method(Method.GET)
-                    .bucket(configuration.getBucketName())
-                    .object(objectFile)
-                    .build()
-            );
+//            限时7天的签名算法
+//            return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
+//                    .method(Method.GET)
+//                    .bucket(configuration.getBucketName())
+//                    .object(objectFile)
+//                    .build()
+//            );
+//          直接访问，有风险，但是相当于不限时
+            return "http://" + SystemConstant.OSS_IP + "/" + configuration.getBucketName() + "/" + objectFile;
         } catch (Exception e) {
             e.printStackTrace();
         }
