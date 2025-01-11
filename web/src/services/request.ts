@@ -5,8 +5,8 @@ import { RequestResult } from './type'
 import { ResponseData } from './type'
 const instance = axios.create({
   //TODO ip
-  baseURL: 'http://localhost:8080/api',
-  // baseURL: 'http://110.42.111.234:8080/api',
+  // baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://110.42.111.234:8080/api',
   timeout: 5000
 })
 
