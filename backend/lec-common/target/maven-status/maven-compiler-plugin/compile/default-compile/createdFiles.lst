@@ -9,5 +9,4 @@ com\clockcommon\entity\Page.class
 com\clockcommon\clockcommonApplication.class
 com\clockcommon\exceptions\UnauthorizedException.class
 com\clockcommon\utils\UserContext.class
-com\clockcommon\enums\SystemLog.class
 com\clockcommon\enums\SystemConstant.class
