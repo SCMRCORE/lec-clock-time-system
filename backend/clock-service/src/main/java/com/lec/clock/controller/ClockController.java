@@ -2,7 +2,6 @@ package com.lec.clock.controller;
 
 import com.clockcommon.entity.Page;
 import com.clockcommon.entity.Result;
-import com.clockcommon.enums.SystemLog;
 import com.clockcommon.utils.UserContext;
 import com.lec.clock.service.ClockService;
 import io.swagger.annotations.Api;
@@ -47,7 +46,6 @@ public class ClockController {
      * @throws UnknownHostException
      */
     @PostMapping("/clock")
-    @SystemLog(businessName = "上下卡")
     public Result clock() throws UnknownHostException {
         Long userId = UserContext.getUser();
         log.info("执行接口/clock，id为：{}", userId);

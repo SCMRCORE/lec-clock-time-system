@@ -43,15 +43,14 @@ public class SystemConstant {
     public static String REDIS_RECORD_IPV4="record:ipv4:";
     public static String REDIS_WEEK = "clock:week";
 
-    public static String OSS_URL = "https://kilo-webtest.oss-cn-beijing.aliyuncs.com/";
-
     public static String default_URL="https://kilo-webtest.oss-cn-beijing.aliyuncs.com/06067cf4-2175-4a70-b719-26e12df69a42.jpg";
 
     public static String signature="时间如梭，每一次的打卡都是自律的一步，坚守目标的承诺。记录生活，珍惜时光。";
 
-    public static String RefreshToken = "refreshToken:";
-
     public static String adminEmail = "3551147139@qq.com";
 
     public static String OSS_IP = "110.42.111.234:9000";
+
+    public static String SITE_ADDRESS = "官网地址：http://110.42.111.234:4000/home";
+
 }

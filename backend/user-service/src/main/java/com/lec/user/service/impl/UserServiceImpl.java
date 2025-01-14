@@ -131,7 +131,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result login(LoginUserDto loginUserDto) {
-        //TODO 待解决登录超时
         log.info("用户登录信息:{}", loginUserDto);
         String username = loginUserDto.getUsername();
         String password = loginUserDto.getPassword();
@@ -158,7 +157,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 smm.setText("警告:" +username+'\n'+
                             "检测到你的账号正在非团队网络下登录"+'\n'+
                             "若非本人操作，请立刻联系管理员"+'\n'+
-                            "官网地址:http://nobody.ates.top:4000/home"
+                            SystemConstant.SITE_ADDRESS
                 );
                 smm.setFrom(from);
                 smm.setTo(userEmail);
@@ -321,7 +320,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 smm.setText("恭喜，"+userName +'\n'+
                             "您的注册申请已经通过审核，欢迎加入乐程大家庭"+'\n'+
                             "现在就可以登录系统开始使用啦"+'\n'+
-                            "官网地址：http://nobody.ates.top:4000/login"
+                            SystemConstant.SITE_ADDRESS
                 );
                 smm.setFrom(from);
                 smm.setTo(registerUserDto.getEmail());
