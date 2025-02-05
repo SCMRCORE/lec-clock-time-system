@@ -3,6 +3,7 @@ package com.lec.clock.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.clock.entity.pojo.Clock;
+import com.lec.clock.entity.pojo.Other;
 import com.lec.clock.entity.vo.ClockInfoVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -40,4 +41,6 @@ public interface ClockMapper extends BaseMapper<Clock> {
     void cleanAllTime(List<Clock> records);
 
     void clockOff(List<Clock> records);
+
+    Other getGradeById(Long id);
 }
