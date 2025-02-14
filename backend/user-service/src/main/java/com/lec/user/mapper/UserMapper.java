@@ -3,6 +3,7 @@ package com.lec.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.user.entity.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -36,5 +37,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Select("select user.email from `lec-clock-in`.user where email = #{email}")
     String hasEmail(String email);
+
+    @Insert("insert into user_currency (id, currency) values (#{id}, #{i})")
+    void insertUserCurrency(Long id, int i);
 }
 
