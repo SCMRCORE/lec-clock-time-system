@@ -1,6 +1,8 @@
 package com.lec.clock.service.impl;
 
 
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.clockcommon.entity.PageVo;
 import com.clockcommon.entity.Result;
@@ -11,6 +13,7 @@ import com.clockcommon.utils.UserContext;
 import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.pojo.ClockHistory;
+import com.lec.clock.entity.pojo.Other;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.ClockHistoryMapper;
 import com.lec.clock.mapper.ClockIpMapper;
@@ -38,6 +41,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -77,11 +81,27 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
             pageNum=1;
         }
         if(pageSize==null){
-            pageSize=10;
+            pageSize=40;
         }
-        ClockMapper mapper = getBaseMapper();
+        //查询缓存
+        String listAllCacheKey = "lec:listAllClock:" + grade;
+        //注意一定要和前端协商好，因为不同的pageNum和pageSize本身就是不同的数据，这里因为前端写死了pageNum40,pageSize1所以这里写死
+        String listJson = (String) redisTemplate.opsForValue().get(listAllCacheKey);
+        if(StrUtil.isNotBlank(listJson)){
+            return Result.okResult(JSONUtil.toBean(listJson,PageVo.class));
+        }
+        if("".equals(listJson)){
+            //防止缓存穿透
+            return Result.errorResult(AppHttpCodeEnum.LIST_NOT_EXIST);
+        }
         //从数据库获取打卡记录
+        ClockMapper mapper = getBaseMapper();
         List<ClockInfoVo> clockInfoVos = mapper.selectAllClock(grade, (pageNum - 1) * pageSize, pageSize);
+        if(clockInfoVos.isEmpty()){
+            //数据不存在，返回空,防止缓存穿透
+            redisTemplate.opsForValue().set(listAllCacheKey, "", 30L, TimeUnit.MINUTES);
+            return Result.errorResult(AppHttpCodeEnum.LIST_NOT_EXIST);
+        }
         List<ClockListInfoVo> clockListInfoVo = clockInfoVos.stream()
                 .map(i -> {
                     //处于打卡中
@@ -91,7 +111,10 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
                     }
                     return BeanCopyUtils.copyBean(i, ClockListInfoVo.class);
                 }).collect(Collectors.toList());
+        //封装成PageVo
         PageVo pageVo = new PageVo(clockListInfoVo, clockInfoVos.size());
+        //写入缓存
+        redisTemplate.opsForValue().set(listAllCacheKey, JSONUtil.toJsonStr(pageVo), 60L, TimeUnit.MINUTES);
         return Result.okResult(pageVo);
     }
 
@@ -99,6 +122,9 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
     public Result clock(Long id) throws UnknownHostException {
 //        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
         Clock clock=clockMapper.getById(id);
+        if(clock==null){
+            return Result.errorResult(AppHttpCodeEnum.ERROR_ID_IN_CLOCK_LIST);
+        }
         int status = clock.getStatus();
 
         //从redis数据库里获取对应的ipv4信息
@@ -161,10 +187,15 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
             return Result.errorResult(AppHttpCodeEnum.CLOCK_TIMEOUT);
         }
         else {
+            //先更新数据库再删除缓存
             clock.setTotalDuration((int) duration + clock.getTotalDuration());//加上每日打卡时长
             userClient.dailyclock(clock.getTotalDuration() - time, day);
             updateById(clock);
             StopClockVo stopClockVo = BeanCopyUtils.copyBean(clock, StopClockVo.class);
+            //删除缓存
+            Other other = clockMapper.getGradeById(id);
+            Integer grade = other.getGrade();
+            redisTemplate.delete("lec:listAllClock:" + grade);
             return Result.okResult(stopClockVo);
         }
     }

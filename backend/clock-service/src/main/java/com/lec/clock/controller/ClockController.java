@@ -16,18 +16,9 @@ import java.net.UnknownHostException;
 @RequestMapping("/api/clock")
 @Api(tags = "打卡相关接口")
 public class ClockController {
+
     @Autowired
     private ClockService clockService;
-
-//    /**
-//     * 测试
-//     * @return
-//     */
-//    @GetMapping("/test1")
-//    public Result test(){
-//        log.info("测试连接");
-//        return Result.okResult();
-//    }
 
     /**
      * 获取所有打卡信息
@@ -64,7 +55,6 @@ public class ClockController {
         log.info("执行接口/nowClock/{id}，id为：{}", id);
         return clockService.getClockById(id);
     }
-
 
     /**
      * 更新打卡时长

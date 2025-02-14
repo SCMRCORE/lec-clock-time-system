@@ -301,7 +301,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
             //存入数据库
             dailyHistoryMapper.insert(dailyHistory);
+            //添加到用户和货币表
             userMapper.insert(user);
+            userMapper.insertUserCurrency(user.getId(), 0);
             try {
                 clockClient.createClock(user.getId(), user.getGrade(), user.getUsername(), user.getNickname());
             }catch (Exception e) {
@@ -311,9 +313,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                 return Result.errorResult(AppHttpCodeEnum.OPENFIRGN_ERROR);
             }
-            //        Card card=new Card();
-            //        card.setId(user.getId());
-            //        cardService.updateById(card);
 
             try {
                 smm.setSubject("用户注册审核通知");

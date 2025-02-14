@@ -18,7 +18,14 @@ public enum AppHttpCodeEnum {
     CODE_SEND_ERROR(506, "验证码发送失败"),
     USER_NOT_EXIT(507, "Redis不存在该注册用户"),
     OPENFIRGN_ERROR(508, "Openfire请求失败"),
-    EMAIL_ERROR(509, "邮箱发送出错");
+    EMAIL_ERROR(509, "邮箱发送出错"),
+    LIST_NOT_EXIST(510, "打卡列表不存在"),
+    ERROR_ID_IN_CLOCK_LIST(511, "打卡列表中不存在该id"),
+    CARD_NOT_EXIST(512, "减时卡记录不存在"),
+    CARD_PARAM_INVALID(513, "减时卡参数无效"),
+    CURRENCY_NOT_ENOUGH(514, "当前余额不足"),
+    USER_CURRENCY_NOT_FIND(515, "用户余额记录不存在");
+
     int code;
     String msg;
 

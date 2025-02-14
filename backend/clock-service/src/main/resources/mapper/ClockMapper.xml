@@ -20,4 +20,8 @@
         and `lec-clock-in`.clock.status = 1
     </update>
 
+    <select id="getGradeById" resultType="com.lec.clock.entity.pojo.Other" parameterType="java.lang.Long">
+        select id, user.grade from `lec-clock-in`.user where id = #{id}
+    </select>
+
 </mapper>
