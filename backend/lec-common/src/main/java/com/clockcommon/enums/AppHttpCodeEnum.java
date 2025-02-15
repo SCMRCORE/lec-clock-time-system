@@ -24,7 +24,14 @@ public enum AppHttpCodeEnum {
     CARD_NOT_EXIST(512, "减时卡记录不存在"),
     CARD_PARAM_INVALID(513, "减时卡参数无效"),
     CURRENCY_NOT_ENOUGH(514, "当前余额不足"),
-    USER_CURRENCY_NOT_FIND(515, "用户余额记录不存在");
+    USER_CURRENCY_NOT_FIND(515, "用户余额记录不存在"),
+    ORDER_CREATE_FAIL(516, "订单创建失败"),
+    SKILL_NOT_START(517, "秒杀未开始"),
+    SKILL_END(518, "秒杀已结束"),
+    STOCK_NOT_ENOUGH(519, "库存不足"),
+    NO_REPEAT_ORDER(520, "不能重复下单");
+
+
 
     int code;
     String msg;

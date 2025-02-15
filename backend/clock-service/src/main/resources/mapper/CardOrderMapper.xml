@@ -21,10 +21,10 @@
     </update>
 
     <select id="selectById" resultType="com.lec.clock.entity.pojo.Card" parameterType="java.lang.Long">
-        select * from `lec-clock-in`.card where id = #{id}
+        select * from `lec-clock-in`.card where id = #{id} and status=1
     </select>
     <select id="selectSkillById" resultType="com.lec.clock.entity.pojo.Card" parameterType="java.lang.Long">
-        select * from `lec-clock-in`.card_skill where id = #{id}
+        select * from `lec-clock-in`.card_skill where id = #{id} and status=1
     </select>
 
     <select id="selectCards" resultType="com.lec.clock.entity.pojo.Card">
