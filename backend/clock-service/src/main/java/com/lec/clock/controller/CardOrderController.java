@@ -23,9 +23,9 @@ public class CardOrderController {
      * 创建购卡订单
      * @return
      */
-    @PostMapping("/seckill/{cardType}/{id}")
-    public Result secCard(@PathVariable Long cardType, @PathVariable Long id){
-        return cardOrderService.addOrder(cardType, id);
+    @PostMapping("/seckill/{cardType}/{cardId}")
+    public Result secCard(@PathVariable Long cardType, @PathVariable Long cardId){
+        return cardOrderService.addOrder(cardType, cardId);
     }
 
 }
