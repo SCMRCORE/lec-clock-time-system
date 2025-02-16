@@ -281,18 +281,12 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
     }
 
     @Override
-    @Scheduled(cron = "0 0 23 ? * SUN")
+    @Transactional
+//    @Scheduled(cron = "0 0 23 ? * SUN")
+    @Scheduled(cron = "0 13 0 ? * MON")
     public Result clockOff() {
         //获取所有打卡记录id
-        log.info(clockMapper.toString());
-
         List<Clock> records = clockMapper.getAllRecords();
-
-        //保存打卡历史
-        log.info("保存打卡历史");
-        for(Clock record : records) {
-            clockHistoryMapper.saveAll(record);
-        }
 
         //test功能，给所有人下卡
         log.info("给所有人下卡");
@@ -307,9 +301,29 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Override
     @Transactional
-    @Scheduled(cron = "0 0 23 ? * SUN")
+//    @Scheduled(cron = "0 0 23 ? * SUN")
+    @Scheduled(cron = "0 10 0 ? * MON")
     public Result calculateClockTime() {
-
+        List<Clock> clockInfoVos = clockMapper.getAllRecords();
+        //保存打卡历史
+        log.info("保存打卡历史");
+        for(Clock record : clockInfoVos) {
+            clockHistoryMapper.saveAll(record);
+        }
+        log.info("清空减少时间");
+        clockMapper.clearTempTime();
+        //结算时间
+        log.info("结算时间");
+        for(Clock clockInfoVo : clockInfoVos) {
+            int totalDuration=clockInfoVo.getTotalDuration();
+            int targetDuration=clockInfoVo.getTargetDuration();
+            if(totalDuration>targetDuration){
+                int actuallyDuration = totalDuration-targetDuration;
+                int currency = actuallyDuration/60;
+                clockMapper.updateCurrency(clockInfoVo.getId(),currency);
+            }
+        }
+        return Result.okResult();
     }
 
 }

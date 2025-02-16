@@ -43,4 +43,10 @@ public interface ClockMapper extends BaseMapper<Clock> {
 
     @Update("update clock set temporary = temporary + #{targetReduce} where id = #{userId} and target_duration-#{targetReduce} >= 1440")
     Boolean reduceTime(Long userId, Integer targetReduce);
+
+    @Update("update clock set temporary = 0")
+    void clearTempTime();
+
+    @Update("update user_currency set currency = currency + #{currency} where id = #{id}")
+    void updateCurrency(Long id, int currency);
 }
