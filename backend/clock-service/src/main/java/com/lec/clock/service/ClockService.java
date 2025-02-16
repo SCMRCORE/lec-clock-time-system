@@ -29,5 +29,7 @@ public interface ClockService extends IService<Clock> {
     void createClockByUserId(Long userId, Integer grade, String username, String nickname);
 
     Result clockOff();
+
+    Result calculateClockTime();
 }
 

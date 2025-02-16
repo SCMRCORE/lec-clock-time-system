@@ -2,10 +2,7 @@ package com.lec.clock.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lec.clock.entity.pojo.Card;
-import com.lec.clock.entity.pojo.CardOrder;
-import com.lec.clock.entity.pojo.Clock;
-import com.lec.clock.entity.pojo.Other;
+import com.lec.clock.entity.pojo.*;
 import com.lec.clock.entity.vo.ClockInfoVo;
 import org.apache.ibatis.annotations.*;
 
@@ -39,4 +36,13 @@ public interface CardMapper {
 
     @Update("update `lec-clock-in`.card_skill set status=2 where id = #{id}")
     void updateById(Long id);
+
+    @Select("select * from `lec-clock-in`.card_count where userId = #{userId}")
+    List<CardCount> selectCardCountById(Long userId);
+
+    @Select("select * from `lec-clock-in`.card_count where userId = #{userId} and cardType = #{cardType} and cardId = #{cardId}")
+    CardCount selectCardCountByCardId(Long userId, Long cardType, Long cardId);
+
+    @Update("update card_count set count = count-1 where userId = #{userId} and cardType = #{cardType} and cardId = #{cardId}")
+    Boolean reduceCardCount(Long userId, Long cardType, Long cardId);
 }

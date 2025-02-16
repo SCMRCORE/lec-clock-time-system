@@ -2,8 +2,8 @@ export interface User {
 [x: string]: any
     avatar: string
     nickname: string
-    totalDuration: number 
-    targetDuration: number
+    totalDuration: number
+    adjustTargetDuration: number
     grade: number 
     status: number
 }

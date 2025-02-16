@@ -21,6 +21,7 @@ public class ClockInfoVo {
 
     private Integer totalDuration;
 
-    private Integer targetDuration;
+
+    private Integer adjustTargetDuration;
 
 }

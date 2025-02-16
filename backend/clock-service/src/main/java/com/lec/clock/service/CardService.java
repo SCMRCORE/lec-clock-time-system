@@ -26,5 +26,10 @@ public interface CardService{
 
     Result selectCards();
 
+    Result selectById(Long userId);
+
+    Result useCard(Long cardType, Long cardId);
+
+    Result reduceTime(Long userId, Long cardType, Long cardId);
 }
 

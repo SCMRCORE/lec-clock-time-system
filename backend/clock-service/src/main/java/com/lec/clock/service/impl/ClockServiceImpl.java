@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
@@ -114,6 +115,7 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         //封装成PageVo
         PageVo pageVo = new PageVo(clockListInfoVo, clockInfoVos.size());
         //写入缓存
+        //TODO 分布式锁解决缓存击穿
         redisTemplate.opsForValue().set(listAllCacheKey, JSONUtil.toJsonStr(pageVo), 60L, TimeUnit.MINUTES);
         return Result.okResult(pageVo);
     }
@@ -301,6 +303,13 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
         log.info("清空时长");
         clockMapper.cleanAllTime(records);
         return Result.okResult();
+    }
+
+    @Override
+    @Transactional
+    @Scheduled(cron = "0 0 23 ? * SUN")
+    public Result calculateClockTime() {
+
     }
 
 }
