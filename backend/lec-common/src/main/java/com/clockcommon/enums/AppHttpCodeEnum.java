@@ -29,7 +29,8 @@ public enum AppHttpCodeEnum {
     SKILL_NOT_START(517, "秒杀未开始"),
     SKILL_END(518, "秒杀已结束"),
     STOCK_NOT_ENOUGH(519, "库存不足"),
-    NO_REPEAT_ORDER(520, "不能重复下单");
+    NO_REPEAT_ORDER(520, "不能重复下单"),
+    PLEASE_WAIT_FOR_A_WHILE(521, "请等待一段时间再进行操作");
 
 
 

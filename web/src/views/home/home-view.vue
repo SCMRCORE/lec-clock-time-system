@@ -14,7 +14,7 @@ const selfUser:User = reactive<User>({
     avatar: '',
     nickname: '',
     totalDuration: 0,
-    targetDuration: 0,
+  adjustTargetDuration: 0,
     grade: 0,
     status: 0
 })
@@ -74,7 +74,7 @@ onMounted(async () => {
   const res = await checkoutInfo({ token, id })
   if (res.response?.code === 200) {
     selfUser.totalDuration = res.response?.data.totalDuration
-    selfUser.targetDuration = res.response?.data.targetDuration
+    selfUser.adjustTargetDuration = res.response?.data.adjustTargetDuration
     selfUser.status = res.response?.data.status
     dataList.value.push(Math.floor(selfUser.totalDuration / 60))
   }
@@ -97,7 +97,7 @@ const getCardList = async () => {
         avatar: row.avatar,
         nickname: row.nickname,
         totalDuration: Number((row.totalDuration / 60).toFixed(1)),
-        targetDuration: row.targetDuration / 60,
+          adjustTargetDuration: row.adjustTargetDuration / 60,
         grade: selfUser.grade,
         status: row.status
       }

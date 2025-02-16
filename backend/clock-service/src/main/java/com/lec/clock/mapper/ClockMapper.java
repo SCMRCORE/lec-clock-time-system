@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.clock.entity.pojo.Clock;
 import com.lec.clock.entity.pojo.Other;
 import com.lec.clock.entity.vo.ClockInfoVo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ import java.util.List;
  */
 @Mapper
 public interface ClockMapper extends BaseMapper<Clock> {
-    @Select("select nickname, avatar, status, begin_time, total_duration, target_duration\n" +
+    @Select("select nickname, avatar, status, begin_time, total_duration, (target_duration-temporary) as adjust_target_duration\n" +
             "from user left join clock on user.id = clock.id\n" +
             "where grade = #{grade} and clock.del_flag = 0\n" +
             "order by total_duration DESC\n" +
@@ -43,4 +40,13 @@ public interface ClockMapper extends BaseMapper<Clock> {
     void clockOff(List<Clock> records);
 
     Other getGradeById(Long id);
+
+    @Update("update clock set temporary = temporary + #{targetReduce} where id = #{userId} and target_duration-#{targetReduce} >= 1440")
+    Boolean reduceTime(Long userId, Integer targetReduce);
+
+    @Update("update clock set temporary = 0")
+    void clearTempTime();
+
+    @Update("update user_currency set currency = currency + #{currency} where id = #{id}")
+    void updateCurrency(Long id, int currency);
 }

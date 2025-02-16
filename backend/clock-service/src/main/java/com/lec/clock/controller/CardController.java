@@ -42,7 +42,6 @@ public class CardController {
      */
     @PostMapping("/remove/{cardType}/{id}")
     public Result removeCard(@PathVariable Long cardType, @PathVariable Long id){
-        //TODO 秒杀优惠券过期时间可以通过业务来判断，使用时检测是否过期，过期则设置status=3
         //软删除就行
         return cardService.removeCard(cardType, id);
     }
@@ -55,6 +54,21 @@ public class CardController {
     public Result listCard(){
         //查询卡目前有哪些卡
         return cardService.selectCards();
+    }
+
+    /**
+     * 根据用户id查看卡列表
+     * @param userId
+     * @return
+     */
+    @GetMapping("/list/{userId}")
+    public Result listCardById(@PathVariable Long userId){
+        return cardService.selectById(userId);
+    }
+
+    @PostMapping("/use/{cardType}/{cardId}")
+    public Result useCard(@PathVariable Long cardType, @PathVariable Long cardId){
+        return cardService.useCard(cardType, cardId);
     }
 
 }

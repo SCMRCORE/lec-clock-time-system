@@ -47,8 +47,8 @@ const selfUser = props.selfUser
 const { userList } = toRefs(props)
 
 watch(selfUser,()=>{
-    if(selfUser.targetDuration==0) return;
-    clockInfoDataList[0].maxValue = selfUser.targetDuration / 60
+    if(selfUser.adjustTargetDuration==0) return;
+    clockInfoDataList[0].maxValue = selfUser.adjustTargetDuration / 60
 })
 watch(userList!,()=>{
     console.log(userList,'userList');

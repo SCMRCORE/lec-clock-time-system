@@ -65,7 +65,7 @@ const toggleCurrentGradeData = () => {
     obj.avatar = item.avatar
     obj.nickname = item.nickname
     obj.currentTime = item.totalDuration
-    obj.targetTime = item.targetDuration
+    obj.targetTime = item.adjustTargetDuration
     obj.completionRate = Number((obj.currentTime / obj.targetTime).toFixed(2))
     obj.status = item.status
     listData.value.push(obj)
@@ -104,7 +104,7 @@ const handleGradeChange = async (grade: number) => {
         obj.avatar = item.avatar
         obj.nickname = item.nickname
         obj.currentTime = Number((item.totalDuration / 60).toFixed(1))
-        obj.targetTime = item.targetDuration / 60
+        obj.targetTime = item.adjustTargetDuration / 60
         obj.completionRate = Number(
           (obj.currentTime / obj.targetTime).toFixed(2)
         )

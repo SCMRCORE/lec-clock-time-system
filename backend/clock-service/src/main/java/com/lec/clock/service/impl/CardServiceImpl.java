@@ -14,10 +14,7 @@ import com.clockcommon.utils.UserContext;
 import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.dto.CardDto;
 import com.lec.clock.entity.dto.CardSkillDto;
-import com.lec.clock.entity.pojo.Card;
-import com.lec.clock.entity.pojo.Clock;
-import com.lec.clock.entity.pojo.ClockHistory;
-import com.lec.clock.entity.pojo.Other;
+import com.lec.clock.entity.pojo.*;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.*;
 import com.lec.clock.service.CardService;
@@ -25,10 +22,14 @@ import com.lec.clock.service.ClockService;
 import com.lec.clock.service.Ipv4LogService;
 import com.lec.clock.utils.GetWeekUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.net.InetAddress;
@@ -52,7 +53,16 @@ import java.util.stream.Collectors;
 public class CardServiceImpl implements CardService {
 
     @Resource
+    private RedisTemplate redisTemplate;
+
+    @Resource
+    private RedissonClient redissonClient;
+
+    @Resource
     private CardMapper cardMapper;
+
+    @Resource
+    private ClockMapper clockMapper;
 
     /**
      * 新增减时卡
@@ -105,6 +115,11 @@ public class CardServiceImpl implements CardService {
         }
     }
 
+
+    /**
+     * 查询卡列表
+     * @return
+     */
     @Override
     public Result selectCards() {
         List<Card> cards = cardMapper.selectCards();
@@ -113,6 +128,74 @@ public class CardServiceImpl implements CardService {
         if(cards==null) return Result.errorResult(AppHttpCodeEnum.CARD_NOT_EXIST);
         log.info("查询所有卡:{}", cards);
         return Result.okResult(cards);
+    }
+
+
+    /**
+     * 查询用户卡
+     * @param userId
+     * @return
+     */
+    @Override
+    public Result selectById(Long userId) {
+        List<CardCount> cardCounts = cardMapper.selectCardCountById(userId);
+        if(cardCounts==null) return Result.errorResult(AppHttpCodeEnum.CARD_NOT_EXIST);
+        return Result.okResult(cardCounts);
+    }
+
+    @Override
+    public Result useCard(Long cardType, Long cardId) {
+        Long userId = UserContext.getUser();
+        //看库存是否充足
+        CardCount cardCount = cardMapper.selectCardCountByCardId(userId, cardType, cardId);
+        if(cardCount==null || cardCount.getCount()<1){
+            log.info("{}的卡{}{}不存在", userId, cardType, cardId);
+            return Result.errorResult(AppHttpCodeEnum.CARD_NOT_EXIST);
+        }
+        RLock lock = redissonClient.getLock("useCard:" + userId);
+        Boolean isLock = lock.tryLock();
+        if(!isLock) {
+            return Result.errorResult(AppHttpCodeEnum.PLEASE_WAIT_FOR_A_WHILE);
+        }
+        try{
+            CardService cardServiceProxy = (CardService) AopContext.currentProxy();
+            return cardServiceProxy.reduceTime(userId, cardType, cardId);
+        }finally {
+            lock.unlock();
+        }
+    }
+
+
+    @Transactional
+    public Result reduceTime(Long userId,Long cardType, Long cardId) {
+        Card card;
+        //查看卡
+        if(cardType==0) {
+            card = cardMapper.selectById(cardId);
+        }else{
+            card = cardMapper.selectSkillById(cardId);
+        }
+        if(card.getStatus()!=1) return Result.errorResult(AppHttpCodeEnum.CARD_NOT_EXIST);
+
+        //扣除库存
+        Boolean isSuccess = cardMapper.reduceCardCount(userId, cardType, cardId);
+        if(!isSuccess) {
+            throw new RuntimeException("扣除库存失败");
+        }
+
+        //扣除时间
+        Integer targetReduce = card.getActualValue()*60;
+        Boolean isReduce = clockMapper.reduceTime(userId, targetReduce);
+        if(!isReduce) {
+            throw new RuntimeException("扣除时间失败");
+        }
+
+        //删除缓存
+        Other other = clockMapper.getGradeById(userId);
+        Integer grade = other.getGrade();
+        redisTemplate.delete("lec:listAllClock:" + grade);
+
+        return Result.okResult("使用成功");
     }
 
 

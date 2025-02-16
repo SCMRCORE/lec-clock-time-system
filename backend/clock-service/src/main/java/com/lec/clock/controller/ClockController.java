@@ -95,7 +95,7 @@ public class ClockController {
 
 
     /**
-     * 定时器
+     * 定时器,下卡
      * @return
      * @throws UnknownHostException
      */
@@ -103,6 +103,17 @@ public class ClockController {
     public Result clockOff(){
         log.info("执行接口/clockOff");
         return clockService.clockOff();
+    }
+
+    /**
+     * 定时器,结算
+     * @return
+     * @throws UnknownHostException
+     */
+    @PostMapping("/calculateClockTime")
+    public Result calculateClockTime(){
+        log.info("执行接口/calculateClockTime");
+        return clockService.calculateClockTime();
     }
 
 
