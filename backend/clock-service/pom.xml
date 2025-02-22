@@ -75,6 +75,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
+            <version>3.23.3</version>
         </dependency>
 
         <!--        以下为老版本所用依赖-->
