@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.user.mapper.DailyHistoryMapper">
+
+    <update id="clearWeekRecord">
+        update `lec-clock-in`.daily_history
+        set `lec-clock-in`.daily_history.mon=0, `lec-clock-in`.daily_history.tue=0,
+            `lec-clock-in`.daily_history.wed=0, `lec-clock-in`.daily_history.thu=0, `lec-clock-in`.daily_history.fri=0, `lec-clock-in`.daily_history.sat=0, `lec-clock-in`.daily_history.sun=0
+        where `lec-clock-in`.daily_history.id = #{id}
+    </update>
+
+</mapper>
