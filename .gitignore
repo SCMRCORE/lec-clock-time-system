@@ -12,7 +12,7 @@
 **/bootstrap.*
 
 # 前端相关
-node_modules/
+*/node_modules/
 
 # 忽略所有 target 目录，适用于所有服务和模块
-**/target/
+**/target/*
