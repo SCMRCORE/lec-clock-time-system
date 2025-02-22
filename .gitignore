@@ -1,1 +1,18 @@
-node_modules
+# 忽略所有 .jar 文件
+*.jar
+
+# 忽略所有 .yml 和 .yaml 文件
+*.yml
+*.yaml
+
+# 忽略所有 .factories 文件
+*.factories
+
+# 忽略任何名为 bootstrap 的文件，无论其扩展名是什么
+**/bootstrap.*
+
+# 前端相关
+*/node_modules/
+
+# 忽略所有 target 目录，适用于所有服务和模块
+**/target/*

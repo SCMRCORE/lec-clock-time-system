@@ -1,0 +1,350 @@
+Index: backend/user-service/target/classes/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/user-service/target/classes/application.yml b/backend/user-service/target/classes/application.yml
+deleted file mode 100644
+--- a/backend/user-service/target/classes/application.yml	(revision 03904c1f2ae96cb8faaff7eba2dc3ce1a9acdcfc)
++++ /dev/null	(revision 03904c1f2ae96cb8faaff7eba2dc3ce1a9acdcfc)
+@@ -1,63 +0,0 @@
+-server:
+-    port: 8082
+-spring:
+-    application:
+-        name: user-service
+-    servlet:
+-      multipart:
+-          max-file-size: 10MB
+-          max-request-size: 10MB
+-    redis:
+-        host: 154.44.25.122
+-        port: 6379
+-        password: zaqzse1234
+-    datasource:
+-        url: jdbc:mysql://localhost:3306/lec-clock-in?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+-        driver-class-name: com.mysql.cj.jdbc.Driver
+-        username: root
+-        password: zaqzse1234
+-    mail:
+-        host: smtp.163.com
+-        username: 17828707561@163.com
+-        password: WRPXGLLVORDVNOIS
+-        port: 465
+-        default-encoding: UTF-8
+-        protocol: smtp
+-        test-connection: true
+-        properties:
+-            mail:
+-                smtp:
+-                    auth: true
+-                    starttls:
+-                        enable: true
+-                        required: true
+-                    ssl:
+-                        enable: true
+-                    socketFactory:
+-                        port: 465
+-                        class: javax.net.ssl.SSLSocketFactory
+-    cloud:
+-        nacos:
+-            server-addr: 154.44.25.122:8848
+-
+-    minio:
+-        access-key: yjtZa2lQxWss58FlBaxH
+-        secret-key: 25zWtRr2zrrUa1ewGfuD5zIQDD99WwKK1vzWEONB
+-        url: http://154.44.25.122:9000  #访问地址
+-        bucket-name: lec-clock-in
+-
+-
+-mybatis-plus:
+-    type-aliases-package: com.lec.user.entity
+-
+-
+-lec:
+-    jwt:
+-        location: classpath:lec.jks # 自己打包的jks
+-        alias: lec # 秘钥别名
+-        password: makelecgreatagain! # 秘钥文件密码
+-        tokenTTL: 30m # 登录有效期
+-
+-feign:
+-    okhttp:
+-        enabled: true # 开启OKHttp功能
+\ No newline at end of file
+Index: backend/clock-service/target/classes/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/clock-service/target/classes/application.yml b/backend/clock-service/target/classes/application.yml
+deleted file mode 100644
+--- a/backend/clock-service/target/classes/application.yml	(revision 03904c1f2ae96cb8faaff7eba2dc3ce1a9acdcfc)
++++ /dev/null	(revision 03904c1f2ae96cb8faaff7eba2dc3ce1a9acdcfc)
+@@ -1,49 +0,0 @@
+-server:
+-    port: 8081
+-spring:
+-    application:
+-        name: clock-service
+-    redis:
+-        host: 154.44.25.122
+-        port: 6379
+-        password: zaqzse1234
+-    datasource:
+-        url: jdbc:mysql://localhost:3306/lec-clock-in?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+-        driver-class-name: com.mysql.cj.jdbc.Driver
+-        username: root
+-        password: zaqzse1234
+-    mail:
+-        host: smtp.163.com
+-        username: 17828707561@163.com
+-        password: WRPXGLLVORDVNOIS
+-        port: 465
+-        default-encoding: UTF-8
+-        protocol: smtp
+-        test-connection: true
+-        properties:
+-            mail:
+-                smtp:
+-                    auth: true
+-                    starttls:
+-                        enable: true
+-                        required: true
+-                    ssl:
+-                        enable: true
+-                    socketFactory:
+-                        port: 465
+-                        class: javax.net.ssl.SSLSocketFactory
+-    cloud:
+-        nacos:
+-            server-addr: 154.44.25.122:8848
+-mybatis-plus:
+-    type-aliases-package: com.lec.clock.entity
+-
+-oss:
+-    endpoint: https://oss-cn-beijing.aliyuncs.com
+-    accessKey: LTAI5tLgspBU6GBhH5UjCgi7
+-    secretKey: BkIKNHghXZj4MKWCpuVIDjj4hokLHE
+-    bucket: kilo-webtest
+-
+-feign:
+-    okhttp:
+-        enabled: true # 开启OKHttp功能
+\ No newline at end of file
+Index: backend/lec-api/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/lec-api/src/main/resources/application.yml b/backend/lec-api/src/main/resources/application.yml
+new file mode 100644
+--- /dev/null	(date 1730377314608)
++++ b/backend/lec-api/src/main/resources/application.yml	(date 1730377314608)
+@@ -0,0 +1,3 @@
++spring:
++    application:
++        name: lec-api
+Index: backend/lec-gateway/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/lec-gateway/src/main/resources/application.yml b/backend/lec-gateway/src/main/resources/application.yml
+new file mode 100644
+--- /dev/null	(date 1739542307177)
++++ b/backend/lec-gateway/src/main/resources/application.yml	(date 1739542307177)
+@@ -0,0 +1,48 @@
++server:
++    port: 8080
++spring:
++    application:
++        name: lec-gateway
++    cloud:
++        nacos:
++            server-addr: 110.42.111.234:8848
++        gateway:
++          routes:
++                - id: clock-service # 路由规则id，同微服务中yml配置里的名字保持一致
++                  uri: lb://clock-service # 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表
++                  predicates: # 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务
++                      - Path=/api/clock/**,/api/clockHistory/**,/api/card/**,/api/card-order/** # 这里是以请求路径作为判断规则,同controller中的路径一致
++                - id: user-service
++                  uri: lb://user-service
++                  predicates:
++                      - Path=/api/user/**,/api/menu/**
++          globalcors: # 全局的跨域处理
++            add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
++            corsConfigurations:
++              '[/**]':
++                allowedOrigins: "*"
++                allowedMethods: # 允许的跨域ajax的请求方式
++                  - "GET"
++                  - "POST"
++                  - "DELETE"
++                  - "PUT"
++                  - "OPTIONS"
++                allowedHeaders: "*" # 允许在请求中携带的头信息
++
++    redis:
++      host: 110.42.111.234
++      port: 6379
++      password: zaqzse1234
++
++lec:
++  jwt:
++    location: classpath:lec.jks # 秘钥地址,自己打包的一个lec.jks
++    alias: lec # 秘钥别名
++    password: makelecgreatagain! # 秘钥文件密码
++    tokenTTL: 10080m # 登录有效期
++  auth:
++    excludePaths: # 无需登录校验的路径
++      - /api/user/login
++      - /api/user/register
++      - /api/user/register/sendCode
++      - /api/user/register/audit
+Index: backend/user-service/src/main/resources/bootstrap.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/user-service/src/main/resources/bootstrap.yml b/backend/user-service/src/main/resources/bootstrap.yml
+new file mode 100644
+--- /dev/null	(date 1736863091614)
++++ b/backend/user-service/src/main/resources/bootstrap.yml	(date 1736863091614)
+@@ -0,0 +1,23 @@
++spring:
++    application:
++        name: user-service
++    servlet:
++        multipart:
++            max-file-size: 10MB
++            max-request-size: 10MB
++    cloud:
++        nacos:
++            server-addr: 110.42.111.234:8848
++            config:
++                file-extension: yaml
++                group: lec-clock-time
++                shared-configs:
++                    - data-id: shared_database_redis.yaml
++                      group: lec-clock-time
++                    - data-id: shared_mail_minio.yaml
++                      group: lec-clock-time
++        sentinel:
++          transport:
++              dashboard: 110.42.111.234:8090
++          http-method-specify: true # 开启请求方式前缀
++
+Index: backend/clock-service/src/main/resources/bootstrap.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/clock-service/src/main/resources/bootstrap.yml b/backend/clock-service/src/main/resources/bootstrap.yml
+new file mode 100644
+--- /dev/null	(date 1736862899009)
++++ b/backend/clock-service/src/main/resources/bootstrap.yml	(date 1736862899009)
+@@ -0,0 +1,22 @@
++spring:
++    application:
++        name: clock-service
++    servlet:
++        multipart:
++            max-file-size: 10MB
++            max-request-size: 10MB
++    cloud:
++        nacos:
++            server-addr: 110.42.111.234:8848
++            config:
++                file-extension: yaml
++                shared-configs:
++                    - data-id: shared_database_redis.yaml
++                      group: lec-clock-time
++                    - data-id: shared_mail_minio.yaml
++                      group: lec-clock-time
++        sentinel:
++          transport:
++              dashboard: 110.42.111.234:8090
++          http-method-specify: true # 开启请求方式前缀
++
+Index: backend/user-service/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/user-service/src/main/resources/application.yml b/backend/user-service/src/main/resources/application.yml
+new file mode 100644
+--- /dev/null	(date 1736860961931)
++++ b/backend/user-service/src/main/resources/application.yml	(date 1736860961931)
+@@ -0,0 +1,15 @@
++server:
++    port: 8082
++
++mybatis-plus:
++    type-aliases-package: com.lec.user.entity
++
++lec:
++    jwt:
++        location: classpath:lec.jks # 自己打包的jks
++        alias: lec # 秘钥别名
++        password: makelecgreatagain! # 秘钥文件密码
++        tokenTTL: 10080m # 登录有效期
++feign:
++    okhttp:
++        enabled: true # 开启OKHttp功能
+\ No newline at end of file
+Index: backend/lec-common/src/main/resources/META-INF/spring.factories
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/backend/lec-common/src/main/resources/META-INF/spring.factories b/backend/lec-common/src/main/resources/META-INF/spring.factories
+new file mode 100644
+--- /dev/null	(date 1734014226421)
++++ b/backend/lec-common/src/main/resources/META-INF/spring.factories	(date 1734014226421)
+@@ -0,0 +1,2 @@
++org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
++  com.clockcommon.config.UserInfoMvcConfig
+\ No newline at end of file
+Index: web/src/services/request.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'\r\nimport { Message } from '@arco-design/web-vue'\r\nimport { RequestResult } from './type'\r\n\r\nimport { ResponseData } from './type'\r\nconst instance = axios.create({\r\n  //TODO ip\r\n  // baseURL: 'http://localhost:8080/api',\r\n  baseURL: 'http://110.42.111.234:8080/api',\r\n  timeout: 5000\r\n})\r\n\r\ninstance.interceptors.request.use(\r\n  (config) => {\r\n    // 添加逻辑\r\n    const token = localStorage.getItem('token') || '' //在login/store\r\n    if (token) {\r\n      config.headers.Authorization = token\r\n    }\r\n    return config\r\n  },\r\n  (error) => {\r\n    Promise.reject(error)\r\n  }\r\n)\r\n\r\ninstance.interceptors.response.use(\r\n  (response: AxiosResponse<ResponseData>) => {\r\n    const { data: result } = responseTypeCheck(response)\r\n    if (result.code >= 200 && result.code < 300) {\r\n      return response\r\n    }\r\n    if (result.code === 401) {\r\n      return Promise.reject(new RequestError(result.code, result.msg, response))\r\n    }\r\n    if (result.code === 503) {\r\n      Message.info('邮箱已经注册')\r\n      return Promise.reject(new RequestError(result.code, result.msg, response))\r\n    }\r\n    return Promise.reject(new RequestError(result.code, result.msg, response))\r\n  },\r\n  (error: AxiosError) => {\r\n    const { code, response } = error\r\n    switch (code) {\r\n      case 'ECONNABORTED':\r\n        return Promise.reject(new RequestError(code, '请求超时', response))\r\n      case 'ERR_NETWORK':\r\n        return Promise.reject(new RequestError(code, '网络错误', response))\r\n      case 'ERR_BAD_REQUEST':\r\n        return Promise.reject(new RequestError(code, '请求错误', response))\r\n      case 'ERR_BAD_RESPONSE':\r\n        return Promise.reject(new RequestError(code, '响应错误', response))\r\n      default:\r\n        return Promise.reject(\r\n          new RequestError('ERR_UNKNOWN', '未知错误', response)\r\n        )\r\n    }\r\n  }\r\n)\r\n\r\n// 检查响应数据\r\nconst responseTypeCheck = (response: AxiosResponse<ResponseData>) => {\r\n  const { data: responseData } = response\r\n  const keys = Object.keys(responseData)\r\n  const standardKeys = ['code', 'data', 'msg'] as const\r\n  standardKeys.forEach((key) => {\r\n    if (!keys.includes(key)) {\r\n      throw new RequestError('ERR_TYPE_CHECK', '响应数据格式错误', response)\r\n    }\r\n  })\r\n\r\n  return response\r\n}\r\n\r\nexport class RequestError extends Error {\r\n  [x: string]: any\r\n  code: string | number //服务端返回的自定义code或axios的错误code\r\n  status?: number //http状态码\r\n  response?: AxiosResponse\r\n\r\n  constructor(code: string | number, msg: string, response?: AxiosResponse) {\r\n    super(msg)\r\n    this.code = code\r\n    this.response = response\r\n    this.status = response?.status\r\n    this.name = 'RequestError'\r\n  }\r\n}\r\n\r\nexport const request = {\r\n  async get<T = any>(url: string, config?: AxiosRequestConfig) {\r\n    const result: RequestResult<T> = {\r\n      data: undefined\r\n    }\r\n\r\n    try {\r\n      const res = await instance.get<ResponseData<T>>(url, config)\r\n      result.response = res.data\r\n    } catch (err) {\r\n      result.error = err as RequestError\r\n    }\r\n\r\n    return result\r\n  },\r\n  async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig) {\r\n    const result: RequestResult<T> = {\r\n      data: undefined\r\n    }\r\n\r\n    try {\r\n      const res = await instance.post<ResponseData<T>>(url, data, config)\r\n      result.response = res.data\r\n    } catch (err) {\r\n      if (err instanceof RequestError) {\r\n        result.error = err\r\n      }\r\n    }\r\n\r\n    return result\r\n  },\r\n  async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig) {\r\n    const result: RequestResult<T> = {\r\n      data: undefined\r\n    }\r\n\r\n    try {\r\n      const res = await instance.put<ResponseData<T>>(url, data, config)\r\n      result.response = res.data\r\n    } catch (err) {\r\n      if (err instanceof RequestError) {\r\n        result.error = err\r\n      }\r\n    }\r\n\r\n    return result\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/web/src/services/request.ts b/web/src/services/request.ts
+--- a/web/src/services/request.ts	(revision 03904c1f2ae96cb8faaff7eba2dc3ce1a9acdcfc)
++++ b/web/src/services/request.ts	(date 1736863186915)
+@@ -5,8 +5,8 @@
+ import { ResponseData } from './type'
+ const instance = axios.create({
+   //TODO ip
+-  // baseURL: 'http://localhost:8080/api',
+-  baseURL: 'http://110.42.111.234:8080/api',
++  baseURL: 'http://localhost:8080/api',
++  // baseURL: 'http://110.42.111.234:8080/api',
+   timeout: 5000
+ })
+ 
+Index: backend/clock-service/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/clock-service/src/main/resources/application.yml b/backend/clock-service/src/main/resources/application.yml
+new file mode 100644
+--- /dev/null	(date 1736861036292)
++++ b/backend/clock-service/src/main/resources/application.yml	(date 1736861036292)
+@@ -0,0 +1,9 @@
++server:
++    port: 8081
++
++mybatis-plus:
++    type-aliases-package: com.lec.clock.entity
++
++feign:
++    okhttp:
++        enabled: true # 开启OKHttp功能
+\ No newline at end of file

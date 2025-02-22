@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="fix: clear files" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="bankend-gh" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="C:\Users\35511\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2oCtVIB2IkMHqqm8rC5owJSq8yC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.clock-service [clean].executor": "Run",
+    "Maven.lec-api [clean].executor": "Run",
+    "Maven.lec-api [compile].executor": "Run",
+    "Maven.lec-gateway [clean].executor": "Run",
+    "Maven.lec-gateway [compile].executor": "Run",
+    "Maven.lec-gateway [install].executor": "Run",
+    "Maven.lec-gateway [package].executor": "Run",
+    "Maven.lec-time-clock-system [clean].executor": "Run",
+    "Maven.lec-time-clock-system [compile].executor": "Run",
+    "Maven.lec-time-clock-system [install].executor": "Run",
+    "Maven.lec-time-clock-system [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AiApplication.executor": "Run",
+    "Spring Boot.ClockApplication.executor": "Run",
+    "Spring Boot.GatewayApplication.executor": "Run",
+    "Spring Boot.LecGatewayApplication (1).executor": "Run",
+    "Spring Boot.LecGatewayApplication.executor": "Run",
+    "Spring Boot.UserApplication.executor": "Run",
+    "git-widget-placeholder": "bankend-gh",
+    "jdk.selected.JAVA_MODULE": "openjdk-22",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/35511/IdeaProjects/lec-time-clock-system/backend/user-service/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "service.view.auto.scroll.to.source": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\35511\\IdeaProjects\\lec-time-clock-system\\web\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora_aws"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend\user-service\src\main\resources" />
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend\lec-gateway\src\main\resources" />
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend\lec-common\src\main\resources" />
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend\lec-api\src\main\resources" />
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend\clock-service\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\backend" />
+      <recent name="C:\Users\35511\IdeaProjects\lec-time-clock-system\clock-service\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lec.clock.entity.pojo" />
+      <recent name="com.lec.clock.mapper" />
+      <recent name="com.lec.clock.service.impl" />
+      <recent name="com.lec.clock.service" />
+      <recent name="com.lec.clock.entity.vo" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+        <option value="docker-deploy" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ClockApplication">
+    <configuration name="ClockApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="clock-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lec.clock.ClockApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LecGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="lec-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lecgateway.LecGatewayApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lecgateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lec.user.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ClockApplication" />
+      <item itemvalue="Spring Boot.UserApplication" />
+      <item itemvalue="Spring Boot.LecGatewayApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.LecGatewayApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="" />
+      <changelist id="" name="ignore" comment="" />
+      <created>1730385408545</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730385408545</updated>
+      <workItem from="1730385410323" duration="933000" />
+      <workItem from="1730433315806" duration="314000" />
+      <workItem from="1730443392001" duration="5655000" />
+      <workItem from="1730473134188" duration="1450000" />
+      <workItem from="1730546974278" duration="1858000" />
+      <workItem from="1730549635785" duration="332000" />
+      <workItem from="1730549989200" duration="6698000" />
+      <workItem from="1730614607414" duration="14051000" />
+      <workItem from="1730643180298" duration="1000" />
+      <workItem from="1730643191244" duration="34000" />
+      <workItem from="1730643368765" duration="3000" />
+      <workItem from="1730643379415" duration="18000" />
+      <workItem from="1730643415611" duration="93000" />
+      <workItem from="1730643518117" duration="33000" />
+      <workItem from="1730643560153" duration="1863000" />
+      <workItem from="1730686231365" duration="87000" />
+      <workItem from="1730686327354" duration="945000" />
+      <workItem from="1730730591458" duration="665000" />
+      <workItem from="1730788031647" duration="26000" />
+      <workItem from="1730793050602" duration="10636000" />
+      <workItem from="1730809948257" duration="7301000" />
+      <workItem from="1730818001587" duration="193000" />
+      <workItem from="1730891912986" duration="58000" />
+      <workItem from="1731055538957" duration="7658000" />
+      <workItem from="1731122576695" duration="15000" />
+      <workItem from="1731157854904" duration="5000" />
+      <workItem from="1731158384281" duration="26000" />
+      <workItem from="1731160194053" duration="121000" />
+      <workItem from="1731162265911" duration="3159000" />
+      <workItem from="1731215874184" duration="2267000" />
+      <workItem from="1731227862905" duration="17203000" />
+      <workItem from="1731249863719" duration="174000" />
+      <workItem from="1731250059760" duration="113000" />
+      <workItem from="1731288701428" duration="10000" />
+      <workItem from="1731326152261" duration="7597000" />
+      <workItem from="1731418592503" duration="3948000" />
+      <workItem from="1731474527281" duration="12774000" />
+      <workItem from="1731580436959" duration="467000" />
+      <workItem from="1731581041886" duration="16000" />
+      <workItem from="1731593710332" duration="12000" />
+      <workItem from="1731594594927" duration="442000" />
+      <workItem from="1731646154294" duration="6000" />
+      <workItem from="1732102141824" duration="6316000" />
+      <workItem from="1732163590683" duration="823000" />
+      <workItem from="1732185553712" duration="10528000" />
+      <workItem from="1732283584038" duration="4601000" />
+      <workItem from="1732324190332" duration="22468000" />
+      <workItem from="1732414133596" duration="1825000" />
+      <workItem from="1733109735787" duration="21634000" />
+      <workItem from="1733196194888" duration="14000" />
+      <workItem from="1733206276779" duration="18146000" />
+      <workItem from="1733301261246" duration="6956000" />
+      <workItem from="1733406598206" duration="3354000" />
+      <workItem from="1733488452211" duration="643000" />
+      <workItem from="1733552111499" duration="15000" />
+      <workItem from="1733576351658" duration="1207000" />
+      <workItem from="1733578405353" duration="6180000" />
+      <workItem from="1733584701824" duration="27000" />
+      <workItem from="1733618696620" duration="1548000" />
+      <workItem from="1733620824200" duration="27000" />
+      <workItem from="1733621157485" duration="2861000" />
+      <workItem from="1733641169520" duration="1175000" />
+      <workItem from="1733647261091" duration="1827000" />
+      <workItem from="1733649851871" duration="3000" />
+      <workItem from="1733660234391" duration="11000" />
+      <workItem from="1733661211314" duration="42000" />
+      <workItem from="1733711956898" duration="10900000" />
+      <workItem from="1733722935779" duration="4758000" />
+      <workItem from="1733798586945" duration="14511000" />
+      <workItem from="1733816433476" duration="182000" />
+      <workItem from="1733897907596" duration="2000" />
+      <workItem from="1733899285005" duration="1092000" />
+      <workItem from="1733905870042" duration="22000" />
+      <workItem from="1733906767304" duration="91000" />
+      <workItem from="1733907402139" duration="633000" />
+      <workItem from="1733991427693" duration="3000" />
+      <workItem from="1734012161322" duration="2822000" />
+      <workItem from="1734071369249" duration="648000" />
+      <workItem from="1734092297829" duration="626000" />
+      <workItem from="1734099549630" duration="21000" />
+      <workItem from="1734164104856" duration="113000" />
+      <workItem from="1734169158990" duration="703000" />
+      <workItem from="1734248483629" duration="29000" />
+      <workItem from="1734314957153" duration="4200000" />
+      <workItem from="1734344520176" duration="88000" />
+      <workItem from="1734347826918" duration="1643000" />
+      <workItem from="1734355562617" duration="132000" />
+      <workItem from="1734358528162" duration="1732000" />
+      <workItem from="1734408081509" duration="112000" />
+      <workItem from="1734414962949" duration="30000" />
+      <workItem from="1734415222604" duration="44000" />
+      <workItem from="1734429131598" duration="158000" />
+      <workItem from="1734440330181" duration="238000" />
+      <workItem from="1734505182950" duration="102000" />
+      <workItem from="1734528142943" duration="21000" />
+      <workItem from="1734598685893" duration="11000" />
+      <workItem from="1734608588546" duration="1583000" />
+      <workItem from="1734663391218" duration="5133000" />
+      <workItem from="1734669385710" duration="28000" />
+      <workItem from="1734669477696" duration="30000" />
+      <workItem from="1734669550451" duration="249000" />
+      <workItem from="1734672011115" duration="41000" />
+      <workItem from="1734674494954" duration="12000" />
+      <workItem from="1734677430753" duration="79000" />
+      <workItem from="1734683154611" duration="49000" />
+      <workItem from="1734683873206" duration="81000" />
+      <workItem from="1734694615798" duration="206000" />
+      <workItem from="1734694936186" duration="179000" />
+      <workItem from="1734701567118" duration="839000" />
+      <workItem from="1734706707871" duration="723000" />
+      <workItem from="1734750278627" duration="30000" />
+      <workItem from="1734756220741" duration="641000" />
+      <workItem from="1734870192316" duration="33000" />
+      <workItem from="1734872984520" duration="17000" />
+      <workItem from="1735115705547" duration="1974000" />
+      <workItem from="1735118020723" duration="2043000" />
+      <workItem from="1735129663329" duration="2779000" />
+      <workItem from="1735179968180" duration="10000" />
+      <workItem from="1735475349218" duration="1020000" />
+      <workItem from="1735528610667" duration="598000" />
+      <workItem from="1736079000683" duration="7229000" />
+      <workItem from="1736087216293" duration="1235000" />
+      <workItem from="1736088466322" duration="25000" />
+      <workItem from="1736151599069" duration="835000" />
+      <workItem from="1736152445420" duration="15145000" />
+      <workItem from="1736251032885" duration="6269000" />
+      <workItem from="1736303711595" duration="19294000" />
+      <workItem from="1736392736286" duration="4386000" />
+      <workItem from="1736422682819" duration="2195000" />
+      <workItem from="1736513449368" duration="2533000" />
+      <workItem from="1736522382262" duration="114000" />
+      <workItem from="1736564832475" duration="427000" />
+      <workItem from="1736567769005" duration="603000" />
+      <workItem from="1736743192761" duration="644000" />
+      <workItem from="1736773499301" duration="14000" />
+      <workItem from="1736773619041" duration="96000" />
+      <workItem from="1736843659742" duration="50000" />
+      <workItem from="1736844321046" duration="10785000" />
+      <workItem from="1736866011452" duration="135000" />
+      <workItem from="1737020428342" duration="262000" />
+      <workItem from="1737217259633" duration="2000" />
+      <workItem from="1737377246369" duration="1297000" />
+      <workItem from="1737384287044" duration="60000" />
+      <workItem from="1737385258081" duration="115000" />
+      <workItem from="1737387727081" duration="171000" />
+      <workItem from="1737445365904" duration="47000" />
+      <workItem from="1737461480390" duration="620000" />
+      <workItem from="1737467288630" duration="204000" />
+      <workItem from="1737468291813" duration="68000" />
+      <workItem from="1737468455687" duration="8000" />
+      <workItem from="1737469208988" duration="26000" />
+      <workItem from="1737469351259" duration="34000" />
+      <workItem from="1737469561708" duration="84000" />
+      <workItem from="1737470752315" duration="31000" />
+      <workItem from="1737783392047" duration="106000" />
+      <workItem from="1737901203212" duration="24000" />
+      <workItem from="1738496436197" duration="492000" />
+      <workItem from="1738587751528" duration="493000" />
+      <workItem from="1738593949157" duration="908000" />
+      <workItem from="1738596402388" duration="6000" />
+      <workItem from="1738765005265" duration="127000" />
+      <workItem from="1738765231187" duration="3591000" />
+      <workItem from="1738846855523" duration="170000" />
+      <workItem from="1738915299530" duration="2731000" />
+      <workItem from="1738930887130" duration="4544000" />
+      <workItem from="1739018044657" duration="652000" />
+      <workItem from="1739460180880" duration="2873000" />
+      <workItem from="1739532016133" duration="12037000" />
+      <workItem from="1739621309448" duration="12933000" />
+      <workItem from="1739637008502" duration="205000" />
+      <workItem from="1739690980018" duration="9711000" />
+      <workItem from="1739785918876" duration="587000" />
+      <workItem from="1739786635791" duration="908000" />
+      <workItem from="1739950166984" duration="226000" />
+      <workItem from="1739950667049" duration="9000" />
+      <workItem from="1740107214066" duration="63000" />
+      <workItem from="1740107284975" duration="22000" />
+      <workItem from="1740227076967" duration="1090000" />
+      <workItem from="1740228421690" duration="37000" />
+      <workItem from="1740229863040" duration="107000" />
+      <workItem from="1740232721955" duration="1219000" />
+      <workItem from="1740234000056" duration="38000" />
+      <workItem from="1740234049045" duration="2849000" />
+    </task>
+    <task id="LOCAL-00010" summary="完成所有接口调试以及定时任务设置">
+      <option name="closed" value="true" />
+      <created>1732359960864</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732359960864</updated>
+    </task>
+    <task id="LOCAL-00011" summary="联调测试中">
+      <option name="closed" value="true" />
+      <created>1733149200074</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733149200074</updated>
+    </task>
+    <task id="LOCAL-00012" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733149338863</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733149338863</updated>
+    </task>
+    <task id="LOCAL-00013" summary="更新组件">
+      <option name="closed" value="true" />
+      <created>1733210559890</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733210559890</updated>
+    </task>
+    <task id="LOCAL-00014" summary="更新组件">
+      <option name="closed" value="true" />
+      <created>1733213723903</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733213723903</updated>
+    </task>
+    <task id="LOCAL-00015" summary="更新组件">
+      <option name="closed" value="true" />
+      <created>1733216790229</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733216790229</updated>
+    </task>
+    <task id="LOCAL-00016" summary="完善设置">
+      <option name="closed" value="true" />
+      <created>1733235913581</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235913581</updated>
+    </task>
+    <task id="LOCAL-00017" summary="完善设置">
+      <option name="closed" value="true" />
+      <created>1733303811220</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733303811220</updated>
+    </task>
+    <task id="LOCAL-00018" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733320743518</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733320743518</updated>
+    </task>
+    <task id="LOCAL-00019" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733321020082</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733321020082</updated>
+    </task>
+    <task id="LOCAL-00020" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733321386481</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733321386481</updated>
+    </task>
+    <task id="LOCAL-00021" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733321444714</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733321444714</updated>
+    </task>
+    <task id="LOCAL-00022" summary="解决了用户名/密码错误和邮箱错误时的响应问题">
+      <option name="closed" value="true" />
+      <created>1733409918585</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733409918585</updated>
+    </task>
+    <task id="LOCAL-00023" summary="解决token时长，修复定时器">
+      <option name="closed" value="true" />
+      <created>1733584256509</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733584256509</updated>
+    </task>
+    <task id="LOCAL-00024" summary="解决token时长，修复定时器">
+      <option name="closed" value="true" />
+      <created>1733584546369</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733584546369</updated>
+    </task>
+    <task id="LOCAL-00025" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733620597296</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733620597296</updated>
+    </task>
+    <task id="LOCAL-00026" summary="更新README">
+      <option name="closed" value="true" />
+      <created>1733620798773</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733620798773</updated>
+    </task>
+    <task id="LOCAL-00027" summary="更新计时器">
+      <option name="closed" value="true" />
+      <created>1733713853287</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733713853287</updated>
+    </task>
+    <task id="LOCAL-00028" summary="更新计时器">
+      <option name="closed" value="true" />
+      <created>1733714523912</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1733714523912</updated>
+    </task>
+    <task id="LOCAL-00029" summary="更新计时器">
+      <option name="closed" value="true" />
+      <created>1733716080858</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1733716080858</updated>
+    </task>
+    <task id="LOCAL-00030" summary="更新版本">
+      <option name="closed" value="true" />
+      <created>1733720008248</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1733720008248</updated>
+    </task>
+    <task id="LOCAL-00031" summary="修复daily数据和新增上周未打满接口">
+      <option name="closed" value="true" />
+      <created>1733816128403</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1733816128403</updated>
+    </task>
+    <task id="LOCAL-00032" summary="软删除部分冗余数据">
+      <option name="closed" value="true" />
+      <created>1734014267387</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1734014267387</updated>
+    </task>
+    <task id="LOCAL-00033" summary="修复计时器">
+      <option name="closed" value="true" />
+      <created>1734358710885</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1734358710885</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix:change MinioUtils to fix upload Image">
+      <option name="closed" value="true" />
+      <created>1734665332085</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1734665332085</updated>
+    </task>
+    <task id="LOCAL-00035" summary="update:.gitignore">
+      <option name="closed" value="true" />
+      <created>1734667226917</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1734667226917</updated>
+    </task>
+    <task id="LOCAL-00036" summary="update:gitignore">
+      <option name="closed" value="true" />
+      <created>1734667418333</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1734667418333</updated>
+    </task>
+    <task id="LOCAL-00037" summary="update:gitignore">
+      <option name="closed" value="true" />
+      <created>1734667742552</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1734667742552</updated>
+    </task>
+    <task id="LOCAL-00038" summary="refactor:test git">
+      <option name="closed" value="true" />
+      <created>1734668250050</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1734668250050</updated>
+    </task>
+    <task id="LOCAL-00039" summary="refactor:test git">
+      <option name="closed" value="true" />
+      <created>1734668506330</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1734668506330</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat:add register audit">
+      <option name="closed" value="true" />
+      <created>1736154729948</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1736154729948</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix:fix the create ClockHistory error &amp; Implement the specified user audit">
+      <option name="closed" value="true" />
+      <created>1736171300141</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1736171300141</updated>
+    </task>
+    <task id="LOCAL-00042" summary="update:update README.md">
+      <option name="closed" value="true" />
+      <created>1736171494835</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1736171494835</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat:add remote login alarm">
+      <option name="closed" value="true" />
+      <created>1736400777858</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1736400777858</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix:fix some bugs">
+      <option name="closed" value="true" />
+      <created>1736522452329</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1736522452329</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix:fix front-end port">
+      <option name="closed" value="true" />
+      <created>1736564877100</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1736564877100</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat:add nacos config manage &amp; remove unnecessary part">
+      <option name="closed" value="true" />
+      <created>1736865394084</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1736865394084</updated>
+    </task>
+    <task id="LOCAL-00047" summary="update:update README.md">
+      <option name="closed" value="true" />
+      <created>1736866123969</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1736866123969</updated>
+    </task>
+    <task id="LOCAL-00048" summary="update:update README.md">
+      <option name="closed" value="true" />
+      <created>1737020452769</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1737020452769</updated>
+    </task>
+    <task id="LOCAL-00049" summary="feat:add redis cache">
+      <option name="closed" value="true" />
+      <created>1738768705067</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1738768705067</updated>
+    </task>
+    <task id="LOCAL-00050" summary="feat:add card">
+      <option name="closed" value="true" />
+      <created>1739546025138</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1739546025138</updated>
+    </task>
+    <task id="LOCAL-00051" summary="update:change card to card-kill">
+      <option name="closed" value="true" />
+      <created>1739634368401</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1739634368401</updated>
+    </task>
+    <task id="LOCAL-00052" summary="update:README">
+      <option name="closed" value="true" />
+      <created>1739634615306</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1739634615306</updated>
+    </task>
+    <task id="LOCAL-00053" summary="update: use card to reduce time">
+      <option name="closed" value="true" />
+      <created>1739721107542</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1739721107542</updated>
+    </task>
+    <task id="LOCAL-00054" summary="update: scheduled clear time and calculate currency">
+      <option name="closed" value="true" />
+      <created>1739723497548</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1739723497548</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fix: fix bug of pom">
+      <option name="closed" value="true" />
+      <created>1739950325493</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1739950325493</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fix: add ignore">
+      <option name="closed" value="true" />
+      <created>1740236078527</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1740236078527</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix: add ignore">
+      <option name="closed" value="true" />
+      <created>1740236727430</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1740236727430</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fix: clear files">
+      <option name="closed" value="true" />
+      <created>1740236861985</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1740236861985</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.jks" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="更新版本" />
+    <MESSAGE value="修复daily数据和新增上周未打满接口" />
+    <MESSAGE value="软删除部分冗余数据" />
+    <MESSAGE value="修复计时器" />
+    <MESSAGE value="fix:change MinioUtils to fix upload Image" />
+    <MESSAGE value="update:.gitignore" />
+    <MESSAGE value="update:gitignore" />
+    <MESSAGE value="refactor:test git" />
+    <MESSAGE value="feat:add register audit" />
+    <MESSAGE value="ignore" />
+    <MESSAGE value="fix:fix the create ClockHistory error &amp; Implement the specified user audit" />
+    <MESSAGE value="feat:add remote login alarm" />
+    <MESSAGE value="fix:fix some bugs" />
+    <MESSAGE value="fix:fix front-end port" />
+    <MESSAGE value="feat:add nacos config manage &amp; remove unnecessary part" />
+    <MESSAGE value="update:update README.md" />
+    <MESSAGE value="feat:add redis cache" />
+    <MESSAGE value="feat:add card" />
+    <MESSAGE value="update:change card to card-kill" />
+    <MESSAGE value="update:README" />
+    <MESSAGE value="update: use card to reduce time" />
+    <MESSAGE value="update: scheduled clear time and calculate currency" />
+    <MESSAGE value="fix: fix bug of pom" />
+    <MESSAGE value="fix: add ignore" />
+    <MESSAGE value="fix: clear files" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: clear files" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
