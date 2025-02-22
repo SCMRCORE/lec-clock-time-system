@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="fix: add ignore">
-      <change afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/utils/BeanCopyUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/deep-is@0.1.4/node_modules/deep-is/README.markdown" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/lodash@4.17.21/node_modules/lodash/wrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/@vue/reactivity/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/caniuse-lite/data/features/input-color.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/glob/glob.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/lodash/fp/toPlainObject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/picomatch/lib/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/vue-demi/lib/v2/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/.pnpm/node_modules/zrender/lib/Element.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@arco-design/web-vue/es/icon/icon-email/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@arco-design/web-vue/es/locale/lang/es-es.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@arco-design/web-vue/lib/icon/icon-forward/icon-forward.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@eslint-community/regexpp/index.mjs.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@types/node/tls.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/@typescript-eslint/scope-manager/dist/lib/es2016.array.include.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/echarts/lib/chart/graph/simpleLayoutHelper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/echarts/lib/scale/Ordinal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/node_modules/pnpm/dist/node_modules/aproba/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/clock-service-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/clock-service-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/clock-service-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/clock-service-1.0.0.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/lec-api-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/lec-api-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/lec-common-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/lec-common-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/lec-gateway.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/lec-gateway.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/lec-gateway.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/lec-gateway.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/user-service/target/user-service-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/user-service-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/user-service/target/user-service-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/user-service-1.0.0.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/typings/auto-imports.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/typings/auto-imports.d.ts" afterDir="false" />
-    </list>
+    <list default="true" id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="fix: clear files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -405,23 +373,7 @@
       <workItem from="1740229863040" duration="107000" />
       <workItem from="1740232721955" duration="1219000" />
       <workItem from="1740234000056" duration="38000" />
-      <workItem from="1740234049045" duration="2672000" />
-    </task>
-    <task id="LOCAL-00008" summary="解决限制ip打卡问题">
-      <option name="closed" value="true" />
-      <created>1731492173682</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1731492173682</updated>
-    </task>
-    <task id="LOCAL-00009" summary="测试完90%接口，oss更改为miniIO">
-      <option name="closed" value="true" />
-      <created>1732197391278</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1732197391278</updated>
+      <workItem from="1740234049045" duration="2849000" />
     </task>
     <task id="LOCAL-00010" summary="完成所有接口调试以及定时任务设置">
       <option name="closed" value="true" />
@@ -799,7 +751,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740236078527</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="fix: add ignore">
+      <option name="closed" value="true" />
+      <created>1740236727430</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1740236727430</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fix: clear files">
+      <option name="closed" value="true" />
+      <created>1740236861985</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1740236861985</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -832,7 +800,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="更新计时器" />
     <MESSAGE value="更新版本" />
     <MESSAGE value="修复daily数据和新增上周未打满接口" />
     <MESSAGE value="软删除部分冗余数据" />
@@ -857,7 +824,8 @@
     <MESSAGE value="update: scheduled clear time and calculate currency" />
     <MESSAGE value="fix: fix bug of pom" />
     <MESSAGE value="fix: add ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: add ignore" />
+    <MESSAGE value="fix: clear files" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: clear files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
