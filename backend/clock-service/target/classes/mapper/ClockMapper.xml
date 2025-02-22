@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.clock.mapper.ClockMapper">
+
+    <update id="cleanAllTime">
+        update `lec-clock-in`.clock set `lec-clock-in`.clock.total_duration = 0
+        where `lec-clock-in`.clock.id in
+        <foreach collection="records" item="record" separator="," open="(" close=")">
+            #{record.id}
+        </foreach>
+    </update>
+
+    <update id="clockOff">
+        update `lec-clock-in`.clock set `lec-clock-in`.clock.status = 0
+        where `lec-clock-in`.clock.id in
+        <foreach collection="records" item="record" separator="," open="(" close=")">
+            #{record.id}
+        </foreach>
+        and `lec-clock-in`.clock.status = 1
+    </update>
+
+    <select id="getGradeById" resultType="com.lec.clock.entity.pojo.Other" parameterType="java.lang.Long">
+        select id, user.grade from `lec-clock-in`.user where id = #{id}
+    </select>
+
+</mapper>
