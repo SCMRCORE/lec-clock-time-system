@@ -2,7 +2,9 @@
   <div class="clock-info">
     <h2>
       {{
-        selfUser.nickname ? `🎉 欢迎回来，${selfUser.nickname}` : '🤯 用户名加载失败'
+        selfUser.nickname
+          ? `🎉 欢迎回来，${selfUser.nickname}`
+          : '🤯 用户名加载失败'
       }}
     </h2>
 
@@ -18,7 +20,7 @@
       </div>
 
       <div class="statistics">
-        <template v-for="(item,index) in clockInfoDataList" :key="item.key">
+        <template v-for="(item, index) in clockInfoDataList" :key="item.key">
           <div class="statistics-item">
             <div class="left">
               <img :src="item.icon" />
@@ -27,9 +29,11 @@
             <div class="right">
               <div class="title">{{ item.title }}</div>
               <div class="data">
-                <span class="current-value">{{dataList[index]}} {{ item.unit }}</span>
+                <span class="current-value"
+                  >{{ dataList[index] }} {{ item.unit }}</span
+                >
                 <span class="max-value">
-                  /{{ item.maxValue }}{{ item.unit }}
+                  / {{ item.maxValue }}{{ item.unit }}
                 </span>
               </div>
             </div>
@@ -42,19 +46,23 @@
 
 <script setup lang="ts">
 import { clockInfoDataList, weatherInfoList } from '../configs'
-const props = defineProps(['selfUser','dataList','userList'])
+const props = defineProps(['selfUser', 'dataList', 'userList'])
 const selfUser = props.selfUser
 const { userList } = toRefs(props)
 
-watch(selfUser,()=>{
-    if(selfUser.adjustTargetDuration==0) return;
-    clockInfoDataList[0].maxValue = selfUser.adjustTargetDuration / 60
+watch(selfUser, () => {
+  if (selfUser.adjustTargetDuration == 0) return
+  // clockInfoDataList[0].maxValue = selfUser.adjustTargetDuration / 60
+  const duration = Number(selfUser.value.adjustTargetDuration) || 0
+  clockInfoDataList[0].maxValue = duration / 60
 })
-watch(userList!,()=>{
-    console.log(userList,'userList');
-    
-    if(userList?.value.length===0) return ;
-    clockInfoDataList[1].maxValue = userList?.value.length
+watch(userList!, () => {
+  console.log(userList, 'userList')
+
+  if (userList?.value.length === 0) return
+  // clockInfoDataList[1].maxValue = userList?.value.length
+  const count = userList.value?.length || 0
+  clockInfoDataList[1].maxValue = count
 })
 </script>
 
