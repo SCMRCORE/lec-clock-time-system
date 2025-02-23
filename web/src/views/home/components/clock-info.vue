@@ -53,7 +53,7 @@ const { userList } = toRefs(props)
 watch(selfUser, () => {
   if (selfUser.adjustTargetDuration == 0) return
   // clockInfoDataList[0].maxValue = selfUser.adjustTargetDuration / 60
-  const duration = Number(selfUser.value.adjustTargetDuration) || 0
+  const duration = Number(selfUser.adjustTargetDuration) || 0
   clockInfoDataList[0].maxValue = duration / 60
 })
 watch(userList!, () => {
