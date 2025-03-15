@@ -55,6 +55,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--spring-ai-alibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud.ai</groupId>
+                <artifactId>spring-ai-alibaba-starter</artifactId>
+                <version>1.0.0-M5.1</version>
+            </dependency>
             <!-- 数据库驱动包管理 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -184,5 +190,16 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
