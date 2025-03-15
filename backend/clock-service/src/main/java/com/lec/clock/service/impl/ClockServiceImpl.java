@@ -122,7 +122,6 @@ public class ClockServiceImpl extends ServiceImpl<ClockMapper, Clock> implements
 
     @Override
     public Result clock(Long id) throws UnknownHostException {
-//        Integer week = (Integer) redisTemplate.opsForValue().get(SystemConstant.REDIS_WEEK);
         Clock clock=clockMapper.getById(id);
         if(clock==null){
             return Result.errorResult(AppHttpCodeEnum.ERROR_ID_IN_CLOCK_LIST);

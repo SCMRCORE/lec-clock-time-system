@@ -4,9 +4,119 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="fix: clear files">
+    <list default="true" id="60c5811d-d5f8-404a-b1d1-24b3331bfac5" name="更改" comment="fix: some files">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/___.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在变基之前未提交的更改_[更改]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/views/home/components/clock-info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/views/home/components/clock-info.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/src/main/java/com/lec/clock/service/impl/ClockServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/src/main/java/com/lec/clock/service/impl/ClockServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/ClockApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/ClockApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedisConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedisProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedisProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedissonConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/config/RedissonConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/CardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/CardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/CardOrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/CardOrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/ClockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/ClockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/ClockHistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/controller/ClockHistoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/CardDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/CardDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/CardSkillDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/CardSkillDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/ClockDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/dto/ClockDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/CardCount.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/CardCount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/CardOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/CardOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Clock.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Clock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/ClockHistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/ClockHistory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Ipv4Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Ipv4Log.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Other.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Other.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/UserCurrency.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/pojo/UserCurrency.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/CardSkillVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/CardSkillVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/CardVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/CardVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockHistoryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockHistoryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockListInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/ClockListInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/StartClockVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/StartClockVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/StopClockVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/StopClockVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/UserClockInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/entity/vo/UserClockInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/CardMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/CardMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/CardOrderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/CardOrderMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockHistoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockHistoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockIpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockIpMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/ClockMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/Ipv4LogMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/mapper/Ipv4LogMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/CardOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/CardOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/CardService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/CardService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/ClockHistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/ClockHistoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/ClockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/ClockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/Ipv4LogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/Ipv4LogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/CardOrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/CardOrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/CardServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/CardServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/ClockHistoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/ClockHistoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/ClockServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/ClockServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/Ipv4LogServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/service/impl/Ipv4LogServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/utils/GetWeekUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/utils/GetWeekUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/utils/PageResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clock-service/target/classes/com/lec/clock/utils/PageResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/src/main/java/com/example/lecapi/LecApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/src/main/java/com/example/lecapi/LecApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/src/main/java/com/example/lecapi/clients/ClockClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/src/main/java/com/example/lecapi/clients/ClockClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/LecApiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/LecApiApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/clients/ClockClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/clients/ClockClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/clients/UserClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/clients/UserClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/config/DefaultFeignConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/config/DefaultFeignConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/config/DefaultFeignConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-api/target/classes/com/example/lecapi/config/DefaultFeignConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/clockcommonApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/clockcommonApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/config/UserInfoMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/config/UserInfoMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/PageVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/PageVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/entity/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/enums/AppHttpCodeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/enums/AppHttpCodeEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/enums/SystemConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/enums/SystemConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/exceptions/CommonException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/exceptions/CommonException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/exceptions/UnauthorizedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/exceptions/UnauthorizedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/intercepters/UserInfoInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/intercepters/UserInfoInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/utils/BeanCopyUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/utils/BeanCopyUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/utils/UserContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-common/target/classes/com/clockcommon/utils/UserContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/LecGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/LecGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/AuthProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/AuthProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/JwtProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/JwtProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/RedisConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/enums/SystemConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/enums/SystemConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/exceptions/CommonException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/exceptions/CommonException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/exceptions/UnauthorizedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/exceptions/UnauthorizedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/filter/LecGlobalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/filter/LecGlobalFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/filter/ipv4Filter.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/filter/ipv4Filter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/utils/JwtTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lec-gateway/target/classes/com/lecgateway/utils/JwtTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/UserApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/UserApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/HttpStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/HttpStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/JwtProperties.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/JwtProperties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/MinioConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/MinioConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/RedisConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/LoginUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/LoginUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/RegisterUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/RegisterUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/UpdateUserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/UpdateUserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/DailyHistory.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/DailyHistory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/LoginUserVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/LoginUserVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/MenuInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/MenuInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/UserClockInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/UserClockInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/UserInfoVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/entity/vo/UserInfoVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/mapper/DailyHistoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/mapper/DailyHistoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/DailyHistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/DailyHistoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/impl/DailyHistoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/impl/DailyHistoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/JwtTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/JwtTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/MinioUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/MinioUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/SnowflakeIdWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/user-service/target/classes/com/lec/user/utils/SnowflakeIdWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -377,23 +487,28 @@
       <workItem from="1740234000056" duration="38000" />
       <workItem from="1740234049045" duration="3542000" />
       <workItem from="1740283165660" duration="15000" />
-      <workItem from="1740283773011" duration="73000" />
-    </task>
-    <task id="LOCAL-00013" summary="更新组件">
-      <option name="closed" value="true" />
-      <created>1733210559890</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1733210559890</updated>
-    </task>
-    <task id="LOCAL-00014" summary="更新组件">
-      <option name="closed" value="true" />
-      <created>1733213723903</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733213723903</updated>
+      <workItem from="1740283773011" duration="188000" />
+      <workItem from="1740297011926" duration="38000" />
+      <workItem from="1740399888475" duration="710000" />
+      <workItem from="1740451668742" duration="4493000" />
+      <workItem from="1740475815387" duration="597000" />
+      <workItem from="1740477391994" duration="4000" />
+      <workItem from="1740478260364" duration="14000" />
+      <workItem from="1740484534986" duration="7000" />
+      <workItem from="1740645566689" duration="17000" />
+      <workItem from="1740647953389" duration="95000" />
+      <workItem from="1740814183238" duration="702000" />
+      <workItem from="1741511026225" duration="1349000" />
+      <workItem from="1741522506615" duration="158000" />
+      <workItem from="1741529097707" duration="24000" />
+      <workItem from="1741572780736" duration="29000" />
+      <workItem from="1741574851878" duration="19000" />
+      <workItem from="1741577561490" duration="57000" />
+      <workItem from="1741593140332" duration="843000" />
+      <workItem from="1741594311947" duration="9000" />
+      <workItem from="1742023708180" duration="374000" />
+      <workItem from="1742044171678" duration="177000" />
+      <workItem from="1742046521045" duration="2017000" />
     </task>
     <task id="LOCAL-00015" summary="更新组件">
       <option name="closed" value="true" />
@@ -771,7 +886,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740237381971</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fix: bug of fe">
+      <option name="closed" value="true" />
+      <created>1740283862093</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1740283862094</updated>
+    </task>
+    <task id="LOCAL-00063" summary="fix: some files">
+      <option name="closed" value="true" />
+      <created>1740283873578</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1740283873578</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -804,8 +935,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="更新版本" />
-    <MESSAGE value="修复daily数据和新增上周未打满接口" />
     <MESSAGE value="软删除部分冗余数据" />
     <MESSAGE value="修复计时器" />
     <MESSAGE value="fix:change MinioUtils to fix upload Image" />
@@ -829,7 +958,9 @@
     <MESSAGE value="fix: fix bug of pom" />
     <MESSAGE value="fix: add ignore" />
     <MESSAGE value="fix: clear files" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: clear files" />
+    <MESSAGE value="fix: bug of fe" />
+    <MESSAGE value="fix: some files" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: some files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

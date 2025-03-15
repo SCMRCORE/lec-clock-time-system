@@ -28,22 +28,11 @@
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.6</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.example</groupId>
             <artifactId>lec-common</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
-        <!--        &lt;!&ndash;hutool工具包&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>cn.hutool</groupId>-->
-<!--            <artifactId>hutool-all</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
 
 
