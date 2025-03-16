@@ -1,46 +1,26 @@
 package com.lec.clock.service.impl;
 
-
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.C;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.clockcommon.entity.PageVo;
 import com.clockcommon.entity.Result;
 import com.clockcommon.enums.AppHttpCodeEnum;
-import com.clockcommon.enums.SystemConstant;
 import com.clockcommon.utils.BeanCopyUtils;
 import com.clockcommon.utils.UserContext;
-import com.example.lecapi.clients.UserClient;
 import com.lec.clock.entity.dto.CardDto;
 import com.lec.clock.entity.dto.CardSkillDto;
 import com.lec.clock.entity.pojo.*;
 import com.lec.clock.entity.vo.*;
 import com.lec.clock.mapper.*;
 import com.lec.clock.service.CardService;
-import com.lec.clock.service.ClockService;
-import com.lec.clock.service.Ipv4LogService;
-import com.lec.clock.utils.GetWeekUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Base64;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * (Clock)表服务实现类

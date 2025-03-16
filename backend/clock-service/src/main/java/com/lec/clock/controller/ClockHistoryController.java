@@ -1,8 +1,5 @@
 package com.lec.clock.controller;
 
-
-import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
-import com.clockcommon.entity.Result;
 import com.lec.clock.service.ClockHistoryService;
 import com.lec.clock.utils.PageResult;
 import io.swagger.annotations.Api;

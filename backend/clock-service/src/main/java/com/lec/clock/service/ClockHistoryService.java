@@ -2,7 +2,6 @@ package com.lec.clock.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.clockcommon.entity.Result;
 import com.lec.clock.entity.pojo.ClockHistory;
 import com.lec.clock.utils.PageResult;
 

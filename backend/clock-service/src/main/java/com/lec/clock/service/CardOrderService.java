@@ -2,8 +2,6 @@ package com.lec.clock.service;
 
 
 import com.clockcommon.entity.Result;
-import com.lec.clock.entity.dto.CardDto;
-import com.lec.clock.entity.dto.CardSkillDto;
 import com.lec.clock.entity.pojo.Card;
 import com.lec.clock.entity.pojo.UserCurrency;
 

@@ -8,10 +8,6 @@ import com.lec.clock.entity.pojo.ClockHistory;
 import com.lec.clock.entity.vo.ClockHistoryVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
-
 
 /**
  * (ClockHistory)表数据库访问层

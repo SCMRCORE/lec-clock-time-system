@@ -9,7 +9,6 @@ import com.lec.user.entity.dto.UserDto;
 import com.lec.user.entity.pojo.User;
 import com.lec.user.service.DailyHistoryService;
 import com.lec.user.service.UserService;
-import com.lec.user.utils.MinioUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

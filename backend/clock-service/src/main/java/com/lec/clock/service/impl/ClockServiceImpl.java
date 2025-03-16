@@ -24,15 +24,12 @@ import com.lec.clock.mapper.Ipv4LogMapper;
 import com.lec.clock.service.ClockService;
 import com.lec.clock.service.Ipv4LogService;
 import com.lec.clock.utils.GetWeekUtil;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.net.InetAddress;

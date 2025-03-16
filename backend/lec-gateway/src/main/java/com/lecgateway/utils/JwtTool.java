@@ -7,9 +7,6 @@ import cn.hutool.jwt.signers.JWTSigner;
 import cn.hutool.jwt.signers.JWTSignerUtil;
 import com.lecgateway.exceptions.UnauthorizedException;
 import org.springframework.stereotype.Component;
-
-import javax.crypto.KeyGenerator;
-import java.security.Key;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
