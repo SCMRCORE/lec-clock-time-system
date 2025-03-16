@@ -1,9 +1,6 @@
 package com.lec.clock.mapper;
 
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lec.clock.entity.pojo.*;
-import com.lec.clock.entity.vo.ClockInfoVo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

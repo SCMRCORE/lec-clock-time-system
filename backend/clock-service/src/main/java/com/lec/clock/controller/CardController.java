@@ -4,7 +4,6 @@ import com.clockcommon.entity.Result;
 import com.lec.clock.entity.dto.CardDto;
 import com.lec.clock.entity.dto.CardSkillDto;
 import com.lec.clock.service.CardService;
-import com.lec.clock.service.impl.CardServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

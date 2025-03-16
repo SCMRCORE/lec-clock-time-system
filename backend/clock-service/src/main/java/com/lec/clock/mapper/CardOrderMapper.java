@@ -1,8 +1,5 @@
 package com.lec.clock.mapper;
 
-
-import com.lec.clock.entity.pojo.Card;
-import com.lec.clock.entity.pojo.CardCount;
 import com.lec.clock.entity.pojo.CardOrder;
 import com.lec.clock.entity.pojo.UserCurrency;
 import org.apache.ibatis.annotations.Insert;

@@ -1,6 +1,5 @@
 package com.clockcommon.intercepters;
 
-import cn.hutool.core.util.StrUtil;
 import com.clockcommon.utils.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;

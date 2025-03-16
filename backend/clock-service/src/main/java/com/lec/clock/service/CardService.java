@@ -1,13 +1,8 @@
 package com.lec.clock.service;
 
-
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.clockcommon.entity.Result;
 import com.lec.clock.entity.dto.CardDto;
 import com.lec.clock.entity.dto.CardSkillDto;
-import com.lec.clock.entity.pojo.Clock;
-
-import java.net.UnknownHostException;
 
 /**
  * (Clock)表服务接口

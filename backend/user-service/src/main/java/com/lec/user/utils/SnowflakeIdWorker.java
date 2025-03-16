@@ -1,7 +1,5 @@
 package com.lec.user.utils;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 雪花算法生成唯一id
  */
